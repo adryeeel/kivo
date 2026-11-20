@@ -16,8 +16,8 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Open [the local preview](http://127.0.0.1:4173/) or
-[the login route](http://127.0.0.1:4173/login).
+Open [the local preview](http://127.0.0.1:3000/) or
+[the login route](http://127.0.0.1:3000/login).
 Appearance defaults to the system and stores only `kivo.theme`. Both routes use
 the same server-rendered page; the form and theme controls are client components.
 
@@ -37,7 +37,7 @@ pnpm build
 ```
 
 `pnpm format` writes formatting changes. `pnpm test:watch` runs Vitest in watch
-mode. `pnpm build` followed by `pnpm start` serves the production app at port 4173.
+mode. `pnpm build` followed by `pnpm start` serves the production app at the default port 3000.
 Type checking generates Next.js route types first, including on a fresh checkout.
 
 Vitest is the only test runner. It covers form behavior, the theme-provider

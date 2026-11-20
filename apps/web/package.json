@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --hostname 127.0.0.1 --port 4173",
+    "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
-    "start": "next start --hostname 127.0.0.1 --port 4173",
+    "start": "next start --hostname 127.0.0.1",
     "lint": "oxlint --deny-warnings .",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
