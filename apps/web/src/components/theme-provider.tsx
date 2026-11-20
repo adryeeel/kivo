@@ -5,14 +5,14 @@ import type { ReactNode } from 'react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  return (
-    <NextThemesProvider
-      attribute="data-theme"
-      storageKey="kivo.theme"
-      defaultTheme="system"
-      enableSystem
-    >
-      {children}
-    </NextThemesProvider>
-  );
+    return (
+        <NextThemesProvider
+            attribute="data-theme"
+            storageKey="kivo.theme"
+            defaultTheme="system"
+            enableSystem
+        >
+            {children}
+        </NextThemesProvider>
+    );
 }

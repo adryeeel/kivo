@@ -5,16 +5,16 @@ import { defineProject, mergeConfig } from 'vitest/config';
 import shared from '@kivo/config/vitest';
 
 export default mergeConfig(
-  shared,
-  defineProject({
-    plugins: [react()],
-    test: {
-      browser: {
-        enabled: true,
-        headless: true,
-        provider: playwright(),
-        instances: [{ browser: 'chromium' }],
-      },
-    },
-  }),
+    shared,
+    defineProject({
+        plugins: [react()],
+        test: {
+            browser: {
+                enabled: true,
+                headless: true,
+                provider: playwright(),
+                instances: [{ browser: 'chromium' }],
+            },
+        },
+    }),
 );

@@ -1,29 +1,29 @@
 {
-  "name": "@kivo/config",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "exports": {
-    "./oxlint": "./oxlint.json",
-    "./oxfmt": "./oxfmt.ts",
-    "./vitest": "./vitest.ts",
-    "./vitest/browser": "./vitest.browser.ts",
-    "./typescript": "./typescript.json"
-  },
-  "scripts": {
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@vitejs/plugin-react": "6.3.0",
-    "@vitest/browser-playwright": "5.1.1"
-  },
-  "devDependencies": {
-    "@types/node": "26.6.6",
-    "typescript": "6.0.3"
-  },
-  "peerDependencies": {
-    "oxfmt": "^0.79.0",
-    "playwright": "^1.65.1",
-    "vitest": "^5.1.1"
-  }
+    "name": "@kivo/config",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./oxlint": "./oxlint.json",
+        "./oxfmt": "./oxfmt.ts",
+        "./vitest": "./vitest.ts",
+        "./vitest/browser": "./vitest.browser.ts",
+        "./typescript": "./typescript.json"
+    },
+    "scripts": {
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@vitejs/plugin-react": "6.3.0",
+        "@vitest/browser-playwright": "5.1.1"
+    },
+    "devDependencies": {
+        "@types/node": "26.6.6",
+        "typescript": "6.0.3"
+    },
+    "peerDependencies": {
+        "oxfmt": "^0.79.0",
+        "playwright": "^1.65.1",
+        "vitest": "^5.1.1"
+    }
 }

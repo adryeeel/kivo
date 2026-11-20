@@ -1,22 +1,22 @@
 {
-  "extends": "@kivo/config/typescript",
-  "compilerOptions": {
-    "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "jsx": "react-jsx",
-    "paths": { "@/*": ["./src/*"] },
-    "incremental": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "plugins": [{ "name": "next" }],
-    "types": ["node"]
-  },
-  "include": [
-    "next-env.d.ts",
-    "src",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "*.ts",
-    "tests"
-  ],
-  "exclude": ["node_modules"]
+    "extends": "@kivo/config/typescript",
+    "compilerOptions": {
+        "lib": ["ES2023", "DOM", "DOM.Iterable"],
+        "jsx": "react-jsx",
+        "paths": { "@/*": ["./src/*"] },
+        "incremental": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "plugins": [{ "name": "next" }],
+        "types": ["node"]
+    },
+    "include": [
+        "next-env.d.ts",
+        "src",
+        ".next/types/**/*.ts",
+        ".next/dev/types/**/*.ts",
+        "*.ts",
+        "tests"
+    ],
+    "exclude": ["node_modules"]
 }

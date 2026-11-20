@@ -229,3 +229,17 @@ Verification: all 13 Vitest tests, TypeScript, Oxlint, Oxfmt, and the Next
 production build pass. Live Chromium checks loaded both routes and verified
 stylesheet resolution and theme switching; Next MCP reported no compilation or
 runtime errors. Firefox/WebKit and physical phones were not repeated.
+
+## Formatter cleanup: four spaces and inherited ignores
+
+Set shared Oxfmt `tabWidth` to four and reformatted the repository. Removed
+duplicated exclusions for build output, coverage, generated Next declarations,
+and the lockfile: Oxfmt already reads Git ignore rules and skips lockfiles.
+Kept only the protected `.agents`, `.codex`, and `.aws` directories, which are
+not Git-ignored here. Root and app formatter checks still cover the intended
+files without traversing generated output.
+
+Critique: reviewed the non-whitespace source diff; only JSX line wrapping
+changed. No behavior or import order changed. Formatting and lint pass;
+TypeScript and all 13 existing Vitest checks pass. Production build and manual
+browser QA were not repeated for this formatting-only change.

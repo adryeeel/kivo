@@ -27,6 +27,8 @@ the same server-rendered page; the form and theme controls are client components
 Vitest, and strict TypeScript configurations. Root entrypoints and app configs
 consume those exports; app-specific settings stay outside the shared package.
 Oxfmt also sorts Tailwind classes against the web stylesheet.
+Formatting uses four spaces. Oxfmt reads `.gitignore` and skips lockfiles by
+default; explicit exclusions cover the protected local tool directories only.
 
 Use `@/` for imports from `apps/web/src` and `@kivo/` package exports across
 workspace boundaries. The web tsconfig owns the alias; Next.js and Vitest both
