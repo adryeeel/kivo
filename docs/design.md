@@ -16,8 +16,8 @@ changes whose comparison period has not been defined.
 ## UI libraries researched
 
 Checked against primary documentation on 20 November 2026. Visual-fit judgments
-below are design assessments, not claims of screenshot provenance. No package
-has been installed or benchmarked.
+below are design assessments, not claims of screenshot provenance. This research
+preceded implementation; the installed first-look subset is described below.
 
 | Candidate | Fit and tradeoff | Decision |
 | --- | --- | --- |
@@ -164,5 +164,33 @@ If your net balance is negative, show You owe; if zero, show All settled.
 Compare desktop layout to the reference and phone layout to the actual task.
 Check density, type size, alignment, empty/error states, and whether a family
 member can add a split without understanding bookkeeping. Screenshot review
-at phone and desktop widths is required once there is a running UI. No rendered
-design or real-device verification has been performed in this planning slice.
+at phone and desktop widths is required for running UI. The login first look
+has now been reviewed in desktop/mobile Chromium. Real-device and Safari checks
+remain pending.
+
+## Implemented login and themes
+
+The first look uses an inset two-column shell on desktop: a static, explicitly
+illustrative family preview and an email/password form. Below 1024 px the preview
+is removed so the form has the full available width. Manrope and all assets are
+served locally. Base UI supplies Button, Input, and accessible Dialog behavior;
+CSS tokens supply the visual design without a full generated component catalog.
+
+| Dark token | Value | Purpose |
+| --- | --- | --- |
+| canvas | `#131416` | Desktop page surround |
+| surface | `#1B1C20` | Form and phone background |
+| showcase | `#212126` | Desktop family panel |
+| raised surface | `#29292F` | Family preview |
+| ink / muted | `#F2F0F6` / `#B0ABB9` | Primary and secondary text |
+| accent text | `#BFA5FA` | Links and selected accents |
+
+The purple primary button keeps white text in both themes. The appearance radio
+group offers Light, Dark, and System, defaults to the system, and stores only
+the preference. A head script applies it before paint; system changes and
+cross-tab changes remain synchronized. Browser chrome follows the active canvas.
+Blocked storage falls back safely for the current visit.
+
+The form provides field validation, password visibility, and preview information
+dialogs. It does not send credentials or claim authentication success. Connect
+the planned auth service before enabling real sign-in, reset, and registration.

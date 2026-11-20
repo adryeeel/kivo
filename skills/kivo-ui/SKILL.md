@@ -7,8 +7,10 @@ description: Build or review Kivo mobile-first screens using its neutral and vio
 
 Read the relevant tokens and wireframe in [design](../../docs/design.md) and the
 slice's criteria in [plan](../../docs/plan.md). Follow the user's reference; avoid
-inventing a new visual theme for each screen. The library choices are proposed
-until installed; inspect the real component APIs before coding against them.
+inventing a new visual theme for each screen. Base UI Button, Input, and Dialog
+are installed; the login uses semantic CSS tokens in light and dark palettes.
+Inspect the real component APIs before coding against them. Honor explicit
+Light/Dark/System preference and preserve the pre-paint theme initialization.
 
 - Start with the phone task: add a split, settle up, or mark a goal contribution.
   Use the existing primitives and tokens; create no parallel button/form system.

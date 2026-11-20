@@ -1,6 +1,8 @@
 # Architecture and financial contract
 
-This is a proposed design, not an installed or verified runtime.
+The web scaffold is installed and runs the login first look. API, database, auth,
+and financial behavior below remain proposed; browser tests do not establish
+server-side authentication or financial correctness.
 
 ## Stack and boundaries
 
@@ -54,7 +56,15 @@ a service only for a meaningful transaction or business rule, not every table.
 Pin compatible stable Node/pnpm and package versions during scaffolding; commit
 the lockfile. Use strict TypeScript, ESLint and Prettier, Vitest for small logic
 tests, API injection plus PostgreSQL for integration, and Playwright for browser
-journeys. Root scripts and CI arrive with slice 1; none exist yet.
+journeys. Database integration checks and CI arrive with the foundation slice;
+root scripts and frontend browser tests are now available.
+
+First-look implementation: root pnpm scripts and a lockfile now exist, with
+Base UI controls, Lucide icons, self-hosted Manrope, and CSS variables. Plain CSS
+is sufficient for this bounded screen; Tailwind and the broader shadcn catalog
+remain deferred. TypeScript is pinned to 6.0.3 because the installed ESLint
+parser does not support TypeScript 7. No API/shared-package stubs or CI workflow
+are created solely for this frontend slice. The local form sends no credentials.
 
 ## Runtime topology
 

@@ -1,6 +1,7 @@
 # Kivo product and delivery plan
 
-Planning baseline: 20 November 2026. No application code is implemented yet.
+Planning baseline: 20 November 2026. The login first look is now implemented;
+financial features and the authentication server remain planned.
 
 ## Product outcome
 
@@ -105,6 +106,7 @@ These are ordered milestones, not unsupported calendar estimates.
 | Slice | Deliverable | Exit criteria |
 | --- | --- | --- |
 | 0: plan | Product rules, design direction, stack, agent instructions | Internal contradictions resolved; library sources checked; local links and skills validated |
+| First look: complete | React/Vite login, shared-family preview, light/dark/system themes | Form validation and appearance tests; no credential submission until real auth is implemented |
 | 1: foundation and identity | pnpm monorepo, API + web health path, PostgreSQL migrations, sessions, workspace authorization | Clean install/build; fresh DB migration; two-user privacy tests; CI checks enabled |
 | 2: family splitting | Invite/join, expense creation/list/detail/edit/void, equal/exact shares, balances | EUR 90 example works end to end; cents, duplicate retry, concurrency and cross-household tests pass |
 | 3: settlement | Suggestions, record payment, recipient confirmation, reversal history | Pending does not affect debt; simultaneous confirmation is safe; no double-counted spending |

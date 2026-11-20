@@ -51,3 +51,50 @@ need validation before a pilot. The wireframes have not been rendered or tested
 on phones; the proposed runtime and financial rules have not been implemented
 or exercised. Refund corrections restate the original month, and historical
 expenses involving departed members are frozen in the first release.
+
+## Login iteration 1: first working screen
+
+Implemented a pnpm workspace and React/Vite frontend with a family preview,
+email/password form, password visibility, and Light/Dark/System selection.
+Used Base UI's controls/dialog behavior and local CSS rather than generating
+unused UI components. The login deliberately sends no credentials until an
+authentication service exists; account/reset actions explain that boundary.
+
+Critique from desktop and phone screenshots: the overall hierarchy follows the
+reference, but some secondary text was too small and the desktop composition
+would become crowded on a tablet. Increased text to at least 12 px (14 px for
+form labels/actions) and switched to the single-column form below 1024 px.
+Appearance controls have 44 px targets. The preview is explicitly illustrative.
+
+## Login iteration 2: theme, accessibility, and validation
+
+Findings and fixes:
+
+- The newest TypeScript release was incompatible with the ESLint parser.
+  Pinned supported TypeScript 6.0.3; dependency peer checks now pass.
+- Theme choice needed to work before the React/CSS bundle, with storage blocked,
+  on OS changes, and across tabs. Added pre-paint initialization, a dark startup
+  canvas, safe storage handling, and synchronized preferences/browser chrome.
+- The brand and avatar illustration used names on generic elements. Added
+  meaningful image roles; the automated unresolved ARIA findings are cleared.
+- Light-theme decimal amounts had 3.99:1 contrast. Darkened the secondary token
+  and re-audited both themes; the finding is resolved.
+
+Re-review and executed evidence:
+
+- ESLint, strict TypeScript, Prettier checks, and Vite production build passed.
+- All 24 Playwright checks passed across desktop/mobile Chromium. They cover
+  pre-paint/system/persisted/cross-tab themes, invalid/blocked storage, required
+  fields, password visibility, no credential requests/storage, dialog focus
+  restoration, 200% layout scaling, and 320/390/768/1440 px widths in both themes.
+- Browser screenshots inspected at desktop and phone sizes. axe WCAG 2 A/AA
+  audits of light/dark desktop and phone views reported zero violations and
+  zero incomplete checks after fixes. Automated checks do not replace manual
+  screen-reader or real-device testing.
+- WebKit was installed but cannot launch on this host because its required
+  libicu74/compatible libxml2 libraries are missing. The optional WebKit project
+  is retained for a supported environment; it is not part of the passing claim.
+
+Remaining scope: real authentication, registration/reset flows, API, financial
+features, Safari and real iOS/Android hardware verification. No deployment or
+new cloud service was created for this repository-local first look.
