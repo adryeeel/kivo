@@ -181,3 +181,29 @@ tests pass; Next MCP reports no compilation/runtime errors. Desktop/phone dark
 axe checks report zero violations and incomplete checks. Safari and physical
 phone verification remain pending; production build was not repeated for this
 visual-only correction.
+
+## Test migration: real Chromium and feature folders
+
+Moved UI checks to Vitest Browser Mode using the documented Playwright provider
+and `vitest-browser-react`. Shared launch/React settings live in
+`@kivo/config/vitest/browser`; the web app keeps its test paths and native color
+scheme command. Tests now live in `tests/auth` and `tests/appearance`, with small
+files for each concern. Server rendering stays in a separate Node project.
+
+Critique and fixes: browser assertions require `toMatchTextContent` for partial
+text, and layout measurements must select the shell rather than next-themes'
+script. Fixed both during migration. Native browser media emulation replaces
+the old matchMedia mock. Appearance checks run serially because storage and OS
+preference are shared; setup resets both between tests. Real CSS now guards the
+fullscreen layout and horizontal overflow at desktop and phone widths.
+
+Deleted the old setup, Jest DOM imports, simulated DOM utilities, and direct
+Testing Library/jsdom dependencies. Regenerated dependency resolution to remove
+stale optional peers, including jsdom and the old `@playwright/test` runner.
+Re-review found no remaining legacy test setup or unused direct test package.
+Vitest remains the sole runner; Next.js application code is unchanged.
+
+Verification: all 13 tests (12 Chromium, one Node SSR) pass from both root and web
+entrypoints. Oxlint, Oxfmt, TypeScript, Next production build, frozen offline
+installation, and peer dependency checks pass. Firefox/WebKit, real phones, and
+Next runtime browser QA were not repeated for this test-tooling change.

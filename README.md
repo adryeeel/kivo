@@ -32,6 +32,7 @@ Oxfmt also sorts Tailwind classes against the web stylesheet.
 pnpm lint
 pnpm typecheck
 pnpm format:check
+pnpm --filter @kivo/web exec playwright install chromium
 pnpm test
 pnpm build
 ```
@@ -40,13 +41,18 @@ pnpm build
 mode. `pnpm build` followed by `pnpm start` serves the production app at the default port 3000.
 Type checking generates Next.js route types first, including on a fresh checkout.
 
-Vitest is the only test runner. It covers form behavior, the theme-provider
-integration, hydration, and server rendering; tests run without downloading a
-browser. Vite is not an app dependency or build tool here, but remains an internal
-dependency of Vitest. There is no Playwright configuration or test runner.
-Responsive layout and accessibility are also checked in a real local browser;
-Safari, real phones, and server-side authentication are not verified by these
-component tests.
+Vitest is the only test runner. UI tests use its [Browser Mode](https://vitest.dev/guide/browser/)
+with headless Chromium, the Playwright provider, and `vitest-browser-react`.
+Install Chromium once with the command above. Playwright supplies browser
+automation; it does not run a separate test suite. Vite and its React plugin
+serve tests only; Next.js builds and serves the application.
+
+Tests live under `apps/web/tests/<feature>/`, split by concern: form validation,
+credential handling, dialogs, layout, and appearance. Shared browser settings
+come from `@kivo/config/vitest/browser`; server-rendering checks use a separate
+Node project. Browser Mode checks components with real CSS and native events,
+but does not boot the Next.js server. Safari, real phones, and server-side
+authentication remain outside this suite.
 
 ## Product and agent guidance
 

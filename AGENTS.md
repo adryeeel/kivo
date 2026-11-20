@@ -73,8 +73,10 @@ no unresolved correctness or privacy issue; avoid unlimited polishing.
 ## Verification and commits
 
 Root scripts provide `lint`, `typecheck`, `format:check`, `test`, and `build`.
-`test` runs Vitest component and server-rendering checks. Vitest is the only
-test runner; browser QA is a separate runtime check. Shared configuration lives
+`test` runs Vitest Browser Mode in Chromium plus Node server-rendering checks.
+Keep tests in `apps/web/tests/<feature>/`, split by concern and concise.
+Vitest is the only runner; Playwright supplies browser automation. Next.js
+runtime QA remains a separate check. Shared configuration lives
 in `packages/config`; use Oxlint and Oxfmt rather than ESLint or Prettier.
 Use `next-themes` for appearance and Tailwind for styles. Database integration
 checks do not exist yet. See the roadmap for the remaining gates.

@@ -25,10 +25,11 @@ Proposed structure; create files only as the matching slice needs them:
 ```text
 kivo/
 ├── apps/
-│   ├── web/src/
-│   │   ├── app/                 # Next.js routes, layout, metadata
-│   │   ├── components/ui/       # selected source-owned primitives and tokens
-│   │   └── features/            # expenses, balances, goals, personal, budgets
+│   ├── web/
+│   │   ├── src/app/             # Next.js routes, layout, metadata
+│   │   ├── src/components/ui/   # selected source-owned primitives and tokens
+│   │   ├── src/features/        # expenses, balances, goals, personal, budgets
+│   │   └── tests/<feature>/     # small files split by concern
 │   └── api/
 │       ├── src/
 │       │   ├── app.ts           # injectable Fastify app, separate from listen
@@ -56,9 +57,11 @@ a service only for a meaningful transaction or business rule, not every table.
 The installed toolchain is Next.js 16.4.6, strict TypeScript, Oxlint, Oxfmt,
 and Vitest. `packages/config` exports the shared policies; root/app entrypoints
 supply project paths and browser-specific settings. Vitest is the only test
-runner and uses jsdom/Testing Library for components plus a Node environment
-for server-rendering checks. Vite exists only as Vitest's internal dependency;
-there is no Vite app, React Vite plugin, or Playwright runner.
+runner. UI tests use Browser Mode with the Playwright Chromium provider and
+`vitest-browser-react`; a separate Node project checks server rendering.
+`@kivo/config/vitest/browser` owns the shared browser preset. Feature test
+folders split behavior by concern. The Vite React plugin serves tests only;
+there is no Vite application or separate Playwright test runner.
 
 Tailwind handles layout and state styling; CSS contains semantic palette tokens
 and a few reused form-control recipes. Base UI remains the primitive family.
