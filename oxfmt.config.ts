@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url';
+
 import shared from '@kivo/config/oxfmt';
 
 export default {

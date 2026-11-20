@@ -1,8 +1,9 @@
-import 'vitest-browser-react';
-import '@fontsource-variable/manrope';
-import '../src/styles.css';
 import { beforeEach } from 'vitest';
 import { commands, page } from 'vitest/browser';
+import 'vitest-browser-react';
+import '@fontsource-variable/manrope';
+
+import '@/styles.css';
 
 beforeEach(async () => {
   document.documentElement.removeAttribute('data-theme');

@@ -1,6 +1,7 @@
 import { expect, test } from 'vitest';
 import { render } from 'vitest-browser-react';
-import { LoginForm } from '../../src/features/auth/login-form';
+
+import { LoginForm } from '@/features/auth/login-form';
 
 test('validates required fields and email format, focusing the first error', async () => {
   const screen = await render(<LoginForm />);

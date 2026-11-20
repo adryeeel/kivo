@@ -1,10 +1,12 @@
 'use client';
 
-import { useRef, useState, type SubmitEvent } from 'react';
+import type { SubmitEvent } from 'react';
+
 import { Button } from '@base-ui/react/button';
 import { Dialog } from '@base-ui/react/dialog';
 import { Input } from '@base-ui/react/input';
 import { Eye, EyeOff, LockKeyhole, Mail, X } from 'lucide-react';
+import { useRef, useState } from 'react';
 
 type FieldErrors = { email?: string; password?: string };
 

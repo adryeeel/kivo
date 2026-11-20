@@ -28,6 +28,13 @@ Vitest, and strict TypeScript configurations. Root entrypoints and app configs
 consume those exports; app-specific settings stay outside the shared package.
 Oxfmt also sorts Tailwind classes against the web stylesheet.
 
+Use `@/` for imports from `apps/web/src` and `@kivo/` package exports across
+workspace boundaries. The web tsconfig owns the alias; Next.js and Vitest both
+resolve it. Shared Oxfmt settings alphabetize imports in groups: types, Node
+built-ins, external packages, then internal modules. Side-effect imports retain
+their execution order. Oxlint rejects relative imports, keeps type imports
+separate, and checks named import ordering.
+
 ```sh
 pnpm lint
 pnpm typecheck

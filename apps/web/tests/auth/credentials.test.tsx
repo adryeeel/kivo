@@ -1,6 +1,7 @@
 import { expect, test, vi } from 'vitest';
 import { render } from 'vitest-browser-react';
-import { LoginForm } from '../../src/features/auth/login-form';
+
+import { LoginForm } from '@/features/auth/login-form';
 
 test('preview submission keeps credentials out of requests and storage', async () => {
   const fetch = vi.spyOn(window, 'fetch');

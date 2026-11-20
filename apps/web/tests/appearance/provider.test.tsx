@@ -3,8 +3,9 @@ import { hydrateRoot } from 'react-dom/client';
 import { renderToString } from 'react-dom/server';
 import { expect, test, vi } from 'vitest';
 import { render } from 'vitest-browser-react';
-import { ThemeProvider } from '../../src/components/theme-provider';
-import { ThemeSwitch } from '../../src/components/theme-switch';
+
+import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeSwitch } from '@/components/theme-switch';
 
 test('initializes the saved theme before hydration without a mismatch', async () => {
   const component = (

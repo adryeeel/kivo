@@ -1,8 +1,9 @@
 import { expect, test } from 'vitest';
-import { commands } from 'vitest/browser';
 import { render } from 'vitest-browser-react';
-import { ThemeProvider } from '../../src/components/theme-provider';
-import { ThemeSwitch } from '../../src/components/theme-switch';
+import { commands } from 'vitest/browser';
+
+import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeSwitch } from '@/components/theme-switch';
 
 test('persists an explicit preference under the existing key', async () => {
   const screen = await render(<ThemeSwitch />, { wrapper: ThemeProvider });

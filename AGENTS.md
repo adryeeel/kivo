@@ -81,6 +81,10 @@ in `packages/config`; use Oxlint and Oxfmt rather than ESLint or Prettier.
 Use `next-themes` for appearance and Tailwind for styles. Database integration
 checks do not exist yet. See the roadmap for the remaining gates.
 
+Use `@/` for web source imports and `@kivo/` package exports for workspace code.
+Avoid relative module imports. Keep type imports separate; shared Oxfmt/Oxlint
+settings own import grouping and sorting. Preserve side-effect import order.
+
 Use focused commits and state what was verified and what was skipped. Commits
 are authorized in this chat; pushing, publishing, and deploying are separate
 actions and are not implied by that authorization.

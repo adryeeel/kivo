@@ -1,7 +1,7 @@
-import { Brand } from '../../components/brand';
-import { ThemeSwitch } from '../../components/theme-switch';
-import { FamilyPreview } from './family-preview';
-import { LoginForm } from './login-form';
+import { Brand } from '@/components/brand';
+import { ThemeSwitch } from '@/components/theme-switch';
+import { FamilyPreview } from '@/features/auth/family-preview';
+import { LoginForm } from '@/features/auth/login-form';
 
 export function LoginPage() {
   return (

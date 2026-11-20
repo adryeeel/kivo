@@ -1,4 +1,5 @@
 import { defineConfig, mergeConfig } from 'vitest/config';
+
 import shared from '@kivo/config/vitest';
 
 export default mergeConfig(

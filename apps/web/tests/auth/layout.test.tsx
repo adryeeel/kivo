@@ -1,8 +1,9 @@
 import { expect, test } from 'vitest';
-import { page } from 'vitest/browser';
 import { render } from 'vitest-browser-react';
-import { LoginPage } from '../../src/features/auth/login-page';
-import { ThemeProvider } from '../../src/components/theme-provider';
+import { page } from 'vitest/browser';
+
+import { ThemeProvider } from '@/components/theme-provider';
+import { LoginPage } from '@/features/auth/login-page';
 
 test.each([
   [1440, 900],

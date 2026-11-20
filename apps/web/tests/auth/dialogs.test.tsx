@@ -1,7 +1,8 @@
 import { expect, test } from 'vitest';
-import { page } from 'vitest/browser';
 import { render } from 'vitest-browser-react';
-import { LoginForm } from '../../src/features/auth/login-form';
+import { page } from 'vitest/browser';
+
+import { LoginForm } from '@/features/auth/login-form';
 
 test.each([
   ['Forgot password?', 'Password recovery will be available'],

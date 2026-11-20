@@ -1,4 +1,5 @@
 import { defineConfig, defineProject, mergeConfig } from 'vitest/config';
+
 import shared from '@kivo/config/vitest';
 import browser from '@kivo/config/vitest/browser';
 

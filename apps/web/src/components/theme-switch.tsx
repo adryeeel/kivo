@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
 import { Monitor, Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 const options = [
   { value: 'light', label: 'Light', Icon: Sun },

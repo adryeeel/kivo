@@ -207,3 +207,25 @@ Verification: all 13 tests (12 Chromium, one Node SSR) pass from both root and w
 entrypoints. Oxlint, Oxfmt, TypeScript, Next production build, frozen offline
 installation, and peer dependency checks pass. Firefox/WebKit, real phones, and
 Next runtime browser QA were not repeated for this test-tooling change.
+
+## Import conventions: aliases, groups, and type imports
+
+Added the web `@/*` alias in its tsconfig and migrated source/test imports,
+including route re-exports and CSS. Vitest uses native tsconfig path resolution
+from the shared preset, keeping the alias mapping in one place. Workspace code
+continues to use `@kivo/` package exports; no dependency was added.
+
+Shared Oxfmt settings sort declarations by type, builtin, external, and internal
+groups. Oxlint enforces separate type imports, alphabetized named imports, and
+rejects relative imports/re-exports. A temporary lint probe confirmed that
+sibling, parent, side-effect, and re-export paths are rejected, as are inline
+type markers. Generated Next declarations remain excluded.
+
+Critique: import sorting can change initialization order. Kept side-effect
+sorting disabled and preserved renderer/font/CSS ordering. Re-review found no
+relative source imports, duplicate alias mapping, or behavior changes.
+
+Verification: all 13 Vitest tests, TypeScript, Oxlint, Oxfmt, and the Next
+production build pass. Live Chromium checks loaded both routes and verified
+stylesheet resolution and theme switching; Next MCP reported no compilation or
+runtime errors. Firefox/WebKit and physical phones were not repeated.

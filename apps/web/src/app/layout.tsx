@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
+
+import { ThemeProvider } from '@/components/theme-provider';
+
 import '@fontsource-variable/manrope';
-import '../styles.css';
-import { ThemeProvider } from '../components/theme-provider';
+
+import '@/styles.css';
 
 export const metadata: Metadata = {
   title: 'Welcome home · Kivo',
