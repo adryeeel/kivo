@@ -6,6 +6,8 @@
     "exports": {
         "./oxlint": "./oxlint.json",
         "./oxfmt": "./oxfmt.ts",
+        "./commitlint": "./commitlint.ts",
+        "./lint-staged": "./lint-staged.ts",
         "./vitest": "./vitest.ts",
         "./vitest/browser": "./vitest.browser.ts",
         "./typescript": "./typescript.json"

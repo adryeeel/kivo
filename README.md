@@ -63,6 +63,44 @@ Node project. Browser Mode checks components with real CSS and native events,
 but does not boot the Next.js server. Safari, real phones, and server-side
 authentication remain outside this suite.
 
+## Commits and hooks
+
+`pnpm install` installs Husky through `prepare`. The pre-commit hook runs
+`pnpm lint:staged`: Oxlint fixes staged source files, Oxfmt formats supported
+staged files, then Vitest runs the full suite once. Tasks run serially so tests
+see the final fixes. lint-staged handles re-staging, backups, and partially
+staged files; do not add `git add` to tasks. Install Chromium as described above
+before committing. Type checking and builds remain explicit checks.
+
+The commit-msg hook uses commitlint with Conventional Commits:
+
+```text
+type(scope): imperative summary
+```
+
+Scopes are required and describe the affected workspace:
+
+| Scope    | Use                                                         |
+| -------- | ----------------------------------------------------------- |
+| `web`    | `apps/web`, including its tests                             |
+| `config` | Shared tooling in `packages/config`                         |
+| `repo`   | Root tooling, documentation, or changes spanning workspaces |
+
+Add a scope when introducing another app/package; use its short directory name.
+Use `feat` for new behavior, `fix` for bugs, `refactor` for restructuring, `test`
+for tests, `style` for formatting, `docs` for documentation, and `chore`, `build`,
+or `ci` for maintenance. `perf` and `revert` are also supported. Keep the header
+within 100 characters, start the summary with a lowercase verb, and omit its
+final period. Mark breaking changes with `!` and explain them in a
+`BREAKING CHANGE:` footer. Keep commits focused; describe verification in the
+body when useful.
+
+Examples: `feat(web): add shared goal progress`, `chore(config): update oxlint`,
+and `docs(repo): clarify household privacy rules`.
+
+`pnpm commitlint --from main --to HEAD` checks the branch history. Hooks are
+local checks; no CI or release automation is configured yet.
+
 ## Product and agent guidance
 
 - [Product scope and delivery plan](docs/plan.md)

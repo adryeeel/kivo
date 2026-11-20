@@ -11,10 +11,17 @@
         "test": "vitest run",
         "test:watch": "vitest",
         "format": "oxfmt --write .",
-        "format:check": "oxfmt --check ."
+        "format:check": "oxfmt --check .",
+        "lint:staged": "lint-staged --concurrent false",
+        "commitlint": "commitlint",
+        "prepare": "husky"
     },
     "devDependencies": {
+        "@commitlint/cli": "21.2.4",
+        "@commitlint/config-conventional": "21.2.4",
         "@kivo/config": "workspace:*",
+        "husky": "9.1.7",
+        "lint-staged": "17.6.1",
         "oxfmt": "0.79.0",
         "oxlint": "1.94.0",
         "vitest": "5.1.1"

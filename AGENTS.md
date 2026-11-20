@@ -88,3 +88,10 @@ settings own import grouping and sorting. Preserve side-effect import order.
 Use focused commits and state what was verified and what was skipped. Commits
 are authorized in this chat; pushing, publishing, and deploying are separate
 actions and are not implied by that authorization.
+
+Follow `type(scope): imperative summary` with a required `web`, `config`, or
+`repo` scope. Use the workspace's short directory name; extend the shared scope
+list when adding an app/package. Use `repo` for root or cross-workspace changes.
+Keep headers within 100 characters. Husky runs lint-staged's serial lint, format,
+and full Vitest checks before commits, then commitlint validates the message.
+See the README for examples; keep type checking and builds as explicit gates.

@@ -243,3 +243,27 @@ Critique: reviewed the non-whitespace source diff; only JSX line wrapping
 changed. No behavior or import order changed. Formatting and lint pass;
 TypeScript and all 13 existing Vitest checks pass. Production build and manual
 browser QA were not repeated for this formatting-only change.
+
+## Commit workflow: staged checks and Conventional Commits
+
+Added root Husky hooks and shared lint-staged/commitlint policies in
+`packages/config`. Pre-commit runs staged Oxlint fixes, Oxfmt, then the full
+Vitest suite serially. The test task is a function so staged paths are not
+mistaken for test filters. Commit-msg enforces Conventional Commits with a
+required workspace scope: `web`, `config`, or `repo`. Root scripts, prepare,
+README examples, and agent instructions use the same convention.
+
+Critique: kept one root workflow to avoid divergent package hooks and ensured
+tests run after automatic fixes. Used the conventional preset's existing type
+and header rules rather than duplicating them. Hook checks reject lint errors,
+a deliberately failing browser test, and invalid commit messages. Failed tasks
+restore original staged/working content; all temporary probes were removed.
+Four valid message cases pass, including a breaking change; five invalid cases
+fail. Formatting, lint, TypeScript, peer validation, frozen offline installation,
+and the real commit's hook pipeline pass.
+
+Reworded this branch's commits to the scope convention without changing any
+commit's file tree or author metadata. Kept a local backup ref before rewriting;
+the final branch range passes commitlint. No push, CI integration, release
+automation, production build, or manual browser QA was performed for this
+repository-tooling change.
