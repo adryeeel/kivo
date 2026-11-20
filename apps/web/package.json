@@ -1,40 +1,42 @@
 {
   "name": "@kivo/web",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "test": "playwright test --project=chromium --project=mobile-chromium",
-    "test:webkit": "playwright test --project=webkit",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "dev": "next dev --hostname 127.0.0.1 --port 4173",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 4173",
+    "lint": "oxlint --deny-warnings .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check ."
   },
   "dependencies": {
     "@base-ui/react": "1.9.0",
     "@fontsource-variable/manrope": "5.3.0",
     "lucide-react": "1.76.0",
+    "next": "16.4.6",
+    "next-themes": "0.4.6",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
   "devDependencies": {
-    "@eslint/js": "10.0.1",
-    "@playwright/test": "1.65.1",
+    "@kivo/config": "workspace:*",
+    "@tailwindcss/postcss": "4.3.5",
+    "@testing-library/jest-dom": "8.0.0",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.13",
     "@types/node": "26.6.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "@vitejs/plugin-react": "6.3.0",
-    "eslint": "10.15.0",
-    "eslint-plugin-react-hooks": "7.1.1",
-    "eslint-plugin-react-refresh": "0.5.8",
-    "globals": "17.14.0",
-    "prettier": "3.10.1",
+    "jsdom": "31.0.1",
+    "oxfmt": "0.79.0",
+    "oxlint": "1.94.0",
+    "tailwindcss": "4.3.5",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.73.0",
-    "vite": "8.3.8"
+    "vitest": "5.1.1"
   }
 }

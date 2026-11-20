@@ -11,19 +11,19 @@ manage personal expenses without exposing them to the family.
 
 The user's clarified priority is manual tracking plus splitting, with family
 splitting and goals ahead of personal budgeting. The attached dashboard is a
-visual reference, not a request to copy its subscription-management features.
+reference for compact density with a new neutral/green palette, not a request to copy its subscription-management features.
 
 ## First release
 
-| Priority | Capability | Completion evidence |
-| --- | --- | --- |
-| 1 | Family workspace and membership | Two verified users join one household through a single-use invitation |
-| 1 | Shared expenses | One payer; selected participants; equal or exact-amount shares; category, date, note |
-| 1 | Balances and settlements | Members see what they owe or are owed; recipient confirms a recorded payment |
-| 1 | Shared goals | Target, optional date, member contributions, reversals, progress and history |
-| 2 | Private personal workspace | Personal expenses and income are inaccessible to other members, including the owner |
-| 2 | Monthly budgets | Explicit category limits for shared expenses and personal spending; no rollover |
-| 2 | Search, filters, export | Workspace-scoped date/category/member filters and CSV export |
+| Priority | Capability                      | Completion evidence                                                                  |
+| -------- | ------------------------------- | ------------------------------------------------------------------------------------ |
+| 1        | Family workspace and membership | Two verified users join one household through a single-use invitation                |
+| 1        | Shared expenses                 | One payer; selected participants; equal or exact-amount shares; category, date, note |
+| 1        | Balances and settlements        | Members see what they owe or are owed; recipient confirms a recorded payment         |
+| 1        | Shared goals                    | Target, optional date, member contributions, reversals, progress and history         |
+| 2        | Private personal workspace      | Personal expenses and income are inaccessible to other members, including the owner  |
+| 2        | Monthly budgets                 | Explicit category limits for shared expenses and personal spending; no rollover      |
+| 2        | Search, filters, export         | Workspace-scoped date/category/member filters and CSV export                         |
 
 Do not require bank accounts to record an expense. This version tracks declared
 spending and obligations; it does not claim to know bank balances. Multiple
@@ -103,16 +103,16 @@ onboarding leads to inviting a member; empty expenses lead to Add expense.
 Each slice ends with a critique, fixes, and evidence in [reviews](reviews.md).
 These are ordered milestones, not unsupported calendar estimates.
 
-| Slice | Deliverable | Exit criteria |
-| --- | --- | --- |
-| 0: plan | Product rules, design direction, stack, agent instructions | Internal contradictions resolved; library sources checked; local links and skills validated |
-| First look: complete | React/Vite login, shared-family preview, light/dark/system themes | Form validation and appearance tests; no credential submission until real auth is implemented |
-| 1: foundation and identity | pnpm monorepo, API + web health path, PostgreSQL migrations, sessions, workspace authorization | Clean install/build; fresh DB migration; two-user privacy tests; CI checks enabled |
-| 2: family splitting | Invite/join, expense creation/list/detail/edit/void, equal/exact shares, balances | EUR 90 example works end to end; cents, duplicate retry, concurrency and cross-household tests pass |
-| 3: settlement | Suggestions, record payment, recipient confirmation, reversal history | Pending does not affect debt; simultaneous confirmation is safe; no double-counted spending |
-| 4: common goals | Goal creation, contributions, reversal, progress | Concurrent changes cannot create negative progress; history identifies contributors; no debt changes |
-| 5: personal and budgets | Private expenses/income, own family shares, personal/shared category budgets | Owner cannot access another member's data; scopes remain clear; totals agree with raw records |
-| 6: pilot hardening | Export, failure/recovery UX, backups/restore, performance and real-device review | Acceptance journey passes on mobile and desktop; restore rehearsed; known limits documented |
+| Slice                      | Deliverable                                                                                    | Exit criteria                                                                                        |
+| -------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| 0: plan                    | Product rules, design direction, stack, agent instructions                                     | Internal contradictions resolved; library sources checked; local links and skills validated          |
+| First look: complete       | Next.js login, shared-family preview, light/dark/system themes                                 | Form validation and appearance tests; no credential submission until real auth is implemented        |
+| 1: foundation and identity | pnpm monorepo, API + web health path, PostgreSQL migrations, sessions, workspace authorization | Clean install/build; fresh DB migration; two-user privacy tests; CI checks enabled                   |
+| 2: family splitting        | Invite/join, expense creation/list/detail/edit/void, equal/exact shares, balances              | EUR 90 example works end to end; cents, duplicate retry, concurrency and cross-household tests pass  |
+| 3: settlement              | Suggestions, record payment, recipient confirmation, reversal history                          | Pending does not affect debt; simultaneous confirmation is safe; no double-counted spending          |
+| 4: common goals            | Goal creation, contributions, reversal, progress                                               | Concurrent changes cannot create negative progress; history identifies contributors; no debt changes |
+| 5: personal and budgets    | Private expenses/income, own family shares, personal/shared category budgets                   | Owner cannot access another member's data; scopes remain clear; totals agree with raw records        |
+| 6: pilot hardening         | Export, failure/recovery UX, backups/restore, performance and real-device review               | Acceptance journey passes on mobile and desktop; restore rehearsed; known limits documented          |
 
 Foundation should ship a minimal vertical path, not empty feature folders or a
 large generated component catalog. The first usable product demo is two users

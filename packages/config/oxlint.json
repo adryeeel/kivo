@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "react", "nextjs", "jsx-a11y", "vitest"],
+  "categories": { "correctness": "error" },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "error",
+    "typescript/no-explicit-any": "error"
+  },
+  "env": { "browser": true, "node": true },
+  "ignorePatterns": [
+    "**/.next/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "**/next-env.d.ts",
+    ".agents/**",
+    ".codex/**",
+    ".aws/**"
+  ]
+}

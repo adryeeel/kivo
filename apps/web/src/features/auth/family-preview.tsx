@@ -1,120 +1,76 @@
-import {
-  Check,
-  ChevronDown,
-  LockKeyhole,
-  Plus,
-  ShoppingBasket,
-  Sun,
-  Users,
-} from 'lucide-react';
-import { Brand } from '../../components/brand';
+import { Check, ShoppingBasket, Sun, Users } from 'lucide-react';
 
 export function FamilyPreview() {
   return (
-    <aside className="showcase" aria-label="A preview of your family space">
-      <Brand />
-      <div className="showcase-content">
-        <div className="family-label">
-          <Users size={15} aria-hidden="true" /> A little more together
+    <aside
+      className="hidden flex-col justify-center border-r border-line bg-raised p-8 lg:flex xl:p-10"
+      aria-label="A preview of your family space"
+    >
+      <h2 className="text-2xl leading-8 font-semibold tracking-[-0.8px]">
+        Everyday expenses.
+        <br />
+        Bigger plans.
+      </h2>
+      <p className="mt-3 max-w-80 text-sm leading-6 text-muted">
+        A shared view of what you spend, what you owe, and what you’re working toward.
+      </p>
+      <div className="mt-6 overflow-hidden rounded-lg border border-line bg-surface text-sm">
+        <div className="flex items-center justify-between border-b border-line px-4 py-3">
+          <span className="flex items-center gap-2 font-semibold">
+            <Users size={16} className="text-muted" aria-hidden="true" /> Our family
+          </span>
+          <span className="text-xs text-muted">November</span>
         </div>
-        <h2>
-          Life is shared.
-          <br />
-          Money can be, too.
-        </h2>
-        <p className="showcase-description">
-          From the everyday shop to the next big adventure.
-          <br className="desktop-break" /> Make room for what matters, together.
-        </p>
-
-        <div className="family-preview">
-          <div className="preview-heading">
-            <div className="workspace-name">
-              <span className="workspace-icon">
-                <Users size={17} aria-hidden="true" />
-              </span>{' '}
-              Our family <ChevronDown size={13} aria-hidden="true" />
-            </div>
-            <div
-              className="avatars"
-              role="img"
-              aria-label="Ana, Bruno, and Clara"
-            >
-              <span>A</span>
-              <span>B</span>
-              <span>C</span>
-            </div>
+        <div className="grid grid-cols-2 divide-x divide-line border-b border-line py-4">
+          <div className="px-4">
+            <p className="text-xs text-muted">Shared this month</p>
+            <p className="mt-1 text-[25px] font-semibold tracking-tight tabular-nums">
+              €1,280<span className="text-lg font-normal text-muted">.00</span>
+            </p>
           </div>
-          <div className="preview-totals">
-            <div>
-              <span>Shared this month</span>
-              <strong>
-                €1,280<span>.00</span>
-              </strong>
-            </div>
-            <div>
-              <span>You are owed</span>
-              <strong>
-                €60<span>.00</span>
-              </strong>
-            </div>
-          </div>
-          <div className="expense-preview">
-            <span className="expense-icon">
-              <ShoppingBasket size={18} strokeWidth={1.6} aria-hidden="true" />
-            </span>
-            <div className="expense-description">
-              <strong>The weekly shop</strong>
-              <span>Ana paid · Split between 3</span>
-            </div>
-            <div className="expense-amount">
-              <strong>€90.00</strong>
-              <span>
-                <Check size={11} aria-hidden="true" /> Split equally
-              </span>
-            </div>
-          </div>
-          <div className="goal-preview">
-            <div className="goal-heading">
-              <span className="goal-icon">
-                <Sun size={19} strokeWidth={1.5} aria-hidden="true" />
-              </span>
-              <div>
-                <strong>A summer together</strong>
-                <span>Our next family adventure</span>
-              </div>
-              <span className="goal-plus" aria-hidden="true">
-                <Plus size={15} />
-              </span>
-            </div>
-            <div className="goal-amount">
-              <strong>
-                €740 <span>of €2,400</span>
-              </strong>
-              <span>31%</span>
-            </div>
-            <div
-              className="goal-progress"
-              role="progressbar"
-              aria-label="Summer goal"
-              aria-valuemin={0}
-              aria-valuemax={2400}
-              aria-valuenow={740}
-              aria-valuetext="740 euros marked saved toward 2,400 euros"
-            >
-              <span />
-            </div>
-            <p>A little closer to making memories.</p>
+          <div className="px-4">
+            <p className="text-xs text-muted">You are owed</p>
+            <p className="mt-1 text-[25px] font-semibold tracking-tight tabular-nums">
+              €60<span className="text-lg font-normal text-muted">.00</span>
+            </p>
           </div>
         </div>
-        <div className="preview-caption">
-          <span /> An illustrative look at your family space
+        <div className="flex items-center gap-3 border-b border-line px-4 py-3.5">
+          <span className="grid size-8 shrink-0 place-items-center rounded-md bg-raised text-muted">
+            <ShoppingBasket size={17} strokeWidth={1.6} aria-hidden="true" />
+          </span>
+          <div>
+            <p className="font-medium">The weekly shop</p>
+            <p className="mt-0.5 text-xs text-muted">Ana paid · Split between 3</p>
+          </div>
+          <div className="ml-auto text-right">
+            <p className="font-medium tabular-nums">€90.00</p>
+            <p className="mt-1 inline-flex items-center gap-1 text-xs text-accent">
+              <Check size={12} aria-hidden="true" /> Split equally
+            </p>
+          </div>
+        </div>
+        <div className="px-4 py-4">
+          <div className="flex items-center gap-2">
+            <Sun size={17} className="text-accent" aria-hidden="true" />
+            <span className="font-medium">A summer together</span>
+            <span className="ml-auto text-xs text-muted">31%</span>
+          </div>
+          <progress
+            className="mt-3 block h-1.5 w-full overflow-hidden rounded-full border-0 bg-accent-soft text-accent [&::-moz-progress-bar]:bg-accent [&::-webkit-progress-bar]:bg-accent-soft [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-accent"
+            aria-label="Summer goal"
+            max={2400}
+            value={740}
+            aria-valuetext="740 euros marked saved toward 2,400 euros"
+          />
+          <p className="mt-2 text-xs text-muted">
+            <span className="font-semibold text-ink">€740</span> marked saved of €2,400
+          </p>
         </div>
       </div>
-      <div className="showcase-footer">
-        <LockKeyhole size={14} aria-hidden="true" />
-        <span>Your own finances stay your own.</span>
-      </div>
+      <p className="mt-3 text-xs text-muted">
+        Illustrative preview · Your personal finances stay private.
+      </p>
     </aside>
   );
 }

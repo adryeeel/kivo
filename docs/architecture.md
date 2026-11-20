@@ -6,16 +6,15 @@ server-side authentication or financial correctness.
 
 ## Stack and boundaries
 
-Use TypeScript throughout, a pnpm workspace, a React/Vite SPA in `apps/web`,
-a Fastify service in `apps/api`, and PostgreSQL with Drizzle migrations.
-Vite fits an authenticated application with a separate API and no current SEO
-requirement. Do not add a second server-side application layer solely for this
-dashboard. pnpm handles workspace scripts initially; add a task cache only if
-measured build times justify one.
+Use TypeScript throughout, a pnpm workspace, and Next.js App Router in
+`apps/web`. A separate Fastify API and PostgreSQL/Drizzle remain planned for
+financial behavior. Next.js owns web routing and rendering; avoid duplicating
+financial logic in web route handlers or server actions. Keep the monorepo small
+and add task caching only when measured build times justify it.
 
 Use Better Auth's Fastify integration for sessions and verified email/password
-identity; implement household authorization in Kivo. Use TanStack Router for
-navigation and TanStack Query for fetched state. A small typed fetch layer uses
+identity; implement household authorization in Kivo. Use Next.js App Router for
+navigation and TanStack Query for fetched state when the API exists. A small typed fetch layer uses
 shared DTOs; do not add a generated client until it removes demonstrated work.
 Choose TypeBox/JSON Schema with Fastify's type provider for request and response
 contracts. Reject invalid/extra financial fields; never accept membership or
@@ -27,7 +26,7 @@ Proposed structure; create files only as the matching slice needs them:
 kivo/
 ├── apps/
 │   ├── web/src/
-│   │   ├── app/                 # router, providers, shell
+│   │   ├── app/                 # Next.js routes, layout, metadata
 │   │   ├── components/ui/       # selected source-owned primitives and tokens
 │   │   └── features/            # expenses, balances, goals, personal, budgets
 │   └── api/
@@ -38,6 +37,7 @@ kivo/
 │       │   └── features/        # feature routes and domain operations
 │       └── migrations/
 ├── packages/
+│   ├── config/                  # shared Oxlint, Oxfmt, Vitest, TypeScript
 │   ├── contracts/src/           # public request/response schemas and DTOs
 │   └── finance/src/             # pure cent allocation shared by preview/API
 ├── tests/e2e/                   # cross-application user journeys
@@ -53,25 +53,33 @@ until another server application actually needs it. UI stays in web until a
 second web consumer exists. Feature functions can call Drizzle directly; extract
 a service only for a meaningful transaction or business rule, not every table.
 
-Pin compatible stable Node/pnpm and package versions during scaffolding; commit
-the lockfile. Use strict TypeScript, ESLint and Prettier, Vitest for small logic
-tests, API injection plus PostgreSQL for integration, and Playwright for browser
-journeys. Database integration checks and CI arrive with the foundation slice;
-root scripts and frontend browser tests are now available.
+The installed toolchain is Next.js 16.4.6, strict TypeScript, Oxlint, Oxfmt,
+and Vitest. `packages/config` exports the shared policies; root/app entrypoints
+supply project paths and browser-specific settings. Vitest is the only test
+runner and uses jsdom/Testing Library for components plus a Node environment
+for server-rendering checks. Vite exists only as Vitest's internal dependency;
+there is no Vite app, React Vite plugin, or Playwright runner.
 
-First-look implementation: root pnpm scripts and a lockfile now exist, with
-Base UI controls, Lucide icons, self-hosted Manrope, and CSS variables. Plain CSS
-is sufficient for this bounded screen; Tailwind and the broader shadcn catalog
-remain deferred. TypeScript is pinned to 6.0.3 because the installed ESLint
-parser does not support TypeScript 7. No API/shared-package stubs or CI workflow
-are created solely for this frontend slice. The local form sends no credentials.
+Tailwind handles layout and state styling; CSS contains semantic palette tokens
+and a few reused form-control recipes. Base UI remains the primitive family.
+`next-themes` owns storage, system preference, cross-tab updates, and pre-paint
+initialization. Keep its mounted gate for hydration-safe controls, with
+`suppressHydrationWarning` limited to the root html element. Fonts are local.
+The static shell/preview remain server components; login form and appearance
+controls are client components. Browser QA checks the real Next runtime in
+addition to component tests; neither establishes real authentication.
+
+Root scripts support lint, formatting, type checking, Vitest, dev/start, and
+production builds. CI, database tests, API, and financial logic remain planned.
+Preserve the lockfile and use `next typegen` before TypeScript checks so generated
+route types exist on fresh checkouts. Never delete `.next` during `next dev`.
 
 ## Runtime topology
 
 ```mermaid
 flowchart LR
     W[Mobile or desktop browser] -->|HTTPS| E[Same-origin entry point]
-    E -->|static assets| WEB[React web build]
+    E -->|static assets| WEB[Next.js web server]
     E -->|/api/*| API[Fastify API]
     API --> DB[(PostgreSQL)]
     API --> MAIL[Verification and reset email provider]
@@ -79,7 +87,7 @@ flowchart LR
 
 Use secure, HttpOnly session cookies and explicit trusted origins. Verify CSRF
 protection on Kivo mutation routes as well as the auth integration. Avoid
-localStorage session tokens. Development proxies `/api` to the API so the
+localStorage session tokens. The planned same-origin entry point routes `/api` to Fastify so the
 browser follows the same-origin model. No service-worker caching of financial
 responses and no offline mutation queue in v1.
 
@@ -90,21 +98,21 @@ financial rows carry `workspace_id`; referenced resources must belong to the
 same workspace. Use composite foreign keys where possible and server-side
 checks for scope-specific rules. Actor IDs come from the session.
 
-| Entity | Essential fields and constraints |
-| --- | --- |
-| User/session | Better Auth-managed identity and session tables; do not hand-roll password storage |
-| Workspace | kind `personal`/`household`, currency, timezone, locale, owner; personal has one immutable owner |
-| Membership | workspace + user unique; owner/member role, active/former status; personal workspace has exactly its owner |
-| Invitation | household, verified target email, hashed token, expiry, accepted/revoked timestamp |
-| Expense | workspace, description, optional note, positive amount_minor, payer membership, business date, category, creator, version, voided_at |
-| ExpenseShare | expense + participant membership unique, amount_minor nonnegative; shares sum to the expense total |
-| Income | personal workspace, positive amount_minor, date, description/category, creator, version, voided_at |
-| Settlement | household, sender/recipient memberships, positive amount_minor, date, status, version, confirmation/reversal metadata |
-| Goal | household, creator, name, target_minor positive, optional target_date, active/archived, version |
+| Entity           | Essential fields and constraints                                                                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| User/session     | Better Auth-managed identity and session tables; do not hand-roll password storage                                                                      |
+| Workspace        | kind `personal`/`household`, currency, timezone, locale, owner; personal has one immutable owner                                                        |
+| Membership       | workspace + user unique; owner/member role, active/former status; personal workspace has exactly its owner                                              |
+| Invitation       | household, verified target email, hashed token, expiry, accepted/revoked timestamp                                                                      |
+| Expense          | workspace, description, optional note, positive amount_minor, payer membership, business date, category, creator, version, voided_at                    |
+| ExpenseShare     | expense + participant membership unique, amount_minor nonnegative; shares sum to the expense total                                                      |
+| Income           | personal workspace, positive amount_minor, date, description/category, creator, version, voided_at                                                      |
+| Settlement       | household, sender/recipient memberships, positive amount_minor, date, status, version, confirmation/reversal metadata                                   |
+| Goal             | household, creator, name, target_minor positive, optional target_date, active/archived, version                                                         |
 | GoalContribution | goal, contributing membership, kind `contribution`/`reversal`, positive amount_minor, date, creator; reversal references original contribution uniquely |
-| Budget | workspace + month + category unique; nonnegative limit_minor |
-| Activity | scope, actor, resource, action, prior/new financial fields, timestamp; same visibility as its workspace |
-| MutationReceipt | scope + actor + idempotency key unique, operation/hash, resource/result for safe retry |
+| Budget           | workspace + month + category unique; nonnegative limit_minor                                                                                            |
+| Activity         | scope, actor, resource, action, prior/new financial fields, timestamp; same visibility as its workspace                                                 |
+| MutationReceipt  | scope + actor + idempotency key unique, operation/hash, resource/result for safe retry                                                                  |
 
 Personal expenses use one payer/share belonging to the owner. Household expenses
 use one active payer and one or more selected active participants; the payer
@@ -236,15 +244,15 @@ refund ledger is a later feature, not a negative expense accepted accidentally.
 All routes below are under `/api`; auth uses the library's `/auth/*` integration.
 Every resource read/write/export rechecks current workspace access.
 
-| Route family | Operations |
-| --- | --- |
-| `/workspaces`, `/workspaces/:wid/members`, `/workspaces/:wid/invitations` | Create/select workspace, view/manage membership, issue/revoke invitation |
-| `/invitations/:token/accept` | Accept after session/email match; expiry and single-use checks |
-| `/workspaces/:wid/expenses` | Cursor list, create, detail, versioned edit/void |
-| `/workspaces/:wid/balances`, `/settlements` | Current net balances/suggestions; record/confirm/cancel/reject/reverse payments |
-| `/workspaces/:wid/goals`, `/goals/:gid/contributions` | Goal list/detail/edit/archive; contribution and reversal |
-| `/workspaces/:wid/income`, `/budgets`, `/summary` | Private income, category limits, scoped aggregation |
-| `/workspaces/:wid/exports/expenses.csv` | Filtered export using the same authorization and inclusion rules |
+| Route family                                                              | Operations                                                                      |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `/workspaces`, `/workspaces/:wid/members`, `/workspaces/:wid/invitations` | Create/select workspace, view/manage membership, issue/revoke invitation        |
+| `/invitations/:token/accept`                                              | Accept after session/email match; expiry and single-use checks                  |
+| `/workspaces/:wid/expenses`                                               | Cursor list, create, detail, versioned edit/void                                |
+| `/workspaces/:wid/balances`, `/settlements`                               | Current net balances/suggestions; record/confirm/cancel/reject/reverse payments |
+| `/workspaces/:wid/goals`, `/goals/:gid/contributions`                     | Goal list/detail/edit/archive; contribution and reversal                        |
+| `/workspaces/:wid/income`, `/budgets`, `/summary`                         | Private income, category limits, scoped aggregation                             |
+| `/workspaces/:wid/exports/expenses.csv`                                   | Filtered export using the same authorization and inclusion rules                |
 
 Nested shorthand in the table is workspace-relative. Use bounded pages (default
 50, max 100), stable date/ID ordering, validated filters, and indexes starting
@@ -271,9 +279,10 @@ other members' shared history.
 
 ## Primary implementation references
 
-- [pnpm workspaces](https://pnpm.io/workspaces), [Vite guide](https://vite.dev/guide/)
+- [pnpm workspaces](https://pnpm.io/workspaces), [Next.js App Router](https://nextjs.org/docs/app)
 - [Fastify schemas](https://fastify.dev/docs/latest/Reference/Validation-and-Serialization/), [type providers](https://fastify.dev/docs/latest/Reference/Type-Providers/)
 - [Drizzle overview](https://orm.drizzle.team/docs/overview), [PostgreSQL locking](https://www.postgresql.org/docs/current/explicit-locking.html)
 - [Better Auth + Fastify](https://better-auth.com/docs/integrations/fastify)
-- [TanStack Router](https://tanstack.com/router/latest/docs/overview), [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview)
-- [Vitest](https://vitest.dev/guide/), [Playwright](https://playwright.dev/docs/intro)
+- [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview)
+- [Vitest with Next.js](https://nextjs.org/docs/app/guides/testing/vitest), [next-themes](https://github.com/pacocoursey/next-themes)
+- [Oxlint](https://oxc.rs/docs/guide/usage/linter/config.html), [Oxfmt](https://oxc.rs/docs/guide/usage/formatter/config.html), [Tailwind](https://tailwindcss.com/docs/installation/framework-guides/nextjs)

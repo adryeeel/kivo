@@ -1,6 +1,6 @@
 ---
 name: kivo-ui
-description: Build or review Kivo mobile-first screens using its neutral and violet dashboard design, with private and family modes, accessible financial forms, and responsive expense lists.
+description: Build or review Kivo mobile-first screens using its compact neutral and green design, with private and family modes, accessible financial forms, and responsive expense lists.
 ---
 
 # Kivo interface work
@@ -8,15 +8,16 @@ description: Build or review Kivo mobile-first screens using its neutral and vio
 Read the relevant tokens and wireframe in [design](../../docs/design.md) and the
 slice's criteria in [plan](../../docs/plan.md). Follow the user's reference; avoid
 inventing a new visual theme for each screen. Base UI Button, Input, and Dialog
-are installed; the login uses semantic CSS tokens in light and dark palettes.
-Inspect the real component APIs before coding against them. Honor explicit
-Light/Dark/System preference and preserve the pre-paint theme initialization.
+are installed. Style with Tailwind utilities and semantic light/dark tokens.
+Use the existing `next-themes` provider and its hydration-safe appearance control;
+do not recreate storage listeners or a custom startup script. Keep static page
+content server-rendered and interactive forms in client components.
 
 - Start with the phone task: add a split, settle up, or mark a goal contribution.
   Use the existing primitives and tokens; create no parallel button/form system.
 - Keep Personal/Family context explicit. Hide private data across scope changes
   and keep current-month spending distinct from all-time debts and goal progress.
-- Preserve the reference's quiet borders, violet actions, left-aligned typography,
+- Preserve the reference's compact density, quiet borders, left-aligned typography,
   and right-aligned amounts. Adapt table rows into readable phone lists.
 - Financial forms need visible labels, decimal keyboards, clear share previews,
   field errors, preserved input on failure, and stable retry behavior. Wait for

@@ -1,7 +1,8 @@
 node_modules/
 dist/
-playwright-report/
-test-results/
+.next/
+next-env.d.ts
+coverage/
 .env
 .env.*
 !.env.example

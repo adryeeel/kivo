@@ -5,7 +5,7 @@
 The supplied IMG_0527.jpg shows an inset light desktop dashboard: narrow sidebar,
 small toolbar, connected summary tiles, one generous table panel, fine neutral
 borders, restrained shadows, violet actions, and soft status pills. Preserve
-that visual hierarchy. Its tiny text, dense controls, and desktop columns must
+that visual hierarchy and compact density. The current palette deliberately uses muted green instead of violet. Its tiny text, dense controls, and desktop columns must
 be adapted for phones. The image does not establish which library created it.
 
 Kivo should feel like a calm family ledger. The distinctive content is shared
@@ -19,12 +19,12 @@ Checked against primary documentation on 20 November 2026. Visual-fit judgments
 below are design assessments, not claims of screenshot provenance. This research
 preceded implementation; the installed first-look subset is described below.
 
-| Candidate | Fit and tradeoff | Decision |
-| --- | --- | --- |
-| [shadcn/ui](https://ui.shadcn.com/docs) and [blocks](https://ui.shadcn.com/blocks) | Editable source components and dashboard/sidebar building blocks; needs deliberate tokens and density to match the reference | Recommended foundation |
-| [Untitled UI React](https://www.untitledui.com/react/docs/introduction) | Strong visual starting point for subtle tables, pills, and navigation; React Aria + Tailwind; open-source core, additional PRO page examples | Closest ready-styled alternative; use free components or inspect terms before taking PRO code |
-| [ReUI](https://reui.io/docs) | shadcn-compatible registry with data grids and filter components; open-source and premium offerings | Revisit if the expense screen outgrows the base table; do not add a second system now |
-| [Tremor](https://www.tremor.so/) | React/Tailwind dashboard and chart components with Radix primitives | Useful analytics reference; not necessary for expense entry or splitting |
+| Candidate                                                                          | Fit and tradeoff                                                                                                                             | Decision                                                                                      |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [shadcn/ui](https://ui.shadcn.com/docs) and [blocks](https://ui.shadcn.com/blocks) | Editable source components and dashboard/sidebar building blocks; needs deliberate tokens and density to match the reference                 | Recommended foundation                                                                        |
+| [Untitled UI React](https://www.untitledui.com/react/docs/introduction)            | Strong visual starting point for subtle tables, pills, and navigation; React Aria + Tailwind; open-source core, additional PRO page examples | Closest ready-styled alternative; use free components or inspect terms before taking PRO code |
+| [ReUI](https://reui.io/docs)                                                       | shadcn-compatible registry with data grids and filter components; open-source and premium offerings                                          | Revisit if the expense screen outgrows the base table; do not add a second system now         |
+| [Tremor](https://www.tremor.so/)                                                   | React/Tailwind dashboard and chart components with Radix primitives                                                                          | Useful analytics reference; not necessary for expense entry or splitting                      |
 
 Choose shadcn/ui with Base UI primitives, Tailwind, and one consistent outline
 icon family (Lucide). Use the current compatible stable versions at scaffolding
@@ -43,18 +43,18 @@ and chart wrappers until actual sorting/visualization needs justify them.
 
 Hex values are starting tokens, not sampled values from the photograph.
 
-| Token | Value | Purpose |
-| --- | --- | --- |
-| canvas | `#F3F3F0` | Page and sidebar background |
-| surface | `#FFFFFF` | Content panels and forms |
-| line | `#E6E6E1` | Decorative separators; do not rely on this for input boundaries |
-| ink | `#20221F` | Primary text |
-| muted | `#65685F` | Secondary text |
-| accent | `#7651D6` | Primary actions and selected navigation |
+| Token   | Value     | Purpose                                                         |
+| ------- | --------- | --------------------------------------------------------------- |
+| canvas  | `#ECEFE9` | Page and sidebar background                                     |
+| surface | `#FFFFFF` | Content panels and forms                                        |
+| line    | `#DDE3DC` | Decorative separators; do not rely on this for input boundaries |
+| ink     | `#24352E` | Primary text                                                    |
+| muted   | `#627168` | Secondary text                                                  |
+| accent  | `#286B5B` | Primary actions and selected navigation                         |
 
-Supporting tokens: strong control border `#85887F`, violet tint `#F1ECFC`,
+Supporting tokens: strong control border `#87988D`, green tint `#E5F0E9`,
 success text `#216343` on `#E8F5ED`, warning text `#80500C` on `#FFF4DB`,
-and danger text `#AC2D36` on `#FCECEE`. Verify rendered contrast with actual
+and danger text `#B6333F` on `#FCECEE`. Verify rendered contrast with actual
 font sizes and control states; do not assume the reference's pale labels pass.
 Color always has a text label or icon alongside it.
 
@@ -168,29 +168,36 @@ at phone and desktop widths is required for running UI. The login first look
 has now been reviewed in desktop/mobile Chromium. Real-device and Safari checks
 remain pending.
 
-## Implemented login and themes
+## Current login: compact, green, and server-rendered
 
-The first look uses an inset two-column shell on desktop: a static, explicitly
-illustrative family preview and an email/password form. Below 1024 px the preview
-is removed so the form has the full available width. Manrope and all assets are
-served locally. Base UI supplies Button, Input, and accessible Dialog behavior;
-CSS tokens supply the visual design without a full generated component catalog.
+The earlier version had oversized marketing typography, generous empty space,
+and several competing footer/privacy messages. The revision follows the
+reference's denser application rhythm: a 1040 px desktop frame, 24 px headings,
+14 px body/actions, thin dividers, 6–8 px control radii, and one `© Kivo` footer.
+Phone inputs remain 16 px and interactive targets at least 44 px. Keep the form
+first on phones; hide the illustrative family preview below 1024 px.
 
-| Dark token | Value | Purpose |
-| --- | --- | --- |
-| canvas | `#131416` | Desktop page surround |
-| surface | `#1B1C20` | Form and phone background |
-| showcase | `#212126` | Desktop family panel |
-| raised surface | `#29292F` | Family preview |
-| ink / muted | `#F2F0F6` / `#B0ABB9` | Primary and secondary text |
-| accent text | `#BFA5FA` | Links and selected accents |
+Use muted spruce green (`#286B5B`) for light-mode actions and a pale green
+(`#A4CEBA`) with dark text for dark-mode buttons. Pair these with gray-green
+surfaces rather than saturated purple. Canonical values live in the Tailwind
+semantic tokens in `apps/web/src/styles.css`.
 
-The purple primary button keeps white text in both themes. The appearance radio
-group offers Light, Dark, and System, defaults to the system, and stores only
-the preference. A head script applies it before paint; system changes and
-cross-tab changes remain synchronized. Browser chrome follows the active canvas.
-Blocked storage falls back safely for the current visit.
+| Dark token  | Value                 | Purpose                    |
+| ----------- | --------------------- | -------------------------- |
+| canvas      | `#14201C`             | Desktop page surround      |
+| surface     | `#1B2823`             | Form and phone background  |
+| raised      | `#22322B`             | Preview/background accents |
+| ink / muted | `#ECF2EC` / `#A8B9AE` | Primary and secondary text |
+| accent      | `#A4CEBA`             | Links and selected accents |
 
-The form provides field validation, password visibility, and preview information
-dialogs. It does not send credentials or claim authentication success. Connect
-the planned auth service before enabling real sign-in, reset, and registration.
+Next.js renders the shell and family preview on the server. Base UI supplies
+form and dialog behavior; Tailwind supplies layout/state utilities. The
+`next-themes` provider handles Light/Dark/System appearance with the existing
+`kivo.theme` key, pre-paint initialization, and synchronization. Delay selected
+control state until mounted so the saved theme does not cause hydration errors.
+No custom theme initialization script is needed.
+
+Sign-in/reset/registration remain explicit frontend-preview boundaries. Preserve
+input and report that credentials were not sent; never simulate a signed-in
+session. Runtime checks must include both themes, 320/390/768/1440 px widths,
+200% layout scaling, focus restoration, and the direct `/login` route.
