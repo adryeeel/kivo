@@ -17,7 +17,8 @@ content server-rendered and interactive forms in client components.
   Use the existing primitives and tokens; create no parallel button/form system.
 - Keep Personal/Family context explicit. Hide private data across scope changes
   and keep current-month spending distinct from all-time debts and goal progress.
-- Preserve the reference's compact density, quiet borders, left-aligned typography,
+- Keep the outer application shell full-viewport and dark surfaces neutral charcoal;
+  reserve green for accents. Preserve compact density, quiet borders, left-aligned typography,
   and right-aligned amounts. Adapt table rows into readable phone lists.
 - Financial forms need visible labels, decimal keyboards, clear share previews,
   field errors, preserved input on failure, and stable retry behavior. Wait for

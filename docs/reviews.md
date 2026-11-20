@@ -160,3 +160,24 @@ Executed verification:
 Limits: browser layout checks were runtime QA, not jsdom regression assertions.
 Safari, real iOS/Android hardware, authentication, API, and financial operations
 remain unverified/unimplemented. No hosting, push, or deployment was performed.
+
+## Layout correction: fullscreen and neutral dark mode
+
+Critique: the capped 1040 px shell, outer padding, border, and rounded corners
+made the desktop login look like a floating window. The dark surfaces also used
+green across the entire page rather than keeping it as an accent.
+
+Removed the outer frame and made the header, main columns, and footer fill the
+viewport. Bounded only the preview's inner content to keep it readable on wide
+screens. Dark surfaces/text/borders are now neutral charcoal/grays; green stays
+on actions and progress. Browser chrome now matches the full-width header on
+both desktop and phone, with no width-dependent color listener.
+
+Re-review: inspected full-size light/dark desktop screenshots and phone dark
+mode. The desktop shell measures x=0, y=0, width=1440, height=900 at a 1440×900
+viewport, with no rounded frame. Dark backgrounds are RGB(28,29,33) and
+RGB(36,38,43), removing the green cast. Oxlint, TypeScript, and all 12 Vitest
+tests pass; Next MCP reports no compilation/runtime errors. Desktop/phone dark
+axe checks report zero violations and incomplete checks. Safari and physical
+phone verification remain pending; production build was not repeated for this
+visual-only correction.

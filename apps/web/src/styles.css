@@ -34,17 +34,17 @@
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --canvas: #14201c;
-  --surface: #1b2823;
-  --raised: #22322b;
-  --ink: #ecf2ec;
-  --muted: #a8b9ae;
-  --line: #35483d;
-  --control: #718d7c;
-  --accent: #a4ceba;
-  --accent-soft: #2a4236;
-  --primary: #a4ceba;
-  --on-primary: #173226;
+  --canvas: #141518;
+  --surface: #1c1d21;
+  --raised: #24262b;
+  --ink: #f1f1f3;
+  --muted: #b2b3bb;
+  --line: #383a40;
+  --control: #7d828b;
+  --accent: #9fc4b4;
+  --accent-soft: #29332f;
+  --primary: #9fc4b4;
+  --on-primary: #17231e;
   --error: #ffa4ac;
 }
 

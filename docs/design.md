@@ -74,9 +74,9 @@ Build the 390 px phone view first and verify down to 320 px. Below 768 px use
 a full-width shell, 16 px gutters, a simple header, two summary columns, and
 fixed bottom navigation with safe-area padding. At 768–1023 px use a navigation
 drawer and roomier list. From 1024 px show the 208 px sidebar, compact toolbar,
-and desktop table. Keep content left-aligned and cap the shell at 1600 px.
+and desktop table. Keep content left-aligned; the outer application shell fills the viewport.
 
-The desktop inset frame is an aesthetic detail, not a requirement to waste
+The reference’s inset frame is not used for application chrome. Avoid wasting
 phone space. On mobile, a transaction is a readable row with description,
 payer/date, your share, and amount. Essential information must not disappear
 behind horizontal scrolling. Put secondary metadata in expense details.
@@ -172,23 +172,22 @@ remain pending.
 
 The earlier version had oversized marketing typography, generous empty space,
 and several competing footer/privacy messages. The revision follows the
-reference's denser application rhythm: a 1040 px desktop frame, 24 px headings,
+reference's denser application rhythm: a full-viewport desktop shell, 24 px headings,
 14 px body/actions, thin dividers, 6–8 px control radii, and one `© Kivo` footer.
 Phone inputs remain 16 px and interactive targets at least 44 px. Keep the form
 first on phones; hide the illustrative family preview below 1024 px.
 
 Use muted spruce green (`#286B5B`) for light-mode actions and a pale green
-(`#A4CEBA`) with dark text for dark-mode buttons. Pair these with gray-green
-surfaces rather than saturated purple. Canonical values live in the Tailwind
+(`#9FC4B4`) with dark text for dark-mode buttons. Keep dark-mode surfaces neutral charcoal and use green only for accents. Canonical values live in the Tailwind
 semantic tokens in `apps/web/src/styles.css`.
 
 | Dark token  | Value                 | Purpose                    |
 | ----------- | --------------------- | -------------------------- |
-| canvas      | `#14201C`             | Desktop page surround      |
-| surface     | `#1B2823`             | Form and phone background  |
-| raised      | `#22322B`             | Preview/background accents |
-| ink / muted | `#ECF2EC` / `#A8B9AE` | Primary and secondary text |
-| accent      | `#A4CEBA`             | Links and selected accents |
+| canvas      | `#141518`             | Desktop page surround      |
+| surface     | `#1C1D21`             | Form and phone background  |
+| raised      | `#24262B`             | Preview/background accents |
+| ink / muted | `#F1F1F3` / `#B2B3BB` | Primary and secondary text |
+| accent      | `#9FC4B4`             | Links and selected accents |
 
 Next.js renders the shell and family preview on the server. Base UI supplies
 form and dialog behavior; Tailwind supplies layout/state utilities. The

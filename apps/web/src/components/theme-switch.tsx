@@ -18,22 +18,8 @@ export function ThemeSwitch() {
 
   useEffect(() => {
     if (!resolvedTheme) return;
-    const mobile = matchMedia('(max-width: 1023px)');
-    function updateChrome() {
-      const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
-      if (meta)
-        meta.content =
-          resolvedTheme === 'dark'
-            ? mobile.matches
-              ? '#1b2823'
-              : '#14201c'
-            : mobile.matches
-              ? '#ffffff'
-              : '#ecefe9';
-    }
-    updateChrome();
-    mobile.addEventListener('change', updateChrome);
-    return () => mobile.removeEventListener('change', updateChrome);
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (meta) meta.content = resolvedTheme === 'dark' ? '#1c1d21' : '#ffffff';
   }, [resolvedTheme]);
 
   return (
