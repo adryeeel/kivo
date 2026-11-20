@@ -98,8 +98,14 @@ body when useful.
 Examples: `feat(web): add shared goal progress`, `chore(config): update oxlint`,
 and `docs(repo): clarify household privacy rules`.
 
-`pnpm commitlint --from main --to HEAD` checks the branch history. Hooks are
+`pnpm commitlint --from master --to HEAD` checks the branch history. Hooks are
 local checks; no CI or release automation is configured yet.
+
+`master` is the protected default branch. Changes require a PR, resolved review
+conversations, and linear history; force pushes and deletion are blocked,
+including for admins. PRs merge by squash only, using the PR title and body for
+the resulting commit. Give PR titles the same Conventional Commit format.
+Reviewer approvals and CI status checks are not required yet.
 
 ## Product and agent guidance
 

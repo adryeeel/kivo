@@ -267,3 +267,23 @@ commit's file tree or author metadata. Kept a local backup ref before rewriting;
 the final branch range passes commitlint. No push, CI integration, release
 automation, production build, or manual browser QA was performed for this
 repository-tooling change.
+
+## Remote policy: protected master and squash-only PRs
+
+Renamed the GitHub default branch from `main` to `master` before applying
+protection. Required PRs, resolved conversations, and linear history; blocked
+force pushes/deletion and applied the rules to admins. Kept approval count at
+zero for solo development and left required status checks unset while CI is
+absent. Disabled merge commits and rebase merges, leaving squash as the only
+PR merge method. Squash commits default to the PR title/body, matching the
+documented commit convention.
+
+Critique: checked that no existing protection/ruleset would be overwritten.
+Verified the final GitHub settings by reading them back. Updated local branch
+tracking and the README's history-check command. SSH fetch authentication
+failed; updated tracking from verified GitHub API metadata without changing the
+configured remote URL. The documentation commit passed lint-staged/Vitest and
+commitlint hooks. After the user added their SSH key, remote access and a normal
+SSH fetch succeeded.
+Application code, production builds, and manual browser QA were outside this
+repository-settings change; the feature branch was not pushed.
