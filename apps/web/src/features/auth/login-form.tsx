@@ -41,6 +41,7 @@ export function LoginForm() {
         <div className="w-full max-w-80">
             <h1 className="text-2xl leading-8 font-semibold tracking-[-0.7px]">Welcome home.</h1>
             <p className="mt-2 text-sm leading-6 text-muted">Sign in to your family space.</p>
+            {/* Unnamed preview inputs keep credentials out of native form submissions. */}
             <form
                 onSubmit={submit}
                 noValidate
@@ -56,7 +57,6 @@ export function LoginForm() {
                         <Input
                             ref={emailRef}
                             id="email"
-                            name="email"
                             type="email"
                             placeholder="you@example.com"
                             autoComplete="username"
@@ -92,7 +92,6 @@ export function LoginForm() {
                         <Input
                             ref={passwordRef}
                             id="password"
-                            name="password"
                             type={showPassword ? 'text' : 'password'}
                             placeholder="Enter your password"
                             autoComplete="current-password"

@@ -309,3 +309,25 @@ horizontal overflow and neutral RGB(28,29,33) surfaces. An isolated focused-test
 probe was rejected by the existing Oxlint guard, so it is not another finding.
 Safari/WebKit and physical devices were not checked. No application fix or merge
 was performed; the review browser was closed and the local server remains up.
+
+## PR #1 fix: omit preview credentials from native form data
+
+Removed the email/password inputs' `name` attributes. Client validation already
+uses refs, so the preview needs no named credential fields. This prevents the
+browser from serializing their values even before React attaches submit
+handlers. A short source comment preserves the reason for leaving them unnamed.
+
+Added one Browser Mode regression to the credential tests: insert server-rendered
+HTML without hydration, fill both inputs, and check native FormData is empty.
+It failed with both credential pairs before the fix and passed afterward.
+Live Next.js checks with script requests blocked confirmed that both `/` and
+`/login` submit only an empty query. An unhydrated submission can still reload
+the preview, but carries no credential values. Hydrated validation and the
+preview notice still work.
+
+Critique: checked labels, refs, and all form callers; none depend on the removed
+names. No new state or hydration gate is needed. Re-review closes the P1 finding.
+All 14 tests, lint, formatting, TypeScript, and production build pass. Next MCP
+reports no compilation/runtime errors, and React inspection preserves the
+server/client boundaries. Safari/WebKit and physical devices remain unchecked;
+real authentication is still planned. The PR remains unmerged.
