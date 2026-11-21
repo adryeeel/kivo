@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+@theme inline {
+    --font-sans: 'Manrope Variable', sans-serif;
+    --color-canvas: var(--canvas);
+    --color-surface: var(--surface);
+    --color-raised: var(--raised);
+    --color-ink: var(--ink);
+    --color-muted: var(--muted);
+    --color-line: var(--line);
+    --color-control: var(--control);
+    --color-accent: var(--accent);
+    --color-accent-soft: var(--accent-soft);
+    --color-primary: var(--primary);
+    --color-on-primary: var(--on-primary);
+    --color-error: var(--error);
+}
+
+:root {
+    color-scheme: light;
+    --canvas: #ecefe9;
+    --surface: #ffffff;
+    --raised: #f5f7f3;
+    --ink: #24352e;
+    --muted: #627168;
+    --line: #dde3dc;
+    --control: #87988d;
+    --accent: #286b5b;
+    --accent-soft: #e5f0e9;
+    --primary: #286b5b;
+    --on-primary: #ffffff;
+    --error: #b6333f;
+}
+
+:root[data-theme='dark'] {
+    color-scheme: dark;
+    --canvas: #141518;
+    --surface: #1c1d21;
+    --raised: #24262b;
+    --ink: #f1f1f3;
+    --muted: #b2b3bb;
+    --line: #383a40;
+    --control: #7d828b;
+    --accent: #9fc4b4;
+    --accent-soft: #29332f;
+    --primary: #9fc4b4;
+    --on-primary: #17231e;
+    --error: #ffa4ac;
+}
+
+@layer base {
+    html {
+        background: var(--canvas);
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+    }
+    body {
+        @apply m-0 min-w-80 font-sans text-ink antialiased;
+    }
+    button,
+    a,
+    label:has(input[type='radio']) {
+        touch-action: manipulation;
+    }
+    button {
+        @apply cursor-pointer select-none;
+    }
+    button:focus-visible,
+    a:focus-visible {
+        @apply outline-2 outline-offset-4 outline-accent;
+    }
+    ::selection {
+        @apply bg-accent-soft text-ink;
+    }
+}
+
+@layer components {
+    .button-primary {
+        @apply inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90 active:opacity-80 motion-reduce:transition-none;
+    }
+    .text-button {
+        @apply inline-flex min-h-11 items-center text-sm font-semibold text-accent underline-offset-4 hover:underline;
+    }
+    .input-shell {
+        @apply flex min-h-11 items-center gap-2.5 rounded-md border border-control bg-surface px-3 text-muted focus-within:border-accent focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-accent has-aria-invalid:border-error;
+    }
+}
+
+@media (max-width: 1023px) {
+    :root {
+        --canvas: var(--surface);
+    }
+}

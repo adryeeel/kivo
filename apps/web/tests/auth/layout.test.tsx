@@ -1,0 +1,19 @@
+import { expect, test } from 'vitest';
+import { render } from 'vitest-browser-react';
+import { page } from 'vitest/browser';
+
+import { ThemeProvider } from '@/components/theme-provider';
+import { LoginPage } from '@/features/auth/login-page';
+
+test.each([
+    [1440, 900],
+    [390, 844],
+])('fills a %i×%i viewport without horizontal overflow', async (width, height) => {
+    await page.viewport(width, height);
+    const screen = await render(<LoginPage />, { wrapper: ThemeProvider });
+    await expect.element(screen.getByRole('heading', { name: 'Welcome home.' })).toBeVisible();
+    const shell = screen.getByRole('banner').element().parentElement!.getBoundingClientRect();
+    expect([shell.x, shell.y, shell.width]).toEqual([0, 0, width]);
+    expect(shell.height).toBeGreaterThanOrEqual(height);
+    expect(document.documentElement.scrollWidth).toBe(width);
+});

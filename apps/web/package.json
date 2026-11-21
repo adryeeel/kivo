@@ -1,0 +1,40 @@
+{
+    "name": "@kivo/web",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "next dev --hostname 127.0.0.1",
+        "build": "next build",
+        "start": "next start --hostname 127.0.0.1",
+        "lint": "oxlint --deny-warnings .",
+        "typecheck": "next typegen && tsc --noEmit",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "format": "oxfmt --write .",
+        "format:check": "oxfmt --check ."
+    },
+    "dependencies": {
+        "@base-ui/react": "1.9.0",
+        "@fontsource-variable/manrope": "5.3.0",
+        "lucide-react": "1.76.0",
+        "next": "16.4.6",
+        "next-themes": "0.4.6",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+    },
+    "devDependencies": {
+        "@kivo/config": "workspace:*",
+        "@tailwindcss/postcss": "4.3.5",
+        "@types/node": "26.6.6",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "oxfmt": "0.79.0",
+        "oxlint": "1.94.0",
+        "playwright": "1.65.1",
+        "tailwindcss": "4.3.5",
+        "typescript": "6.0.3",
+        "vitest": "5.1.1",
+        "vitest-browser-react": "2.3.0"
+    }
+}
