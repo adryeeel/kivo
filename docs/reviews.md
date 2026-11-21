@@ -287,3 +287,25 @@ commitlint hooks. After the user added their SSH key, remote access and a normal
 SSH fetch succeeded.
 Application code, production builds, and manual browser QA were outside this
 repository-settings change; the feature branch was not pushed.
+
+## PR #1 review: native credential submission before hydration
+
+Opened https://github.com/adryeeel/kivo/pull/1 against `master` and reviewed the
+full branch as a frontend preview, with authentication and finance still planned.
+Application code reviewed at `2435440`.
+
+P1: the login form relies on a hydrated `onSubmit` handler to prevent native
+submission. Its named email/password inputs remain enabled in server HTML, with
+the default GET method. Blocking app script requests and submitting synthetic
+credentials navigated to `/login?email=review%40example.com&password=kivo-preview-probe`.
+Real credentials could enter browser history and server/access logs. Remove
+native credential serialization for this preview or gate the form until
+hydration, then add a regression check with app scripts blocked. This remains
+unfixed; verdict: fix before merging.
+
+Fresh lint, formatting, TypeScript, branch commit validation, all 13 Vitest
+tests, and production build pass. Hydrated 390 px dark-mode review showed no
+horizontal overflow and neutral RGB(28,29,33) surfaces. An isolated focused-test
+probe was rejected by the existing Oxlint guard, so it is not another finding.
+Safari/WebKit and physical devices were not checked. No application fix or merge
+was performed; the review browser was closed and the local server remains up.
