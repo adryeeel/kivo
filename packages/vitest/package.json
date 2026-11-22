@@ -3,7 +3,6 @@
     "private": true,
     "type": "module",
     "exports": {
-        "./helpers": "./helpers/index.ts",
         "./*": "./config/*.ts"
     },
     "scripts": {

@@ -6,7 +6,7 @@ Read this when a browser test is flaky, waits forever or passes only in isolatio
 
 Viewport, pointer, media preferences and document state can survive between tests. Set what the suite needs and restore it afterward. Park the pointer away from controls when asserting an unhovered state. Release listeners, timers, spies and observers owned by the test.
 
-Use `reduceMotion()` from `@kivo/vitest/helpers` when checking reduced motion, and register its returned cleanup. Allow a frame for media-query listeners to receive changes.
+When testing reduced motion, restore the emulated preference afterward and allow a frame for media-query listeners to receive changes.
 
 ## Timing and failures
 
