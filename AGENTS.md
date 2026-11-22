@@ -6,6 +6,7 @@ Read [site constants](apps/web/src/const/site.ts) for site preferences. `apps/we
 
 | Task                                      | Guide                                                                                                          |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Product scope and planned boundaries      | [Product](docs/product/README.md)                                                                              |
 | Setup and commands                        | [Getting started](docs/getting-started.md)                                                                     |
 | Place code and respect package boundaries | [Architecture](docs/architecture/README.md)                                                                    |
 | UI work                                   | [Design](docs/design/README.md)                                                                                |

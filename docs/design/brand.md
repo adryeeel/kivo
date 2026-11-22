@@ -1,6 +1,6 @@
 # Brand and voice
 
-Kivo is a mobile-first family finance app for sharing expenses and goals while keeping personal finances private. Its tone is clear, calm and approachable.
+Kivo's intended product is a mobile-first family finance app for sharing expenses and goals while keeping personal finances private. See [Product](../product/README.md) for the current scope. Its tone is clear, calm and approachable.
 
 ## Identity
 

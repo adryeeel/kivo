@@ -12,7 +12,7 @@ Keep feature copy and content settings in named objects under `const/` when a se
 
 ## Styles and imports
 
-Use Tailwind classes at the element; the shared stylesheet owns global foundations. No class-merging utility or component library is preinstalled. Add one only when actual composition requires it. Use inline styles for computed values rather than static styling.
+Use Tailwind classes at the element; the shared stylesheet owns global foundations. The UI package exposes `cn` and is configured for shadcn components built on Base UI. Add only the primitives needed by the current work; see [UI package](../architecture/ui.md). Use inline styles for computed values rather than static styling.
 
 The shared linter owns import, export and object ordering. Imports group external packages, workspace packages, `@/`, feature modules, parent and sibling files. Side-effect imports retain their position. Run the package fixer rather than reproducing the sort manually.
 

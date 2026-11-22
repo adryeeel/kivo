@@ -8,4 +8,4 @@ The pnpm/Turbo workspace separates the Next.js app from shared UI and tooling. T
 
 Portable roles and skills live under `agents/`, with `AGENTS.md` as their entry point. They are human-readable procedures, not provider registrations. Hosts that reserve `.agents/` can still use this kit without changing their managed directory.
 
-Site copy and metadata share one set of [site constants](../architecture/metadata.md), so the home page and document metadata use the same values.
+[Site constants](../architecture/metadata.md) provide document metadata and the home-page description. The visible wordmark is owned by the `Brand` component.
