@@ -1,0 +1,24 @@
+{
+    "name": "@project-template/oxlint",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./*": "./config/*.ts"
+    },
+    "scripts": {
+        "fmt:fix": "oxfmt",
+        "fmt:check": "oxfmt --check",
+        "lint:check": "oxlint",
+        "lint:fix": "oxlint --fix"
+    },
+    "dependencies": {
+        "eslint-plugin-perfectionist": "^5.13.0"
+    },
+    "devDependencies": {
+        "@project-template/typescript": "workspace:*",
+        "@types/node": "catalog:"
+    },
+    "peerDependencies": {
+        "oxlint": "^1.88.0"
+    }
+}

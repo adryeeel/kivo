@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+@source '../../../../apps/web/src';
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+}

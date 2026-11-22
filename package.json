@@ -1,0 +1,27 @@
+{
+    "name": "project-template",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "prepare": "husky",
+        "fmt:fix": "oxfmt",
+        "fmt:check": "oxfmt --check",
+        "lint:fix": "oxlint --fix",
+        "lint:check": "oxlint",
+        "ci": "pnpm fmt:check && pnpm lint:check && turbo run lint:check type:check test:check && turbo run build --filter=web"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^21.2.4",
+        "@commitlint/config-conventional": "^21.2.4",
+        "@commitlint/types": "^21.2.3",
+        "@project-template/oxfmt": "workspace:*",
+        "@project-template/oxlint": "workspace:*",
+        "husky": "^9.1.7",
+        "lint-staged": "^17.6.0",
+        "oxfmt": "^0.74.0",
+        "oxlint": "^1.88.0",
+        "oxlint-tsgolint": "^7.0.2005",
+        "turbo": "^2.11.10"
+    },
+    "packageManager": "pnpm@12.6.0"
+}

@@ -1,0 +1,48 @@
+{
+    "$schema": "https://turborepo.dev/schema.json",
+    "agentGuidance": false,
+    "globalDependencies": ["**/.env.*"],
+    "futureFlags": {
+        "affectedUsingTaskInputs": true
+    },
+    "tasks": {
+        "dev": {
+            "cache": false,
+            "persistent": true
+        },
+        "lint:fix": {
+            "cache": false,
+            "outputs": []
+        },
+        "fmt:fix": {
+            "cache": false,
+            "outputs": []
+        },
+        "fmt:check": {
+            "outputs": []
+        },
+        "transit": {
+            "dependsOn": ["^transit"],
+            "inputs": ["$TURBO_DEFAULT$", "!**/*.md"]
+        },
+        "lint:check": {
+            "dependsOn": ["transit"],
+            "inputs": ["$TURBO_DEFAULT$", "!**/*.md"],
+            "outputs": []
+        },
+        "test:check": {
+            "dependsOn": ["transit"],
+            "inputs": ["$TURBO_DEFAULT$", "!**/*.md"],
+            "outputs": []
+        },
+        "build": {
+            "dependsOn": ["^build"],
+            "inputs": ["$TURBO_DEFAULT$", "!**/*.md", "!**/node_modules/**"],
+            "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
+        },
+        "type:check": {
+            "dependsOn": ["transit"],
+            "outputs": []
+        }
+    }
+}

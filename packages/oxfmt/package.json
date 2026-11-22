@@ -1,0 +1,17 @@
+{
+    "name": "@project-template/oxfmt",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./*": "./config/*.ts"
+    },
+    "scripts": {
+        "fmt:fix": "oxfmt",
+        "fmt:check": "oxfmt --check",
+        "lint:check": "oxlint",
+        "lint:fix": "oxlint --fix"
+    },
+    "peerDependencies": {
+        "oxfmt": "^0.74.0"
+    }
+}

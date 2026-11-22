@@ -1,0 +1,29 @@
+name: Docs
+title: '[docs]: '
+description: A page in docs/, the README, AGENTS.md or a skill that's wrong, out of date or missing something.
+
+labels: [docs]
+
+body:
+    - type: input
+      id: page
+      attributes:
+          label: Page
+          description: A link to the section, named after the page and the section, with the file path after it.
+          placeholder: 'docs/design/motion.md — reduced motion'
+      validations:
+          required: true
+
+    - type: textarea
+      id: problem
+      attributes:
+          label: Problem
+          description: What's wrong or missing, and what the code actually does.
+      validations:
+          required: true
+
+    - type: textarea
+      id: proposal
+      attributes:
+          label: Proposal
+          description: The change to the page.

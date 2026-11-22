@@ -1,0 +1,14 @@
+{
+    "name": "@project-template/typescript",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./base": "./config/tsconfig.base.json",
+        "./next": "./config/tsconfig.next.json",
+        "./react": "./config/tsconfig.react.json"
+    },
+    "scripts": {
+        "fmt:fix": "oxfmt",
+        "fmt:check": "oxfmt --check"
+    }
+}

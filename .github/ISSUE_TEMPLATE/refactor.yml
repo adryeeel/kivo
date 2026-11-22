@@ -1,0 +1,36 @@
+name: Refactor
+title: '[refactor]: '
+description: Code that works but should be written differently, with no change in behaviour.
+
+labels: [refactor]
+
+body:
+    - type: textarea
+      id: current
+      attributes:
+          label: Current
+          description: How the code is now, with the files involved.
+      validations:
+          required: true
+
+    - type: textarea
+      id: problem
+      attributes:
+          label: Problem
+          description: Why it's worth changing, such as a rule in docs/ it breaks, duplication or more code than the job needs.
+      validations:
+          required: true
+
+    - type: textarea
+      id: proposal
+      attributes:
+          label: Proposal
+          description: The current approach and unresolved questions. Update it as the plan develops.
+      validations:
+          required: true
+
+    - type: textarea
+      id: plan
+      attributes:
+          label: Delivery plan
+          description: For substantial work, list slices with result, owner, dependency, state, PR and evidence. Update this plan as work proceeds.

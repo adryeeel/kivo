@@ -1,0 +1,10 @@
+name: ${COMPOSE_PROJECT_NAME:-project-template}
+
+services:
+    web:
+        build:
+            context: .
+            dockerfile: apps/web/Dockerfile
+        ports:
+            - '127.0.0.1:${PORT:-3000}:3000'
+        restart: unless-stopped

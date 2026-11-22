@@ -1,0 +1,11 @@
+{
+    "extends": "@project-template/typescript/react",
+    "compilerOptions": {
+        "moduleResolution": "bundler",
+        "paths": {
+            "@project-template/ui/*": ["./src/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "exclude": ["node_modules"]
+}

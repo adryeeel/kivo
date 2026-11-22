@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "esnext",
+        "strict": true,
+        "skipLibCheck": true,
+        "noImplicitReturns": true,
+        "verbatimModuleSyntax": true,
+        "allowImportingTsExtensions": true,
+        "noFallthroughCasesInSwitch": true
+    }
+}

@@ -1,2 +1,11 @@
-# kivo
-Manage your family's finances with Kivo.
+# Project Template
+
+A Next.js application in a pnpm/Turbo workspace.
+
+## Run locally
+
+See [Getting started](docs/getting-started.md) to install dependencies, run the app and check changes. [AGENTS.md](AGENTS.md) routes agents to the relevant guidance.
+
+## License
+
+Kivo retains its [GPL-2.0 license](LICENSE). The copied Boris template includes its [MIT license and attribution](LICENSE.boris).

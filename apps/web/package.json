@@ -1,0 +1,40 @@
+{
+    "name": "web",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "test:watch": "vitest",
+        "test:check": "vitest run",
+        "test:related": "vitest related --run",
+        "fmt:fix": "oxfmt",
+        "fmt:check": "oxfmt --check",
+        "lint:check": "oxlint",
+        "lint:fix": "oxlint --fix",
+        "type:check": "next typegen && tsc --noEmit"
+    },
+    "dependencies": {
+        "next": "catalog:",
+        "react": "catalog:",
+        "react-dom": "catalog:"
+    },
+    "devDependencies": {
+        "@project-template/oxfmt": "workspace:*",
+        "@project-template/oxlint": "workspace:*",
+        "@project-template/typescript": "workspace:*",
+        "@project-template/ui": "workspace:*",
+        "@project-template/vitest": "workspace:*",
+        "@tailwindcss/postcss": "catalog:",
+        "@types/node": "catalog:",
+        "@types/react": "catalog:",
+        "@types/react-dom": "catalog:",
+        "@vitest/browser-playwright": "catalog:",
+        "babel-plugin-react-compiler": "^1.0.0",
+        "playwright": "catalog:",
+        "typescript": "catalog:",
+        "vitest": "catalog:",
+        "vitest-browser-react": "catalog:"
+    }
+}

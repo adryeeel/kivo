@@ -1,0 +1,22 @@
+{
+    "name": "@project-template/vitest",
+    "private": true,
+    "type": "module",
+    "exports": {
+        "./helpers": "./helpers/index.ts",
+        "./*": "./config/*.ts"
+    },
+    "scripts": {
+        "fmt:fix": "oxfmt",
+        "fmt:check": "oxfmt --check",
+        "lint:check": "oxlint",
+        "lint:fix": "oxlint --fix"
+    },
+    "dependencies": {
+        "@types/node": "catalog:",
+        "@vitest/browser-playwright": "catalog:"
+    },
+    "peerDependencies": {
+        "vitest": "catalog:"
+    }
+}

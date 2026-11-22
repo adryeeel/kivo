@@ -1,0 +1,8 @@
+name: ${DEPLOY_PROJECT:?Set DEPLOY_PROJECT to a unique Compose project name}
+
+services:
+    web:
+        image: ${IMAGE_REF:?Set IMAGE_REF to the SHA-tagged image}
+        ports:
+            - '127.0.0.1:${PORT:-3000}:3000'
+        restart: unless-stopped
