@@ -37,7 +37,7 @@ DOCKER_BUILDKIT=1 docker build -q -f "apps/$SERVICE/Dockerfile" \
 IMAGE_ID=$(cat "$RUN_DIR/image-id")
 
 echo "== runtime user"
-docker run --rm --entrypoint sh "$IMAGE" -c id
+docker run --rm --entrypoint sh "$IMAGE" -c 'id; test "$(id -u)" -ne 0'
 
 echo "== health"
 docker create --cidfile "$RUN_DIR/container-id" --name "$NAME" -p "127.0.0.1:$PORT:3000" "$IMAGE" >/dev/null
@@ -51,5 +51,6 @@ for i in $(seq 1 12); do
     [ "$status" = healthy ] || [ "$status" = no-healthcheck ] && break
 done
 curl --fail --max-time 10 -s -o /dev/null -w "GET / -> %{http_code}\n" "http://127.0.0.1:$PORT/"
+curl --fail --max-time 10 -s -o /dev/null -w "GET /brand/kivo-mark.svg -> %{http_code}\n" "http://127.0.0.1:$PORT/brand/kivo-mark.svg"
 
 [ "$status" = healthy ] || { echo "NOT HEALTHY"; docker logs --tail 20 "$CONTAINER_ID"; exit 1; }

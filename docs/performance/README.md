@@ -4,4 +4,4 @@ Measure the affected journey before optimizing it. Use production builds for loa
 
 Start with server rendering and native browser behavior. Check network requests, client JavaScript, layout shifts and main-thread work when the change could affect them. Use [Patterns](patterns.md) for common boundaries and the [perf skill](../../agents/skills/perf/SKILL.md) for investigations.
 
-`agents/skills/perf/scripts/bench.sh` compares local production builds using Lighthouse and a Playwright Chromium executable. It downloads Lighthouse on demand and writes reports to temporary output. Read its flags and cleanup first; unavailable network, hardware or browser coverage must be reported.
+For local Lighthouse comparisons, run comparable production builds with the same route, browser, viewport and throttling. Preserve the reports and tool version, and report unavailable network, hardware or browser coverage.

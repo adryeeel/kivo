@@ -9,7 +9,7 @@ Read [Performance measurement](../../../docs/performance/README.md) and [Cost pa
 
 Choose evidence for the actual risk: bundle cost, rendering, latency and build time are different questions. Inspect the import/work graph before measuring. A suspicious pattern is a hypothesis until supported by measurement.
 
-For local Lighthouse, use `agents/skills/perf/scripts/bench.sh` from the repository root with comparable production builds and settings as described in the measurement guide. Preserve every run and tool version, including the version pinned in the script. Run baseline/candidate sequentially; do not reset the user's working tree or create an unbound delegated checkout.
+For local Lighthouse, use comparable production builds and settings as described in the measurement guide. Preserve every run and tool version. Run baseline/candidate sequentially; do not reset the user's working tree or create an unbound delegated checkout.
 
 For live results, discover available tools and use credentials only through supported secret mechanisms. Keep local lab, remote lab and field evidence separate. Unavailable data is not zero and missing measurements do not prove no regression.
 

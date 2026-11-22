@@ -14,4 +14,4 @@ Compose publishes on loopback. Set `PORT` for a different host port and `COMPOSE
 
 For production deployment, follow [CD and secrets](cd.md). Configure domain, proxy and TLS for the target. The runtime image includes the public assets from `apps/web/public`.
 
-Use `agents/skills/delivery/scripts/docker-test.sh` for an isolated image/health smoke check when Docker is available. It creates and cleans up only its own resources.
+Use `agents/skills/delivery/scripts/docker-test.sh` for an isolated image smoke check when Docker is available. It checks the runtime user, health, homepage and packaged brand asset, then cleans up only its own resources.
