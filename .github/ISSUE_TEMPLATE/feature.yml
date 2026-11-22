@@ -1,0 +1,42 @@
+name: Feature
+title: '[feat]: '
+description: Something the site or the project should do and doesn't yet.
+
+labels: [feat]
+
+body:
+    - type: textarea
+      id: problem
+      attributes:
+          label: Problem
+          description: What's missing, and who or what it's for.
+      validations:
+          required: true
+
+    - type: textarea
+      id: proposal
+      attributes:
+          label: Proposal
+          description: What it should do and the current approach. Record unresolved questions and update the plan as work proceeds.
+      validations:
+          required: true
+
+    - type: textarea
+      id: alternatives
+      attributes:
+          label: Alternatives
+          description: Other ways considered, and why not.
+
+    - type: textarea
+      id: done
+      attributes:
+          label: Done when
+          description: Observable acceptance criteria, including release verification when relevant.
+      validations:
+          required: true
+
+    - type: textarea
+      id: plan
+      attributes:
+          label: Delivery plan
+          description: For substantial work, list slices with result, owner, dependency, state, PR and evidence. Update this plan as work proceeds.

@@ -1,0 +1,12 @@
+**/node_modules
+**/.next
+**/.turbo
+.git
+.agents
+.aws
+.codex
+.env
+.env.*
+**/.env
+**/.env.*
+**/*.log

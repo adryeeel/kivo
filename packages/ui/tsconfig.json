@@ -1,0 +1,12 @@
+{
+    "extends": "@kivo/typescript/react",
+    "compilerOptions": {
+        "moduleResolution": "bundler",
+        "paths": {
+            "@kivo/ui/*": ["./src/*"],
+            "@kivo/ui/primitive/*": ["./src/components/primitive/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "exclude": ["node_modules"]
+}
