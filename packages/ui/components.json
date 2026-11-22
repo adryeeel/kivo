@@ -11,9 +11,9 @@
     },
     "iconLibrary": "lucide",
     "aliases": {
-        "components": "@kivo/ui/components/primitive",
+        "components": "@kivo/ui/primitive",
         "utils": "@kivo/ui/lib/utils",
-        "ui": "@kivo/ui/components/primitive",
+        "ui": "@kivo/ui/primitive",
         "lib": "@kivo/ui/lib",
         "hooks": "@kivo/ui/hooks"
     },

@@ -7,9 +7,9 @@
         "./providers/motion": "./src/providers/motion/index.ts",
         "./providers/theme": "./src/providers/theme/index.ts",
         "./styles.css": "./src/styles/global.css",
-        "./components/*": "./src/components/*.tsx",
         "./lib/*": "./src/lib/*.ts",
-        "./hooks/*": "./src/hooks/*.ts"
+        "./hooks/*": "./src/hooks/*.ts",
+        "./primitive/*": "./src/components/primitive/*.tsx"
     },
     "scripts": {
         "test:watch": "vitest",
