@@ -84,27 +84,7 @@ jobs:
                   SSH_USERNAME: ${{ vars.VPS_SSH_USERNAME }}
                   REGISTRY_USER: ${{ vars.GHCR_READ_USERNAME }}
                   REGISTRY_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
-              run: |
-                  set -eu
-                  for name in DEPLOY_PATH DEPLOY_PROJECT SSH_HOST SSH_KEY SSH_FINGERPRINT SSH_USERNAME REGISTRY_USER REGISTRY_TOKEN; do
-                      if [ -z "${!name}" ]; then
-                          echo "Missing deployment setting: $name" >&2
-                          exit 1
-                      fi
-                  done
-                  case "$DEPLOY_PATH" in
-                      /*) ;;
-                      *) echo "DEPLOY_PATH must be absolute" >&2; exit 1 ;;
-                  esac
-                  if [[ ! "$DEPLOY_PROJECT" =~ ^[a-z0-9][a-z0-9_-]*$ ]]; then
-                      echo "Invalid DEPLOY_PROJECT" >&2
-                      exit 1
-                  fi
-                  current=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq '.object.sha')
-                  if [ "$current" != "$SHA" ]; then
-                      echo "Skipping stale revision: master has advanced"
-                      exit 1
-                  fi
+              run: bash .github/scripts/check-deploy.sh
 
             - name: Copy production Compose file
               uses: appleboy/scp-action@v1
@@ -132,13 +112,4 @@ jobs:
                   key: ${{ secrets.VPS_SSH_KEY }}
                   fingerprint: ${{ secrets.VPS_SSH_FINGERPRINT }}
                   envs: IMAGE_REF,DEPLOY_PATH,DEPLOY_PROJECT,REGISTRY_USER,REGISTRY_TOKEN
-                  script: |
-                      set -eu
-                      cd "$DEPLOY_PATH"
-                      export IMAGE_REF DEPLOY_PROJECT
-                      export COMPOSE_PROJECT_NAME="$DEPLOY_PROJECT"
-                      export DOCKER_CONFIG="$(mktemp -d)"
-                      trap 'rm -rf "$DOCKER_CONFIG"' EXIT
-                      printf '%s' "$REGISTRY_TOKEN" | docker login ghcr.io --username "$REGISTRY_USER" --password-stdin
-                      docker compose -f compose.production.yml pull
-                      docker compose -f compose.production.yml up -d --wait --remove-orphans
+                  script_path: .github/scripts/deploy.sh
