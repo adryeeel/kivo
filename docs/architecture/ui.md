@@ -14,4 +14,4 @@ Follow [Design](../design/README.md) for accessibility and visual decisions, inc
 
 ## shadcn CLI
 
-The app and UI package have matching `components.json` files for the Base Luma preset, with Lucide icons. Run `pnpm dlx shadcn@latest add <component> -c apps/web` to route shared components into `packages/ui`. The preset uses emerald theme tokens in the shared stylesheet; the app uses `next/font/google` for Public Sans and Manrope. Reapplying a preset may overwrite the font setup or icon library, so check both workspace configurations and the app layout afterward.
+The app and UI package have matching `components.json` files for the Base Luma preset, with Lucide icons. Run `pnpm dlx shadcn@latest add <component> -c apps/web` to route shared primitives into `packages/ui/src/components/primitive` and import them from `@kivo/ui/components/primitive`. The preset uses emerald theme tokens in the shared stylesheet; the app uses `next/font/google` for Public Sans and Manrope. Reapplying a preset may overwrite the font setup or icon library, so check both workspace configurations and the app layout afterward.

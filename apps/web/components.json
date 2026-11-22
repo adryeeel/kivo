@@ -13,7 +13,7 @@
     "aliases": {
         "components": "@/components",
         "utils": "@kivo/ui/lib/utils",
-        "ui": "@kivo/ui/components",
+        "ui": "@kivo/ui/components/primitive",
         "lib": "@/lib",
         "hooks": "@/hooks"
     },
