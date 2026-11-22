@@ -8,4 +8,4 @@ See [Getting started](docs/getting-started.md) to install dependencies, run the 
 
 ## License
 
-Kivo retains its [GPL-2.0 license](LICENSE). The copied Boris template includes its [MIT license and attribution](LICENSE.boris).
+Kivo is licensed under [GPL-2.0](LICENSE).
