@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import localFont from 'next/font/local';
+import { Manrope, Public_Sans } from 'next/font/google';
 
 import { ThemeProvider } from '@kivo/ui/providers/theme';
 import { MotionProvider } from '@kivo/ui/providers/motion';
@@ -8,14 +8,14 @@ import '@kivo/ui/styles.css';
 
 import { SITE } from '@/const/site';
 
-const publicSans = localFont({
+const publicSans = Public_Sans({
     display: 'swap',
-    src: './fonts/public-sans.ttf',
+    subsets: ['latin'],
     variable: '--font-public-sans',
 });
-const manrope = localFont({
+const manrope = Manrope({
     display: 'swap',
-    src: './fonts/manrope.ttf',
+    subsets: ['latin'],
     variable: '--font-manrope',
 });
 
