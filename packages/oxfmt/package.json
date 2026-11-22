@@ -1,5 +1,5 @@
 {
-    "name": "@project-template/oxfmt",
+    "name": "@kivo/oxfmt",
     "private": true,
     "type": "module",
     "exports": {

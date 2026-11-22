@@ -1,6 +1,6 @@
 export const SITE = {
+    title: 'Kivo',
     language: 'en',
-    title: 'Project Template',
     url: 'http://localhost:3000',
-    description: 'A foundation for your next project.',
+    description: "Manage your family's finances with Kivo.",
 } as const;

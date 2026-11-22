@@ -1,3 +1,3 @@
-import { reactConfig } from '@project-template/oxfmt/react';
+import { reactConfig } from '@kivo/oxfmt/react';
 
 export default reactConfig;

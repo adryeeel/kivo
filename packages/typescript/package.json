@@ -1,5 +1,5 @@
 {
-    "name": "@project-template/typescript",
+    "name": "@kivo/typescript",
     "private": true,
     "type": "module",
     "exports": {

@@ -1,5 +1,5 @@
 {
-    "name": "project-template",
+    "name": "kivo",
     "private": true,
     "type": "module",
     "scripts": {
@@ -14,8 +14,8 @@
         "@commitlint/cli": "^21.2.4",
         "@commitlint/config-conventional": "^21.2.4",
         "@commitlint/types": "^21.2.3",
-        "@project-template/oxfmt": "workspace:*",
-        "@project-template/oxlint": "workspace:*",
+        "@kivo/oxfmt": "workspace:*",
+        "@kivo/oxlint": "workspace:*",
         "husky": "^9.1.7",
         "lint-staged": "^17.6.0",
         "oxfmt": "^0.74.0",

@@ -1,5 +1,5 @@
 {
-    "extends": "@project-template/typescript/base",
+    "extends": "@kivo/typescript/base",
     "compilerOptions": {
         "noEmit": true,
         "types": ["node"]

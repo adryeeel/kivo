@@ -1,4 +1,4 @@
-import { baseConfig } from '@project-template/oxfmt/base';
+import { baseConfig } from '@kivo/oxfmt/base';
 
 export default {
     ...baseConfig,

@@ -1,4 +1,4 @@
-name: ${COMPOSE_PROJECT_NAME:-project-template}
+name: ${COMPOSE_PROJECT_NAME:-kivo}
 
 services:
     web:

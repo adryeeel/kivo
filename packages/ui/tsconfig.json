@@ -1,9 +1,9 @@
 {
-    "extends": "@project-template/typescript/react",
+    "extends": "@kivo/typescript/react",
     "compilerOptions": {
         "moduleResolution": "bundler",
         "paths": {
-            "@project-template/ui/*": ["./src/*"]
+            "@kivo/ui/*": ["./src/*"]
         }
     },
     "include": ["src/**/*.ts", "src/**/*.tsx"],

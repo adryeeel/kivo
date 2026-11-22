@@ -10,7 +10,7 @@ const importGroups = {
     customGroups: [
         { groupName: 'features', elementNamePattern: '^@/features' },
         { groupName: 'app', elementNamePattern: '^@/' },
-        { groupName: 'workspace', elementNamePattern: '^@project-template/' },
+        { groupName: 'workspace', elementNamePattern: '^@kivo/' },
         { groupName: 'parent', elementNamePattern: '^\\.\\./' },
         { groupName: 'sibling', elementNamePattern: '^\\./' },
     ],

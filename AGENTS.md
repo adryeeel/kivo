@@ -1,6 +1,6 @@
 # Agent guide
 
-Read [site constants](apps/web/src/const/site.ts) for site preferences. `apps/web` is the Next.js application, with package name **`web`**. Shared packages use `@project-template/*`; use the scope in current manifests.
+Read [site constants](apps/web/src/const/site.ts) for site preferences. `apps/web` is the Next.js application, with package name **`web`**. Shared packages use `@kivo/*`; use the scope in current manifests.
 
 ## Find the relevant guidance
 

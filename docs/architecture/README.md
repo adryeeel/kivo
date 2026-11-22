@@ -1,6 +1,6 @@
 # Architecture
 
-`apps/web` owns the Next.js application and is named **`web`**. Shared packages use `@project-template/*`. Workspace membership and dependency versions live in [pnpm-workspace.yaml](../../pnpm-workspace.yaml); package manifests own dependencies and scripts.
+`apps/web` owns the Next.js application and is named **`web`**. Shared packages use `@kivo/*`. Workspace membership and dependency versions live in [pnpm-workspace.yaml](../../pnpm-workspace.yaml); package manifests own dependencies and scripts.
 
 | Task                             | Guide                                   |
 | -------------------------------- | --------------------------------------- |

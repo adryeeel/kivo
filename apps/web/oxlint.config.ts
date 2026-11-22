@@ -1,3 +1,3 @@
-import { webConfig } from '@project-template/oxlint/web';
+import { webConfig } from '@kivo/oxlint/web';
 
 export default webConfig;

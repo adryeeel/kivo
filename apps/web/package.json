@@ -16,16 +16,16 @@
         "type:check": "next typegen && tsc --noEmit"
     },
     "dependencies": {
+        "@kivo/ui": "workspace:*",
         "next": "catalog:",
         "react": "catalog:",
         "react-dom": "catalog:"
     },
     "devDependencies": {
-        "@project-template/oxfmt": "workspace:*",
-        "@project-template/oxlint": "workspace:*",
-        "@project-template/typescript": "workspace:*",
-        "@project-template/ui": "workspace:*",
-        "@project-template/vitest": "workspace:*",
+        "@kivo/oxfmt": "workspace:*",
+        "@kivo/oxlint": "workspace:*",
+        "@kivo/typescript": "workspace:*",
+        "@kivo/vitest": "workspace:*",
         "@tailwindcss/postcss": "catalog:",
         "@types/node": "catalog:",
         "@types/react": "catalog:",

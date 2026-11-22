@@ -1,0 +1,23 @@
+{
+    "$schema": "https://ui.shadcn.com/schema.json",
+    "style": "base-luma",
+    "rsc": true,
+    "tsx": true,
+    "tailwind": {
+        "config": "",
+        "css": "src/styles/global.css",
+        "baseColor": "mist",
+        "cssVariables": true
+    },
+    "iconLibrary": "lucide",
+    "aliases": {
+        "components": "@kivo/ui/components",
+        "utils": "@kivo/ui/lib/utils",
+        "ui": "@kivo/ui/components",
+        "lib": "@kivo/ui/lib",
+        "hooks": "@kivo/ui/hooks"
+    },
+    "menuColor": "default-translucent",
+    "menuAccent": "subtle",
+    "rtl": false
+}

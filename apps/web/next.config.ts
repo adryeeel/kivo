@@ -5,7 +5,7 @@ const config: NextConfig = {
     typedRoutes: true,
     reactCompiler: true,
     output: 'standalone',
-    transpilePackages: ['@project-template/ui'],
+    transpilePackages: ['@kivo/ui'],
 };
 
 export default config;

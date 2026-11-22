@@ -1,6 +1,6 @@
-# Project Template
+# Kivo
 
-A Next.js application in a pnpm/Turbo workspace.
+A mobile-first family finance app in a pnpm/Turbo workspace. This branch contains the foundation for the planned Kivo migration.
 
 ## Run locally
 

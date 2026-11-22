@@ -1,3 +1,3 @@
-import { baseConfig } from '@project-template/oxlint/base';
+import { baseConfig } from '@kivo/oxlint/base';
 
 export default baseConfig;

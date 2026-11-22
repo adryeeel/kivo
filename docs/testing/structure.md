@@ -4,7 +4,7 @@ Keep `tests/` beside the application feature or component being tested. Shared h
 
 Use `.test.ts` unless JSX needs `.tsx`. Describe the subject and behavior with readable test names. Filesystem tests use disposable directories and clean up their own output.
 
-Browser fixtures render real children and import `@project-template/ui/styles.css`. A suite-local `utils/page.tsx` renders the subject; `utils/context.tsx` can compose Vitest fixtures when shared setup is useful. Keep one-off locators in their tests. Do not add fixture layers for a trivial render.
+Browser fixtures render real children and import `@kivo/ui/styles.css`. A suite-local `utils/page.tsx` renders the subject; `utils/context.tsx` can compose Vitest fixtures when shared setup is useful. Keep one-off locators in their tests. Do not add fixture layers for a trivial render.
 
 Mock framework boundaries that cannot execute in the browser runner, rather than the component behavior under test. Add local mocks and restore them; promote them only when another suite needs the same contract.
 

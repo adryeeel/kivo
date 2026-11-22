@@ -1,3 +1,3 @@
-import { browserConfig } from '@project-template/vitest/browser';
+import { browserConfig } from '@kivo/vitest/browser';
 
 export default browserConfig;

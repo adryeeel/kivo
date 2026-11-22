@@ -1,6 +1,6 @@
 # Assets
 
-Use system fonts until the product requires another typeface.
+The web app hosts Public Sans and Manrope locally, with their license notices beside the font files.
 
 Add assets beside their owner or in `apps/web/public` for public files. Use meaningful alternative text for informative images and empty alternative text for decorative ones. Set dimensions or aspect ratios to prevent layout shift, and use appropriately sized formats.
 

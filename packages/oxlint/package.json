@@ -1,5 +1,5 @@
 {
-    "name": "@project-template/oxlint",
+    "name": "@kivo/oxlint",
     "private": true,
     "type": "module",
     "exports": {
@@ -15,7 +15,7 @@
         "eslint-plugin-perfectionist": "^5.13.0"
     },
     "devDependencies": {
-        "@project-template/typescript": "workspace:*",
+        "@kivo/typescript": "workspace:*",
         "@types/node": "catalog:"
     },
     "peerDependencies": {
