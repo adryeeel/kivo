@@ -5,6 +5,14 @@ updates:
       directory: /
       schedule:
           interval: weekly
+      groups:
+          dependencies:
+              patterns:
+                  - '*'
+          security-dependencies:
+              applies-to: security-updates
+              patterns:
+                  - '*'
       commit-message:
           prefix: ci
           include: scope
@@ -13,6 +21,14 @@ updates:
       directory: /
       schedule:
           interval: weekly
+      groups:
+          dependencies:
+              patterns:
+                  - '*'
+          security-dependencies:
+              applies-to: security-updates
+              patterns:
+                  - '*'
       commit-message:
           prefix: build
           include: scope
@@ -21,6 +37,14 @@ updates:
       directory: /apps/web
       schedule:
           interval: weekly
+      groups:
+          dependencies:
+              patterns:
+                  - '*'
+          security-dependencies:
+              applies-to: security-updates
+              patterns:
+                  - '*'
       commit-message:
           prefix: build
           include: scope
