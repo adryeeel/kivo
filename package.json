@@ -18,10 +18,10 @@
         "@kivo/oxlint": "workspace:*",
         "husky": "^9.1.7",
         "lint-staged": "^17.6.1",
-        "oxfmt": "^0.74.0",
-        "oxlint": "^1.88.0",
-        "oxlint-tsgolint": "^7.0.2005",
-        "turbo": "^2.11.10"
+        "oxfmt": "^0.79.0",
+        "oxlint": "^1.94.0",
+        "oxlint-tsgolint": "^7.0.2007",
+        "turbo": "^2.11.13"
     },
     "packageManager": "pnpm@12.6.0"
 }
