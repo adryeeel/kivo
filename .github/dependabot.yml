@@ -2,11 +2,19 @@ version: 2
 
 updates:
     - package-ecosystem: github-actions
-      directory: /
+      directories:
+          - /
+          - /.github/actions/*
+      assignees:
+          - adryeeel
+      labels:
+          - build
       schedule:
           interval: weekly
+      cooldown:
+          default-days: 3
       groups:
-          dependencies:
+          github-actions:
               patterns:
                   - '*'
           security-dependencies:
@@ -14,17 +22,28 @@ updates:
               patterns:
                   - '*'
       commit-message:
-          prefix: ci
+          prefix: build
           include: scope
+      pull-request-branch-name:
+          prefix: build
+          branch-name-case: lowercase
+          template: '{prefix}/gha/{name}'
 
     - package-ecosystem: npm
       directory: /
+      assignees:
+          - adryeeel
+      labels:
+          - build
       schedule:
           interval: weekly
+      cooldown:
+          default-days: 3
       groups:
-          dependencies:
-              patterns:
-                  - '*'
+          production:
+              dependency-type: production
+          development:
+              dependency-type: development
           security-dependencies:
               applies-to: security-updates
               patterns:
@@ -32,11 +51,22 @@ updates:
       commit-message:
           prefix: build
           include: scope
+      pull-request-branch-name:
+          prefix: build
+          branch-name-case: lowercase
+          template: '{prefix}/pnpm/{name}'
 
     - package-ecosystem: docker
-      directory: /apps/web
+      directories:
+          - /apps/*
+      assignees:
+          - adryeeel
+      labels:
+          - build
       schedule:
           interval: weekly
+      cooldown:
+          default-days: 3
       groups:
           dependencies:
               patterns:
@@ -48,3 +78,7 @@ updates:
       commit-message:
           prefix: build
           include: scope
+      pull-request-branch-name:
+          prefix: build
+          branch-name-case: lowercase
+          template: '{prefix}/docker/{name}'
