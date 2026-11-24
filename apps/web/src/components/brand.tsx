@@ -6,11 +6,11 @@ export function Brand() {
             <Image
                 src='/brand/kivo-mark.svg'
                 alt=''
-                width={44}
-                height={44}
+                width={32}
+                height={32}
                 className='dark:brightness-0 dark:invert'
             />
-            <span className='font-heading text-4xl font-bold tracking-[-0.045em]'>kivo</span>
+            <span className='font-heading text-2xl font-bold tracking-[-0.045em]'>kivo</span>
         </span>
     );
 }

@@ -1,6 +1,6 @@
 # Product architecture
 
-This is the planned financial and privacy contract, migrated from [PR 1](https://github.com/adryeeel/kivo/pull/1). The current foundation has a static home page; authentication, API, persistence and financial behavior are not implemented. The routes, models, algorithms and operational controls below are proposals for implementation, not descriptions of existing behavior.
+This is the planned financial and privacy contract, migrated from [PR 1](https://github.com/adryeeel/kivo/pull/1). The current frontend has a home hero and a login preview; authentication, API, persistence and financial behavior are not implemented. The routes, models, algorithms and operational controls below are proposals for implementation, not descriptions of existing behavior.
 
 The proposed backend is a separate Fastify API using PostgreSQL and Drizzle, with Better Auth for identity and sessions. The web application must not own authoritative financial decisions or access database credentials. Shared contracts and finance code should be introduced only when their callers exist. Reconcile any proposed package layout with the current [workspace architecture](../architecture/README.md).
 

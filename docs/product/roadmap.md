@@ -1,6 +1,6 @@
 # Product roadmap
 
-This is the planned product and delivery sequence, migrated from [PR 1](https://github.com/adryeeel/kivo/pull/1). The current foundation has a static home page; the login preview, authentication, API, persistence and financial features are not implemented on this branch. All journeys and capabilities below are planned.
+This is the planned product and delivery sequence, migrated from [PR 1](https://github.com/adryeeel/kivo/pull/1). The current frontend has a home hero and an interactive login preview. Authentication, API, persistence and financial features remain unimplemented. All journeys and capabilities below are planned.
 
 See [Product architecture](architecture.md) for the financial and privacy contract and [Delivery](../delivery/README.md) for the current build and deployment process.
 

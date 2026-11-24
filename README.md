@@ -1,6 +1,6 @@
 # Kivo
 
-A mobile-first family finance app in a pnpm/Turbo workspace. This branch contains a static home page and the foundation for the planned Kivo migration; authentication and financial features are not implemented here. See [Product](docs/product/README.md) for the planning structure.
+A mobile-first family finance app in a pnpm/Turbo workspace. The home page explains what is being built and links to an interactive login preview. Authentication and financial features are not implemented; preview credentials are never sent. See [Product](docs/product/README.md) for the planning structure.
 
 ## Run locally
 
