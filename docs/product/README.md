@@ -5,8 +5,8 @@ Kivo's intended product is a mobile-first family finance app, prioritizing share
 | Task                                                     | Guide                                     |
 | -------------------------------------------------------- | ----------------------------------------- |
 | Reconcile product rules and planned financial boundaries | [Product architecture](architecture.md)   |
-| Plan the migration and delivery slices                   | [Roadmap](roadmap.md)                     |
+| Plan product journeys and delivery slices                | [Roadmap](roadmap.md)                     |
 | Understand the current workspace                         | [Architecture](../architecture/README.md) |
 | Work on the visual identity                              | [Brand](../design/brand.md)               |
 
-The product guides identify prior planning as migration input. Reconcile that material with this workspace before treating its implementation details as current.
+The roadmap and product architecture describe planned behavior. [Historical planning](history/) preserves the original snapshots for context; the current guides are the starting point for future slices.
