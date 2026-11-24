@@ -12,15 +12,16 @@ The priority is manual tracking plus splitting, with family splitting and goals 
 
 ## First release
 
-| Priority | Capability                      | Completion evidence                                                                  |
-| -------- | ------------------------------- | ------------------------------------------------------------------------------------ |
-| 1        | Family workspace and membership | Two verified users join one household through a single-use invitation                |
-| 1        | Shared expenses                 | One payer; selected participants; equal or exact-amount shares; category, date, note |
-| 1        | Balances and settlements        | Members see what they owe or are owed; recipient confirms a recorded payment         |
-| 1        | Shared goals                    | Target, optional date, member contributions, reversals, progress and history         |
-| 2        | Private personal workspace      | Personal expenses and income are inaccessible to other members, including the owner  |
-| 2        | Monthly budgets                 | Explicit category limits for shared expenses and personal spending; no rollover      |
-| 2        | Search, filters, export         | Workspace-scoped date/category/member filters and CSV export                         |
+| Priority | Capability                      | Completion evidence                                                                                      |
+| -------- | ------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| 1        | Family workspace and membership | Two verified users join one household through a single-use invitation                                    |
+| 1        | Shared expenses                 | One payer; selected participants; equal or exact-amount shares; category, date, note                     |
+| 1        | Balances and settlements        | Members see what they owe or are owed; recipient confirms a recorded payment                             |
+| 1        | Shared goals                    | Target, optional date, member contributions, reversals, progress and history                             |
+| 2        | Private personal workspace      | Personal expenses and income are inaccessible to other members, including the owner                      |
+| 2        | Salary deductions               | Define gross salary and Social Security and IRS withholding options; manage finances using take-home pay |
+| 2        | Monthly budgets                 | Explicit category limits for shared expenses and personal spending; no rollover                          |
+| 2        | Search, filters, export         | Workspace-scoped date/category/member filters and CSV export                                             |
 
 Do not require bank accounts to record an expense. This version tracks declared spending and obligations; it does not claim to know bank balances. Multiple payers, percentage/weighted splits, bank sync, receipt OCR, recurring automation, multi-currency conversion, investments, tax reports, native apps, and offline writes are later decisions. No payment is initiated by Kivo. Refunds initially correct the original expense and shares with visible history; dated refund cash-flow reports and corrections involving departed members are deferred.
 
@@ -28,7 +29,7 @@ Do not require bank accounts to record an expense. This version tracks declared 
 
 Proceed with EUR, English, one personal workspace plus a shared household, and Europe/Lisbon as initial defaults. Locale and timezone are stored explicitly; formatting must not assume every user shares the developer's machine settings. Currency is fixed once a workspace has financial records. V1 uses one currency across a user's personal and shared views; a mismatch must block aggregation.
 
-Before a production pilot, validate currency/locale, hosting region and backup requirements, and email delivery for verification/reset. Pricing, subscriptions, and bank providers are outside this planning slice.
+Before a production pilot, validate currency/locale, hosting region and backup requirements, email delivery for verification/reset, and the applicable Portuguese salary deduction rules and update process. Pricing, subscriptions, and bank providers are outside this planning slice.
 
 ## Main journeys
 
@@ -54,6 +55,8 @@ Create Summer holiday, target EUR 2,400, optional deadline. Each member can mark
 
 Switch to Personal. Record private expenses and income. A personal summary can include the member's own family expense shares, clearly separated from private entries; it never copies the full family payment into the personal ledger. The combined view uses compatible currency and calendar settings only.
 
+For Portugal, define a gross salary and configure the applicable Social Security contribution and IRS withholding. Show the deductions and estimated net salary, and use the net amount for personal income and budgeting. Allow the member to enter the actual net pay from a payslip when it differs from the estimate. Keep salary, tax settings and deductions private to the personal workspace. Withholding is an estimate of tax paid during the year, not a final IRS assessment; tax filing and reports remain outside this release.
+
 ## Navigation and screen scope
 
 Mobile has four labeled destinations: Overview, Expenses, Goals, and More. The header selects Family or Personal. Family Overview prominently includes Settle up; More contains budgets, members, export, and settings. Desktop adds a persistent sidebar with Overview, Expenses, Balances, Goals, and Budgets. Personal mode has no family-balances screen.
@@ -64,14 +67,14 @@ Screens must cover first-run, loading, empty, populated, validation failure, net
 
 Each slice ends with a critique, fixes, and evidence in [reviews](../reviews.md). These are ordered milestones, not unsupported calendar estimates.
 
-| Slice                      | Deliverable                                                                       | Exit criteria                                                                                        |
-| -------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| 1: foundation and identity | API + web health path, PostgreSQL migrations, sessions, workspace authorization   | Clean install/build; fresh DB migration; two-user privacy tests; CI checks enabled                   |
-| 2: family splitting        | Invite/join, expense creation/list/detail/edit/void, equal/exact shares, balances | EUR 90 example works end to end; cents, duplicate retry, concurrency and cross-household tests pass  |
-| 3: settlement              | Suggestions, record payment, recipient confirmation, reversal history             | Pending does not affect debt; simultaneous confirmation is safe; no double-counted spending          |
-| 4: common goals            | Goal creation, contributions, reversal, progress                                  | Concurrent changes cannot create negative progress; history identifies contributors; no debt changes |
-| 5: personal and budgets    | Private expenses/income, own family shares, personal/shared category budgets      | Owner cannot access another member's data; scopes remain clear; totals agree with raw records        |
-| 6: pilot hardening         | Export, failure/recovery UX, backups/restore, performance and real-device review  | Acceptance journey passes on mobile and desktop; restore rehearsed; known limits documented          |
+| Slice                      | Deliverable                                                                                                         | Exit criteria                                                                                            |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| 1: foundation and identity | API + web health path, PostgreSQL migrations, sessions, workspace authorization                                     | Clean install/build; fresh DB migration; two-user privacy tests; CI checks enabled                       |
+| 2: family splitting        | Invite/join, expense creation/list/detail/edit/void, equal/exact shares, balances                                   | EUR 90 example works end to end; cents, duplicate retry, concurrency and cross-household tests pass      |
+| 3: settlement              | Suggestions, record payment, recipient confirmation, reversal history                                               | Pending does not affect debt; simultaneous confirmation is safe; no double-counted spending              |
+| 4: common goals            | Goal creation, contributions, reversal, progress                                                                    | Concurrent changes cannot create negative progress; history identifies contributors; no debt changes     |
+| 5: personal and budgets    | Private expenses/income, net salary with Portuguese deductions, own family shares, personal/shared category budgets | Owner cannot access another member's data; salary deductions are verified; totals agree with raw records |
+| 6: pilot hardening         | Export, failure/recovery UX, backups/restore, performance and real-device review                                    | Acceptance journey passes on mobile and desktop; restore rehearsed; known limits documented              |
 
 Foundation should ship a minimal vertical path, not empty feature folders or a large generated component catalog. The first usable product demo is two users sharing a real persisted expense, followed by settlement and a shared goal.
 

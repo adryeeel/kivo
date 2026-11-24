@@ -66,6 +66,12 @@ All household financial and membership writes use the same household row lock be
 
 Mutation requests carry an idempotency key. Store the receipt atomically with the financial write; repeating the same key/payload returns the same outcome, while a different payload returns conflict. A client retains the key across an uncertain network retry. The key cannot bypass fresh access checks.
 
+## Salary and deductions
+
+A personal salary record starts with gross pay and the member's applicable Social Security and IRS withholding settings. Calculate an estimated net amount using rules for the applicable period; expose the gross amount, each deduction, assumptions and resulting net amount. Allow the member to record actual net pay from a payslip instead of the estimate. Personal income and budgeting use one net amount per salary payment, not both gross and net; deductions are not counted again as expenses.
+
+Keep salary, deduction inputs and calculation history in the personal workspace under the same access and export restrictions as other private financial data. Preserve the rules and inputs used for past estimates when settings or tax rules change. Validate supported employment and tax situations, rounding and dated rules against authoritative sources before implementation; identify unsupported cases rather than silently applying an unsuitable rate. IRS withholding is not the final annual tax liability.
+
 ## Goals, budgets, and totals
 
 Goal contributions record money a member says they earmarked. They do not change debts, create expenses, or prove funds exist in a bank account. Reversing one contribution creates an attributable inverse event; do not edit past contributions. The contributor can reverse their own record; owner corrections are visible with a reason. Lock the goal for changes, prevent duplicate reversal, and keep progress nonnegative. Exceeding a goal target is valid; show the actual amount and cap only the progress bar at 100%. Archiving preserves history.
