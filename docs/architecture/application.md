@@ -2,19 +2,19 @@
 
 Use these boundaries when adding code to `apps/web/src`.
 
-| Directory          | Owns                                    |
-| ------------------ | --------------------------------------- |
-| `app/`             | Routes, layouts and metadata routes     |
-| `features/<name>/` | A feature's implementation and sections |
-| `components/`      | Components shared across features       |
-| `hooks/`           | Hooks shared across features            |
-| `const/`           | Application-wide configuration and copy |
-| `tests/`           | Helpers and mocks shared across suites  |
+| Directory       | Owns                                    |
+| --------------- | --------------------------------------- |
+| `app/`          | Routes, layouts and metadata routes     |
+| `parts/<page>/` | Page composition and its owned features |
+| `components/`   | Components shared across page parts     |
+| `hooks/`        | Hooks shared across page parts          |
+| `const/`        | Application-wide configuration and copy |
+| `tests/`        | Helpers and mocks shared across suites  |
 
-Create directories when they acquire code. Routes render features; layouts own shared route setup. `features/home` is the minimal example: a public `index.ts` exports `HomePage` from `page.tsx`. The root layout imports the shared stylesheet and reads configured metadata and language.
+Create directories when they acquire code. Routes render page parts; layouts own shared route setup. Each `parts/<page>/page.tsx` composes the page, with a public `index.ts` for route imports. The root layout imports the shared stylesheet and reads configured metadata and language.
 
-Features can contain `sections/`. A section or shared component can be a single file imported directly; use a public `index.ts` when a directory needs a stable public API. Add `components/`, `const/`, `hooks/`, `helpers/`, `scripts/` or `tests/` only when that kind of file exists. Keep parts local to their owner. A distinct helper, hook or constant concern gets its kind's folder from its first file.
+Keep a page's features self-contained beneath its part. For example, `parts/login/form/` owns its fields, help dialogs, validation schema and form tests; `parts/login/preview/` owns the illustrative summary, expense and goal. Their `index.tsx` files compose the feature's components. Page-level layout tests stay in `parts/login/tests/`. Shared controls remain in the UI package rather than being copied into a part.
 
-Use `@/` for `src/`. Cross-feature imports use the feature's public API. Lazy imports may bypass a barrel when eager re-export would load deferred code. Tests can import constants directly to avoid loading unrelated modules.
+Use `@/` for `src/`. Cross-part imports use the part's public API; feature components use direct imports within their owner. Add `const/`, `hooks/`, `helpers/`, `scripts/` or `tests/` only when that kind of file exists. Lazy imports may bypass a barrel when eager re-export would load deferred code. Tests can import constants or schemas directly to avoid loading unrelated modules.
 
 Keep server components as the default and put client boundaries around browser behavior only. See [Code conventions](../quality/code.md) and [Test structure](../testing/structure.md).

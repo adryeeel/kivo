@@ -1,7 +1,7 @@
 import { SiteShell } from '@/components/site-shell';
 
-import { LoginForm } from '@/features/auth/login-form';
-import { FamilyPreview } from '@/features/auth/family-preview';
+import { LoginForm } from '@/parts/login/form';
+import { FamilyPreview } from '@/parts/login/preview';
 
 // Adapted from shadcn/ui login-02; see THIRD_PARTY_NOTICES.md.
 export function LoginPage() {

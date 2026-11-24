@@ -1,6 +1,6 @@
 import { it, expect, describe } from 'vitest';
 
-import { loginSchema } from '@/features/auth/helpers/login-schema';
+import { loginSchema } from '@/parts/login/form/helpers/login-schema';
 
 describe('login schema', () => {
     it('trims email and preserves the password exactly', () => {

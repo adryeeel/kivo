@@ -4,7 +4,7 @@ import { render } from 'vitest-browser-react';
 
 import { ThemeProvider } from '@kivo/ui/providers/theme';
 
-import { HomePage } from '@/features/home/page';
+import { HomePage } from '@/parts/home/page';
 
 it('explains the product and provides a semantic link to the login preview', async () => {
     const screen = await render(<HomePage />, { wrapper: ThemeProvider });

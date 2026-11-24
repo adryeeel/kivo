@@ -1,7 +1,7 @@
 import { it, expect } from 'vitest';
 import { render } from 'vitest-browser-react';
 
-import { LoginForm } from '@/features/auth/login-form';
+import { LoginForm } from '@/parts/login/form';
 
 it('validates on submit, focuses the first error, and revalidates edits', async () => {
     const screen = await render(<LoginForm />);

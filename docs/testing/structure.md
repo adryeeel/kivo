@@ -1,6 +1,6 @@
 # Test structure and fixtures
 
-Keep `tests/` beside the application feature or component being tested. Shared helpers and mocks move to `src/tests/<kind>/` only when multiple suites need them. UI suites stay beside their owned components. A file covers one concern; state and viewport cases for that concern can stay together.
+Keep `tests/` beside the page part, feature or component being tested. Form tests live inside the form feature; page layout tests live beside the part's `page.tsx`. Shared helpers and mocks move to `src/tests/<kind>/` only when multiple suites need them. UI suites stay beside their owned components. A file covers one concern; state and viewport cases for that concern can stay together.
 
 Use `.test.ts` unless JSX needs `.tsx`. Describe the subject and behavior with readable test names. Filesystem tests use disposable directories and clean up their own output.
 

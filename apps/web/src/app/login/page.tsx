@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { LoginPage } from '@/features/auth';
+import { LoginPage } from '@/parts/login';
 
 export const metadata: Metadata = { title: 'Sign in preview · Kivo' };
 

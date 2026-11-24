@@ -27,3 +27,7 @@ Kept the palette, pill controls, content and desktop split. Aligned the header b
 Replaced the three theme buttons with one labeled shadcn menu, exclusive choices and a selected checkmark. Selection persists through the existing provider, closes the menu and restores focus. Its short transition originates at the trigger and reduces to opacity when requested. Removed the unused toggle primitives. Independent review found no material issue in this refinement.
 
 All 30 Chromium tests pass, including new appearance selection/persistence, keyboard/Escape/focus and enlarged-menu cases, plus recovery/input target clearance. Live Next checks confirm the refined placement and both themes; desktop and phone/menu axe checks report zero violations. The open-menu audit leaves focus-guard and ARIA relationship checks incomplete; keyboard focus and the referenced popup ID were checked manually. Safari, physical phones and screen readers remain unverified. Authentication is unchanged and remains a preview.
+
+## Self-contained page parts
+
+Moved home and login into `parts/<page>/`, with login's form owning its fields, dialogs, schema and tests, and its preview owning the summary, expense and goal. Updated route imports, import sorting and the architecture guide. Independent review found no material issue. All 30 Chromium tests pass; live Next checks confirm both help dialogs, submission feedback, feedback clearing on edit, nameless inputs and the desktop/phone layout without runtime or compilation errors. Physical-device and Safari checks were not repeated.

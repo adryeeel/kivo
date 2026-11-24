@@ -2,7 +2,7 @@ import { it, expect } from 'vitest';
 import { render } from 'vitest-browser-react';
 import { page, commands, userEvent } from 'vitest/browser';
 
-import { LoginForm } from '@/features/auth/login-form';
+import { LoginForm } from '@/parts/login/form';
 
 it.for([
     { name: 'Forgot password?', message: 'Password recovery will be available' },

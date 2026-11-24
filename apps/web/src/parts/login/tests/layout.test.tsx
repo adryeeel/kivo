@@ -4,7 +4,7 @@ import { render } from 'vitest-browser-react';
 
 import { ThemeProvider } from '@kivo/ui/providers/theme';
 
-import { LoginPage } from '@/features/auth/page';
+import { LoginPage } from '@/parts/login/page';
 
 it.for([
     { width: 320, height: 568, previewVisible: false },

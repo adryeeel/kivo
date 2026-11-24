@@ -3,7 +3,7 @@ import { it, vi, expect } from 'vitest';
 import { render } from 'vitest-browser-react';
 import { renderToString } from 'react-dom/server';
 
-import { LoginForm } from '@/features/auth/login-form';
+import { LoginForm } from '@/parts/login/form';
 
 it('omits credentials from native form data before hydration', async () => {
     const container = document.body.appendChild(document.createElement('div'));
@@ -41,6 +41,10 @@ it('keeps preview credentials out of requests, storage, and native form data', a
     await expect
         .element(screen.getByLabelText('Password', { exact: true }))
         .toHaveValue('preview-only');
+    await screen.getByLabelText('Password', { exact: true }).fill('updated-preview');
+    await expect.element(screen.getByRole('status')).not.toBeInTheDocument();
+    await screen.getByRole('button', { exact: true, name: 'Sign in' }).click();
+    await expect.element(screen.getByRole('status')).toBeVisible();
     await screen.getByLabelText('Email address').fill('bruno@example.com');
     await expect.element(screen.getByRole('status')).not.toBeInTheDocument();
 });

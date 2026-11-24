@@ -6,9 +6,9 @@ const byLength = { order: 'asc', type: 'line-length' } as const;
 const importGroups = {
     newlinesInside: 0,
     newlinesBetween: 1,
-    groups: ['unknown', 'workspace', 'app', 'features', 'parent', 'sibling'],
+    groups: ['unknown', 'workspace', 'app', 'parts', 'parent', 'sibling'],
     customGroups: [
-        { groupName: 'features', elementNamePattern: '^@/features' },
+        { groupName: 'parts', elementNamePattern: '^@/parts' },
         { groupName: 'app', elementNamePattern: '^@/' },
         { groupName: 'workspace', elementNamePattern: '^@kivo/' },
         { groupName: 'parent', elementNamePattern: '^\\.\\./' },
