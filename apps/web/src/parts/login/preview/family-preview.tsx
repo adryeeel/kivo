@@ -9,9 +9,9 @@ import {
     CardDescription,
 } from '@kivo/ui/primitive/card';
 
-import { PreviewGoal } from '@/parts/login/preview/goal';
-import { PreviewSummary } from '@/parts/login/preview/summary';
-import { PreviewExpense } from '@/parts/login/preview/expense';
+import { PreviewGoal } from '@/parts/login/preview/components/goal';
+import { PreviewSummary } from '@/parts/login/preview/components/summary';
+import { PreviewExpense } from '@/parts/login/preview/components/expense';
 
 export function FamilyPreview() {
     return (

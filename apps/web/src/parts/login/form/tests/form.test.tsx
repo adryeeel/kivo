@@ -3,7 +3,24 @@ import { render } from 'vitest-browser-react';
 
 import { LoginForm } from '@/parts/login/form';
 
-it('validates on submit, focuses the first error, and revalidates edits', async () => {
+it('leaves incomplete input alone while typing and moving between fields', async () => {
+    const screen = await render(<LoginForm />);
+    const email = screen.getByLabelText('Email address');
+    const password = screen.getByLabelText('Password', { exact: true });
+
+    await email.fill('ana@');
+    await password.fill('unfinished');
+    await password.fill('');
+    await email.click();
+
+    await expect.element(email).toHaveAttribute('aria-invalid', 'false');
+    await expect.element(password).toHaveAttribute('aria-invalid', 'false');
+    await expect.element(screen.getByText('Enter a valid email address.')).not.toBeInTheDocument();
+    await expect.element(screen.getByText('Enter your password.')).not.toBeInTheDocument();
+    await expect.element(screen.getByRole('status')).not.toBeInTheDocument();
+});
+
+it('shows errors on submit, clears only the edited field, and checks again on resubmit', async () => {
     const screen = await render(<LoginForm />);
     const email = screen.getByLabelText('Email address');
     const password = screen.getByLabelText('Password', { exact: true });
@@ -15,9 +32,27 @@ it('validates on submit, focuses the first error, and revalidates edits', async 
     await expect.element(screen.getByText('Enter your email address.')).toBeVisible();
 
     await email.fill('invalid');
+    await password.click();
+    await expect.element(email).toHaveAttribute('aria-invalid', 'false');
+    await expect.element(screen.getByText('Enter your email address.')).not.toBeInTheDocument();
+    await expect.element(screen.getByText('Enter a valid email address.')).not.toBeInTheDocument();
+    await expect.element(screen.getByText('Enter your password.')).toBeVisible();
+
+    await submit.click();
+    await expect.element(email).toHaveFocus();
     await expect.element(screen.getByText('Enter a valid email address.')).toBeVisible();
+
     await email.fill('ana@example.com');
     await expect.element(screen.getByText('Enter a valid email address.')).not.toBeInTheDocument();
+    await submit.click();
+    await expect.element(password).toHaveFocus();
+    await expect.element(screen.getByText('Enter your password.')).toBeVisible();
+
+    await password.fill('unfinished');
+    await password.fill('');
+    await email.click();
+    await expect.element(password).toHaveAttribute('aria-invalid', 'false');
+    await expect.element(screen.getByText('Enter your password.')).not.toBeInTheDocument();
     await submit.click();
     await expect.element(password).toHaveFocus();
     await expect.element(screen.getByText('Enter your password.')).toBeVisible();

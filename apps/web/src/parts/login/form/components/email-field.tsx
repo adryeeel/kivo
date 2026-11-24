@@ -1,7 +1,7 @@
 'use client';
 
 import { Controller } from 'react-hook-form';
-import type { Control } from 'react-hook-form';
+import type { Control, UseFormClearErrors } from 'react-hook-form';
 
 import { MailIcon } from '@kivo/ui/icons/symbols';
 import { Field, FieldLabel, FieldError } from '@kivo/ui/primitive/field';
@@ -11,9 +11,10 @@ import type { LoginValues } from '@/parts/login/form/helpers/login-schema';
 
 interface Props {
     control: Control<LoginValues>;
+    clearErrors: UseFormClearErrors<LoginValues>;
 }
 
-export function EmailField({ control }: Props) {
+export function EmailField({ control, clearErrors }: Props) {
     return (
         <Controller
             name='email'
@@ -38,7 +39,10 @@ export function EmailField({ control }: Props) {
                             value={field.value}
                             ref={field.ref}
                             onBlur={field.onBlur}
-                            onChange={field.onChange}
+                            onChange={(event) => {
+                                clearErrors('email');
+                                field.onChange(event);
+                            }}
                         />
                         <InputGroupAddon>
                             <MailIcon aria-hidden='true' />

@@ -8,14 +8,16 @@ import { Button } from '@kivo/ui/primitive/button';
 import { FieldGroup } from '@kivo/ui/primitive/field';
 import { Alert, AlertTitle, AlertDescription } from '@kivo/ui/primitive/alert';
 
-import { LoginHelp } from '@/parts/login/form/help-dialog';
-import { EmailField } from '@/parts/login/form/email-field';
-import { PasswordField } from '@/parts/login/form/password-field';
+import { LoginHelp } from '@/parts/login/form/components/help-dialog';
 import { loginSchema } from '@/parts/login/form/helpers/login-schema';
+import { EmailField } from '@/parts/login/form/components/email-field';
+import { PasswordField } from '@/parts/login/form/components/password-field';
 
 export function LoginForm() {
     const [notice, setNotice] = useState(false);
     const form = useForm({
+        mode: 'onSubmit',
+        reValidateMode: 'onSubmit',
         resolver: zodResolver(loginSchema),
         defaultValues: { email: '', password: '' },
     });
@@ -45,8 +47,8 @@ export function LoginForm() {
                 )}
             >
                 <FieldGroup className='gap-6'>
-                    <EmailField control={form.control} />
-                    <PasswordField control={form.control} />
+                    <EmailField control={form.control} clearErrors={form.clearErrors} />
+                    <PasswordField control={form.control} clearErrors={form.clearErrors} />
                     <Button type='submit' className='w-full' disabled={form.formState.isSubmitting}>
                         Sign in
                     </Button>

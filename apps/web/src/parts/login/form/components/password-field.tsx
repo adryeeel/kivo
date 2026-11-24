@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
-import type { Control } from 'react-hook-form';
+import type { Control, UseFormClearErrors } from 'react-hook-form';
 
 import { Field, FieldLabel, FieldError } from '@kivo/ui/primitive/field';
 import { EyeIcon, EyeOffIcon, LockKeyholeIcon } from '@kivo/ui/icons/symbols';
@@ -13,14 +13,15 @@ import {
     InputGroupButton,
 } from '@kivo/ui/primitive/input-group';
 
-import { LoginHelp } from '@/parts/login/form/help-dialog';
+import { LoginHelp } from '@/parts/login/form/components/help-dialog';
 import type { LoginValues } from '@/parts/login/form/helpers/login-schema';
 
 interface Props {
     control: Control<LoginValues>;
+    clearErrors: UseFormClearErrors<LoginValues>;
 }
 
-export function PasswordField({ control }: Props) {
+export function PasswordField({ control, clearErrors }: Props) {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
@@ -48,7 +49,10 @@ export function PasswordField({ control }: Props) {
                             value={field.value}
                             ref={field.ref}
                             onBlur={field.onBlur}
-                            onChange={field.onChange}
+                            onChange={(event) => {
+                                clearErrors('password');
+                                field.onChange(event);
+                            }}
                         />
                         <InputGroupAddon>
                             <LockKeyholeIcon aria-hidden='true' />
