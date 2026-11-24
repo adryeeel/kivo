@@ -38,7 +38,7 @@ export function LoginForm() {
 
     return (
         <Dialog>
-            <div className='w-full max-w-80'>
+            <div className='w-full max-w-90'>
                 <h1 className='font-heading text-2xl leading-8 font-semibold tracking-tight'>
                     Welcome home.
                 </h1>
@@ -52,7 +52,7 @@ export function LoginForm() {
                 <form
                     noValidate
                     aria-label='Sign in'
-                    className='mt-6'
+                    className='mt-8'
                     onSubmit={form.handleSubmit(
                         () => {
                             // shortcut: no auth API exists; connect Better Auth before accepting sign-ins.
@@ -61,13 +61,15 @@ export function LoginForm() {
                         () => setNotice(false),
                     )}
                 >
-                    <FieldGroup className='gap-4'>
+                    <FieldGroup className='gap-6'>
                         <Controller
                             name='email'
                             control={form.control}
                             render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid} className='gap-2'>
-                                    <FieldLabel htmlFor='email'>Email address</FieldLabel>
+                                <Field data-invalid={fieldState.invalid} className='gap-3'>
+                                    <FieldLabel htmlFor='email' className='min-h-7'>
+                                        Email address
+                                    </FieldLabel>
                                     <InputGroup>
                                         <InputGroupInput
                                             id='email'
@@ -103,12 +105,14 @@ export function LoginForm() {
                             name='password'
                             control={form.control}
                             render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid} className='gap-2'>
-                                    <div className='flex flex-wrap items-center justify-between gap-2'>
-                                        <FieldLabel htmlFor='password'>Password</FieldLabel>
+                                <Field data-invalid={fieldState.invalid} className='gap-3'>
+                                    <div className='flex min-h-7 flex-wrap items-center justify-between gap-x-2 gap-y-3'>
+                                        <FieldLabel htmlFor='password' className='min-h-7'>
+                                            Password
+                                        </FieldLabel>
                                         <DialogTrigger
                                             render={<Button variant='link' />}
-                                            className='max-w-full whitespace-normal'
+                                            className='-my-2 max-w-full px-0 whitespace-normal'
                                             onClick={() => setHelp('reset')}
                                         >
                                             Forgot password?
@@ -164,7 +168,7 @@ export function LoginForm() {
                         />
                         <Button
                             type='submit'
-                            className='mt-1 w-full'
+                            className='w-full'
                             disabled={form.formState.isSubmitting}
                         >
                             Sign in
@@ -180,11 +184,11 @@ export function LoginForm() {
                         )}
                     </FieldGroup>
                 </form>
-                <div className='text-muted-foreground mt-4 flex flex-wrap items-center justify-center gap-1 text-sm'>
+                <div className='text-muted-foreground mt-4 flex flex-wrap items-center justify-center gap-2 text-sm'>
                     New to Kivo?
                     <DialogTrigger
                         render={<Button variant='link' />}
-                        className='max-w-full whitespace-normal'
+                        className='max-w-full px-0 whitespace-normal'
                         onClick={() => setHelp('signup')}
                     >
                         Create an account

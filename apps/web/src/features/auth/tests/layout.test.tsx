@@ -38,6 +38,16 @@ it('keeps phone fields readable and actions large enough to tap', async () => {
     expect(submit.element().getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
     expect(reveal.element().getBoundingClientRect().height).toBeGreaterThanOrEqual(44);
     expect(reveal.element().getBoundingClientRect().width).toBeGreaterThanOrEqual(44);
+    const recovery = screen
+        .getByRole('button', { exact: true, name: 'Forgot password?' })
+        .element()
+        .getBoundingClientRect();
+    const password = screen
+        .getByLabelText('Password', { exact: true })
+        .element()
+        .getBoundingClientRect();
+    expect(recovery.height).toBeGreaterThanOrEqual(44);
+    expect(recovery.bottom).toBeLessThanOrEqual(password.top);
 });
 
 it.for([{ width: 320 }, { width: 390 }])(

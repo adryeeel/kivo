@@ -1,3 +1,4 @@
+export { ChevronDownIcon } from 'lucide-react';
 export { SunIcon, MoonIcon, MonitorIcon } from 'lucide-react';
 export {
     EyeIcon,

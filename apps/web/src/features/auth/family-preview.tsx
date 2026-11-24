@@ -15,9 +15,9 @@ export function FamilyPreview() {
     return (
         <aside
             aria-label='A preview of your family space'
-            className='bg-muted/40 hidden flex-col justify-center border-r p-8 lg:flex xl:p-10'
+            className='bg-muted/40 hidden flex-col justify-center border-r py-12 lg:flex lg:px-12 xl:px-16'
         >
-            <div className='mx-auto w-full max-w-110'>
+            <div className='w-full max-w-110'>
                 <h2 className='font-heading text-2xl leading-8 font-semibold tracking-tight'>
                     Everyday expenses.
                     <br />

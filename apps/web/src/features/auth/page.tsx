@@ -11,7 +11,7 @@ export function LoginPage() {
                 <FamilyPreview />
                 <section
                     aria-label='Sign in to Kivo'
-                    className='flex min-w-0 items-center justify-center px-6 py-10 lg:p-10'
+                    className='flex min-w-0 items-start justify-center px-6 py-10 lg:items-center lg:p-12'
                 >
                     <LoginForm />
                 </section>
