@@ -22,7 +22,7 @@ export function SiteShell({ children }: Props) {
                 <ThemeSwitch />
             </header>
             {children}
-            <footer className='text-muted-foreground border-t px-5 py-3 pb-[max(12px,env(safe-area-inset-bottom))] text-center text-xs'>
+            <footer className='text-muted-foreground border-t px-5 py-3 pb-[max(12px,env(safe-area-inset-bottom))] text-center text-sm'>
                 © Kivo
             </footer>
         </div>

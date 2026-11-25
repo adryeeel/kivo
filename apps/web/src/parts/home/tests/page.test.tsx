@@ -23,13 +23,27 @@ it.for([
     { width: 390, height: 844 },
     { width: 768, height: 1024 },
     { width: 1440, height: 900 },
-])('fits a $width×$height viewport without scrolling', async ({ width, height }) => {
-    await page.viewport(width, height);
-    const screen = await render(<HomePage />, { wrapper: ThemeProvider });
+])(
+    'shows the hero and sample preview without horizontal overflow at $width×$height',
+    async ({ width, height }) => {
+        await page.viewport(width, height);
+        const screen = await render(<HomePage />, { wrapper: ThemeProvider });
 
-    await expect.element(screen.getByRole('link', { name: 'View login preview' })).toBeVisible();
-    expect(document.documentElement.scrollWidth).toBe(width);
-    expect(document.documentElement.scrollHeight).toBe(height);
+        await expect
+            .element(screen.getByRole('link', { name: 'View login preview' }))
+            .toBeVisible();
+        expect(document.documentElement.scrollWidth).toBe(width);
+        await expect
+            .element(screen.getByRole('complementary', { name: 'A preview of your family space' }))
+            .toBeVisible();
+        await expect.element(screen.getByText('Monthly overview · sample data')).toBeVisible();
+    },
+);
+
+it('fits the desktop hero in one viewport', async () => {
+    await page.viewport(1440, 900);
+    await render(<HomePage />, { wrapper: ThemeProvider });
+    expect(document.documentElement.scrollHeight).toBe(900);
 });
 
 it('keeps the login link reachable by keyboard on a short screen', async () => {

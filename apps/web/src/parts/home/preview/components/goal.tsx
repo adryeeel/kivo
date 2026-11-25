@@ -14,7 +14,7 @@ export function PreviewGoal() {
                 aria-label='Summer goal'
                 aria-valuetext='740 euros marked saved toward 2,400 euros'
             />
-            <p className='text-muted-foreground text-xs'>
+            <p className='text-muted-foreground text-sm'>
                 <span className='text-foreground font-semibold'>€740</span> marked saved of €2,400
             </p>
         </CardFooter>

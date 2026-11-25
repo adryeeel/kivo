@@ -23,15 +23,15 @@ export function LoginForm() {
     });
 
     return (
-        <div className='w-full max-w-90'>
-            <h1 className='font-heading text-2xl leading-8 font-semibold tracking-tight'>
+        <div className='w-full max-w-sm'>
+            <h1 className='font-heading text-3xl leading-tight font-semibold tracking-tight'>
                 Welcome home.
             </h1>
-            <p className='text-muted-foreground mt-2 text-sm leading-6'>
+            <p className='text-muted-foreground mt-2 text-base leading-7'>
                 Sign in to your family space.
             </p>
-            <p className='text-muted-foreground mt-2 text-xs leading-5'>
-                Preview only · Sign-in isn’t available yet.
+            <p className='text-muted-foreground mt-3 text-sm leading-6'>
+                This is a preview. Sign-in isn’t available yet.
             </p>
             <form
                 noValidate

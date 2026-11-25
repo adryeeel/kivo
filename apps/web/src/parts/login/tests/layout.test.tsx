@@ -7,24 +7,19 @@ import { ThemeProvider } from '@kivo/ui/providers/theme';
 import { LoginPage } from '@/parts/login/page';
 
 it.for([
-    { width: 320, height: 568, previewVisible: false },
-    { width: 390, height: 844, previewVisible: false },
-    { width: 768, height: 1024, previewVisible: false },
-    { width: 1440, height: 900, previewVisible: true },
-])('keeps the login usable at $width×$height', async ({ width, height, previewVisible }) => {
+    { width: 320, height: 568 },
+    { width: 390, height: 844 },
+    { width: 768, height: 1024 },
+    { width: 1440, height: 900 },
+])('keeps the login usable at $width×$height', async ({ width, height }) => {
     await page.viewport(width, height);
     const screen = await render(<LoginPage />, { wrapper: ThemeProvider });
-    const preview = screen.getByRole('complementary', {
-        includeHidden: true,
-        name: 'A preview of your family space',
-    });
-
     await expect
         .element(screen.getByRole('heading', { level: 1, name: 'Welcome home.' }))
         .toBeVisible();
     expect(document.documentElement.scrollWidth).toBe(width);
 
-    await expect.poll(() => preview.element().checkVisibility()).toBe(previewVisible);
+    await expect.element(screen.getByRole('complementary')).not.toBeInTheDocument();
 });
 
 it('keeps phone fields readable and actions large enough to tap', async () => {

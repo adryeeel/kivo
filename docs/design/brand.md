@@ -8,6 +8,6 @@ The selected Balance mark uses two mirrored forms separated by a narrow space. T
 
 The mark is available in [SVG](../../apps/web/public/brand/kivo-mark.svg). Render the name as text beside it in Manrope. The app also supplies browser and Apple touch icons.
 
-The prototype uses forest green (`#1a6849`), deep green (`#163e34`) and a light neutral (`#eef3ef`). These are a starting palette for the identity, pending a decision on the wider product palette and accessible state colors. Do not rely on color alone to convey financial status.
+The Balance mark and browser icons use emerald-700 (`#007a55`), matching the light action color. Dark actions use emerald-400 with dark foreground text for contrast. The browser icon uses a white mark on a green tile so it stays visible on dark tabs. Shared color values live in the [theme stylesheet](../../packages/ui/src/styles/global.css). Do not rely on color alone to convey financial status.
 
 [Site constants](../../apps/web/src/const/site.ts) supply the configured name and description. The [design workflow](workflow.md) guides future design decisions.
