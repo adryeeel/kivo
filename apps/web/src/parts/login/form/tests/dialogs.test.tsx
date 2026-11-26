@@ -5,9 +5,9 @@ import { page, commands, userEvent } from 'vitest/browser';
 import { LoginForm } from '@/parts/login/form';
 
 it.for([
-    { name: 'Forgot password?', message: 'Password recovery will be available' },
-    { name: 'Create an account', message: 'Account creation is coming' },
-])('$name explains the preview boundary and restores focus', async ({ name, message }) => {
+    { name: 'Forgot password?', message: 'Password recovery is unavailable right now.' },
+    { name: 'Create an account', message: 'Account creation is unavailable right now.' },
+])('$name reports the unavailable action and restores focus', async ({ name, message }) => {
     const screen = await render(<LoginForm />);
     const trigger = screen.getByRole('button', { name, exact: true });
 

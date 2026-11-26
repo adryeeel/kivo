@@ -6,16 +6,21 @@ import { ThemeProvider } from '@kivo/ui/providers/theme';
 
 import { HomePage } from '@/parts/home/page';
 
-it('explains the product and provides a semantic link to the login preview', async () => {
+it('explains the product and provides a semantic link to the login', async () => {
     const screen = await render(<HomePage />, { wrapper: ThemeProvider });
 
     await expect
         .element(screen.getByRole('heading', { level: 1 }))
         .toHaveTextContent('Family money, clearer together.');
     await expect
-        .element(screen.getByRole('link', { name: 'View login preview' }))
+        .element(screen.getByRole('link', { name: 'Sign in' }))
         .toHaveAttribute('href', '/login');
-    await expect.element(screen.getByText(/sign-in is not available yet/i)).toBeVisible();
+    await expect
+        .element(screen.getByRole('complementary', { name: 'Preview notice' }))
+        .toBeVisible();
+    expect(screen.getByRole('complementary', { name: 'Preview notice' }).elements()).toHaveLength(
+        1,
+    );
 });
 
 it.for([
@@ -29,14 +34,12 @@ it.for([
         await page.viewport(width, height);
         const screen = await render(<HomePage />, { wrapper: ThemeProvider });
 
-        await expect
-            .element(screen.getByRole('link', { name: 'View login preview' }))
-            .toBeVisible();
+        await expect.element(screen.getByRole('link', { name: 'Sign in' })).toBeVisible();
         expect(document.documentElement.scrollWidth).toBe(width);
         await expect
-            .element(screen.getByRole('complementary', { name: 'A preview of your family space' }))
+            .element(screen.getByRole('complementary', { name: 'Your family space' }))
             .toBeVisible();
-        await expect.element(screen.getByText('Monthly overview · sample data')).toBeVisible();
+        await expect.element(screen.getByText('Monthly overview')).toBeVisible();
     },
 );
 
@@ -49,7 +52,7 @@ it('fits the desktop hero in one viewport', async () => {
 it('keeps the login link reachable by keyboard on a short screen', async () => {
     await page.viewport(320, 240);
     const screen = await render(<HomePage />, { wrapper: ThemeProvider });
-    const link = screen.getByRole('link', { name: 'View login preview' });
+    const link = screen.getByRole('link', { name: 'Sign in' });
 
     link.element().focus();
     await expect.element(link).toHaveFocus();
@@ -63,7 +66,7 @@ it.for([{ width: 320 }, { width: 390 }])(
         await page.viewport(width, 844);
         document.documentElement.style.fontSize = '200%';
         const screen = await render(<HomePage />, { wrapper: ThemeProvider });
-        const link = screen.getByRole('link', { name: 'View login preview' });
+        const link = screen.getByRole('link', { name: 'Sign in' });
 
         expect(document.documentElement.scrollWidth).toBe(width);
         link.element().focus();

@@ -9,3 +9,5 @@ The hero has a restrained emerald wash and curved outline behind its preview. Th
 When a product identity is accepted, keep shared color, typography and spacing values in that stylesheet using Tailwind's theme mechanisms. Keep one-off layout values local to their component. Add theme styles when required, with checked contrast and consistent browser/server rendering.
 
 Use existing Tailwind utilities before inventing arbitrary values. Let package formatting own class order. Record the reason for material visual constraints in [Brand](brand.md) or a decision when making changes.
+
+A single shared preview banner in `SiteShell` explains the sample data and unavailable account actions on every page. Page copy, metadata and navigation use their intended product wording; action feedback reports unavailability without repeating preview explanations. Remove the shared banner when the product is ready.

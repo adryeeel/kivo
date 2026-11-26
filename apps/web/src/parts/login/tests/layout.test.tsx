@@ -18,8 +18,13 @@ it.for([
         .element(screen.getByRole('heading', { level: 1, name: 'Welcome home.' }))
         .toBeVisible();
     expect(document.documentElement.scrollWidth).toBe(width);
+    await expect
+        .element(screen.getByRole('complementary', { name: 'Preview notice' }))
+        .toBeVisible();
 
-    await expect.element(screen.getByRole('complementary')).not.toBeInTheDocument();
+    await expect
+        .element(screen.getByRole('complementary', { name: 'Your family space' }))
+        .not.toBeInTheDocument();
 });
 
 it('keeps phone fields readable and actions large enough to tap', async () => {

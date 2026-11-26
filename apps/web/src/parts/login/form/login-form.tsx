@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@kivo/ui/primitive/button';
 import { FieldGroup } from '@kivo/ui/primitive/field';
-import { Alert, AlertTitle, AlertDescription } from '@kivo/ui/primitive/alert';
 
 import { LoginHelp } from '@/parts/login/form/components/help-dialog';
 import { loginSchema } from '@/parts/login/form/helpers/login-schema';
@@ -30,9 +29,6 @@ export function LoginForm() {
             <p className='text-muted-foreground mt-2 text-base leading-7'>
                 Sign in to your family space.
             </p>
-            <p className='text-muted-foreground mt-3 text-sm leading-6'>
-                This is a preview. Sign-in isn’t available yet.
-            </p>
             <form
                 noValidate
                 aria-label='Sign in'
@@ -53,13 +49,9 @@ export function LoginForm() {
                         Sign in
                     </Button>
                     {notice && (
-                        // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role -- The shared Alert uses a polite status role for preview feedback.
-                        <Alert role='status'>
-                            <AlertTitle>This is a first look at Kivo.</AlertTitle>
-                            <AlertDescription>
-                                Sign-in isn’t available yet, and your details haven’t been sent.
-                            </AlertDescription>
-                        </Alert>
+                        <output className='text-muted-foreground text-sm leading-6'>
+                            Sign-in is unavailable right now.
+                        </output>
                     )}
                 </FieldGroup>
             </form>

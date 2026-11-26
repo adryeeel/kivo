@@ -15,7 +15,7 @@ import { PreviewExpense } from '@/parts/home/preview/components/expense';
 export function FamilyPreview() {
     return (
         <aside
-            aria-label='A preview of your family space'
+            aria-label='Your family space'
             className='flex w-full max-w-lg min-w-0 flex-col gap-4 justify-self-center lg:justify-self-end'
         >
             <Card className='gap-6 shadow-md'>
@@ -23,7 +23,7 @@ export function FamilyPreview() {
                     <CardTitle className='flex items-center gap-2 text-base'>
                         <UsersIcon className='size-4' aria-hidden='true' /> Our family
                     </CardTitle>
-                    <CardDescription>Monthly overview · sample data</CardDescription>
+                    <CardDescription>Monthly overview</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <PreviewSummary />

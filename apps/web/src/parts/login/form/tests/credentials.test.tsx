@@ -31,7 +31,7 @@ it('keeps preview credentials out of requests, storage, and native form data', a
     await screen.getByRole('button', { exact: true, name: 'Sign in' }).click();
     await expect
         .element(screen.getByRole('status'))
-        .toMatchTextContent('Sign-in isn’t available yet');
+        .toMatchTextContent('Sign-in is unavailable right now.');
 
     expect([...new FormData(form.element() as HTMLFormElement)]).toEqual([]);
     expect(fetch).not.toHaveBeenCalled();

@@ -32,8 +32,8 @@ export function LoginHelp({ kind, className }: Props) {
                     </DialogTitle>
                     <DialogDescription>
                         {kind === 'reset'
-                            ? 'Password recovery will be available when Kivo opens for sign-in. This first look doesn’t create or access real accounts.'
-                            : 'Account creation is coming with Kivo’s first release. For now, take a look around and make yourself at home.'}
+                            ? 'Password recovery is unavailable right now.'
+                            : 'Account creation is unavailable right now.'}
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
