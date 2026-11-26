@@ -1,6 +1,6 @@
 import { it, expect } from 'vitest';
-import { page } from 'vitest/browser';
 import { render } from 'vitest-browser-react';
+import { page, commands } from 'vitest/browser';
 
 import { ThemeProvider } from '@kivo/ui/providers/theme';
 
@@ -47,6 +47,19 @@ it('fits the desktop hero in one viewport', async () => {
     await page.viewport(1440, 900);
     await render(<HomePage />, { wrapper: ThemeProvider });
     expect(document.documentElement.scrollHeight).toBe(900);
+});
+
+it('keeps the home styling and respects reduced motion', async () => {
+    const screen = await render(<HomePage />, { wrapper: ThemeProvider });
+    const main = screen.getByRole('main').element();
+    const copy = screen.getByRole('heading', { level: 1 }).element().parentElement!;
+
+    expect(getComputedStyle(main).backgroundImage).toContain('radial-gradient');
+    await expect.poll(() => getComputedStyle(copy).transitionProperty).toBe('opacity, transform');
+
+    await commands.setReducedMotion('reduce');
+    await expect.poll(() => getComputedStyle(copy).transitionProperty).toBe('opacity');
+    expect(getComputedStyle(copy).transform).toBe('none');
 });
 
 it('keeps the login link reachable by keyboard on a short screen', async () => {
