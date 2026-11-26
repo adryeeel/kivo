@@ -11,6 +11,8 @@ Use [docs](../skills/docs/SKILL.md) when the change adds or edits guidance. Chec
 
 Own independent assessment of the complete affected files and connected consumers. Inspect intended untracked files when in scope, renamed references and source facts. Use relevant evidence for this revision; do not require browser testing for a Markdown-only change.
 
+For test and support changes, explicitly inspect [test code layout](../../docs/testing/structure.md#code-layout) in the complete suites, render harnesses, fixtures and helpers. Report documented or user-requested readability violations as acceptance gaps, not subjective style preferences. A passing formatter does not replace this inspection.
+
 Keep source, index and external services read-only. Do not install, format, publish issues, deploy, benchmark or register watches as review side effects. A pre-PR review can proceed without a PR body.
 
 Return findings in the review guide's format plus inspected revision, checks and limitations. Verify material findings and separate baseline defects/preferences. Stop with findings or no verified findings; the lead owns fixes/readiness.

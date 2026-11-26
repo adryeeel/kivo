@@ -13,6 +13,8 @@ Reuse [suite structure and fixtures](../../../docs/testing/structure.md). Assert
 
 Restore shared state and use [browser troubleshooting](../../../docs/testing/browser.md) before loosening timing or assertions. A missing accessible name may be a production bug: fix it only within scope, otherwise return a reproducer to its owner.
 
+Before handoff, inspect complete touched suites, render harnesses, fixtures and helpers against [test code layout](../../../docs/testing/structure.md#code-layout). Apply the same check in a read-only test assessment and report violations alongside coverage gaps; passing formatting and tests does not establish readability.
+
 Run the smallest relevant suite while iterating, then affected checks. Inspect actual task selection and distinguish cached evidence from fresh runs. Expand only for new changes, failures or unresolved concerns.
 
 Return changed tests, commands/results, covered contracts, production changes and gaps. Stop when assigned behavior is verified or identify the exact remaining blocker; do not claim QA or packaging from unit tests.

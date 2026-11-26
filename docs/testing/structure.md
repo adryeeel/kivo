@@ -18,6 +18,12 @@ Put named calculations and reusable operations in `helpers/`, with meaningful he
 
 Helpers, fixtures, data and mocks stay local until another owner needs them, then move to `src/tests/<kind>/`. Promote runner utilities to `@kivo/vitest` only when multiple packages need them. Keep feature-specific setup out of global browser setup. The helper or fixture that changes viewport, theme, text size, media preferences or other shared state registers restoration immediately, including for failed tests. Global setup may establish a common baseline; it does not replace cleanup by the state owner.
 
+## Code layout
+
+Keep tests and their support code spacious. Separate complete statements in test, harness, fixture and helper bodies with a blank line, including consecutive declarations, actions and assertions. Leave a blank line before and after callback or control-flow blocks and between chained fixture definitions. This makes setup, cleanup, readiness and expected outcomes individually visible; passing the formatter does not establish this layout.
+
+Use block-bodied arrows for fixture, cleanup, polling and readiness callbacks, preserving returned values and cleanup promises. Use braces for conditional branches instead of inline `if`/`else` statements. Separate sibling JSX blocks in render harnesses with blank lines. Keep expressions, object properties and import specifiers under the formatter's control; do not pad those or extract helpers just to create space.
+
 ## Mocks and cleanup
 
 Mock framework boundaries that cannot execute in the browser runner, rather than the component behavior under test. Add local mocks and restore them; promote them only when another suite needs the same contract.
