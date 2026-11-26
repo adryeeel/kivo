@@ -13,7 +13,7 @@ it('explains the product and provides a semantic link to the login', async () =>
         .element(screen.getByRole('heading', { level: 1 }))
         .toHaveTextContent('Family money, clearer together.');
     await expect
-        .element(screen.getByRole('link', { name: 'Sign in' }))
+        .element(screen.getByRole('link', { name: 'Get started' }))
         .toHaveAttribute('href', '/login');
     await expect
         .element(screen.getByRole('complementary', { name: 'Preview notice' }))
@@ -21,6 +21,9 @@ it('explains the product and provides a semantic link to the login', async () =>
     expect(screen.getByRole('complementary', { name: 'Preview notice' }).elements()).toHaveLength(
         1,
     );
+    await expect.element(screen.getByRole('region', { name: 'Household dashboard' })).toBeVisible();
+    expect(screen.getByRole('radio').elements()).toHaveLength(0);
+    expect(screen.getByRole('contentinfo').elements()).toHaveLength(0);
 });
 
 it.for([
@@ -34,7 +37,7 @@ it.for([
         await page.viewport(width, height);
         const screen = await render(<HomePage />, { wrapper: ThemeProvider });
 
-        await expect.element(screen.getByRole('link', { name: 'Sign in' })).toBeVisible();
+        await expect.element(screen.getByRole('link', { name: 'Get started' })).toBeVisible();
         expect(document.documentElement.scrollWidth).toBe(width);
         await expect
             .element(screen.getByRole('complementary', { name: 'Your family space' }))
@@ -49,12 +52,44 @@ it('fits the desktop hero in one viewport', async () => {
     expect(document.documentElement.scrollHeight).toBe(900);
 });
 
+it('loads the three family portraits in the avatar group', async () => {
+    const screen = await render(<HomePage />, { wrapper: ThemeProvider });
+    const members = screen.getByRole('region', { name: 'Household dashboard' });
+
+    for (const name of ['Ana', 'You', 'Leo']) {
+        const portrait = members.getByRole('img', { name, exact: true });
+        await expect.element(portrait).toBeVisible();
+        expect((portrait.element() as HTMLImageElement).naturalWidth).toBeGreaterThan(0);
+    }
+});
+
+it.for([
+    { width: 320, theme: 'light' },
+    { width: 390, theme: 'light' },
+    { width: 1440, theme: 'light' },
+    { width: 320, theme: 'dark' },
+    { width: 390, theme: 'dark' },
+    { width: 1440, theme: 'dark' },
+])(
+    'keeps the household preview within a $width px viewport in $theme mode',
+    async ({ width, theme }) => {
+        await page.viewport(width, 900);
+        const screen = await render(<HomePage />, { wrapper: ThemeProvider });
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+
+        await expect
+            .element(screen.getByRole('region', { name: 'Household dashboard' }))
+            .toBeVisible();
+        expect(document.documentElement.scrollWidth).toBe(width);
+    },
+);
+
 it('keeps the home styling and respects reduced motion', async () => {
     const screen = await render(<HomePage />, { wrapper: ThemeProvider });
     const main = screen.getByRole('main').element();
     const copy = screen.getByRole('heading', { level: 1 }).element().parentElement!;
 
-    expect(getComputedStyle(main).backgroundImage).toContain('radial-gradient');
+    expect(getComputedStyle(main).backgroundImage).toBe('none');
     await expect.poll(() => getComputedStyle(copy).transitionProperty).toBe('opacity, transform');
 
     await commands.setReducedMotion('reduce');
@@ -65,7 +100,7 @@ it('keeps the home styling and respects reduced motion', async () => {
 it('keeps the login link reachable by keyboard on a short screen', async () => {
     await page.viewport(320, 240);
     const screen = await render(<HomePage />, { wrapper: ThemeProvider });
-    const link = screen.getByRole('link', { name: 'Sign in' });
+    const link = screen.getByRole('link', { name: 'Get started' });
 
     link.element().focus();
     await expect.element(link).toHaveFocus();
@@ -79,7 +114,7 @@ it.for([{ width: 320 }, { width: 390 }])(
         await page.viewport(width, 844);
         document.documentElement.style.fontSize = '200%';
         const screen = await render(<HomePage />, { wrapper: ThemeProvider });
-        const link = screen.getByRole('link', { name: 'Sign in' });
+        const link = screen.getByRole('link', { name: 'Get started' });
 
         expect(document.documentElement.scrollWidth).toBe(width);
         link.element().focus();
