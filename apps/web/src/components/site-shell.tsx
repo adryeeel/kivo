@@ -11,7 +11,7 @@ interface Props {
 
 export function SiteShell({ children }: Props) {
     return (
-        <div className='grid min-h-svh w-full grid-rows-[auto_auto_1fr_auto]'>
+        <div className='grid min-h-svh w-full grid-rows-[auto_auto_1fr]'>
             <PreviewBanner />
             <header className='flex min-w-0 flex-wrap items-center justify-between gap-4 border-b px-6 py-4 lg:px-12 xl:px-16'>
                 <Link
@@ -24,9 +24,6 @@ export function SiteShell({ children }: Props) {
                 <ThemeSwitch />
             </header>
             {children}
-            <footer className='text-muted-foreground border-t px-5 py-3 pb-[max(12px,env(safe-area-inset-bottom))] text-center text-sm'>
-                © Kivo
-            </footer>
         </div>
     );
 }
