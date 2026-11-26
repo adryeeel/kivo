@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import type { Metadata, Viewport } from 'next';
 import { Manrope, Public_Sans } from 'next/font/google';
 
 import { ThemeProvider } from '@kivo/ui/providers/theme';
@@ -23,6 +23,14 @@ export const metadata: Metadata = {
     title: SITE.title,
     description: SITE.description,
     metadataBase: new URL(SITE.url),
+};
+
+export const viewport: Viewport = {
+    initialScale: 1,
+    viewportFit: 'cover',
+    width: 'device-width',
+    colorScheme: 'light dark',
+    interactiveWidget: 'resizes-content',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

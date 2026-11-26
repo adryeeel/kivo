@@ -16,10 +16,13 @@
         "type:check": "next typegen && tsc --noEmit"
     },
     "dependencies": {
+        "@hookform/resolvers": "^7.0.8",
         "@kivo/ui": "workspace:*",
         "next": "catalog:",
         "react": "catalog:",
-        "react-dom": "catalog:"
+        "react-dom": "catalog:",
+        "react-hook-form": "^7.92.0",
+        "zod": "^4.6.7"
     },
     "devDependencies": {
         "@kivo/oxfmt": "workspace:*",

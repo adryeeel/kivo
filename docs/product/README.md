@@ -1,6 +1,6 @@
 # Product
 
-Kivo's intended product is a mobile-first family finance app, prioritizing shared expenses and goals alongside private personal finances. The current branch is a foundation with a static home page; authentication and financial features are not implemented here.
+Kivo's intended product is a mobile-first family finance app, prioritizing shared expenses and goals alongside private personal finances. The current frontend has a home hero and a login preview with local validation and appearance controls. Authentication and financial features are not implemented; the preview does not send credentials or create a session.
 
 | Task                                                     | Guide                                     |
 | -------------------------------------------------------- | ----------------------------------------- |
