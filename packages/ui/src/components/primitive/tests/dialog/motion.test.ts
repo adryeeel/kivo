@@ -15,12 +15,7 @@ it('uses opacity alone with reduced motion', async () => {
     const popup = page.getByRole('dialog');
 
     await expect.element(popup).toBeVisible();
-
-    await expect
-        .poll(() => {
-            return getComputedStyle(popup.element()).transitionProperty;
-        })
-        .toBe('opacity');
+    await expect.poll(() => getComputedStyle(popup.element()).transitionProperty).toBe('opacity');
 
     await userEvent.keyboard('{Escape}');
 

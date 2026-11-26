@@ -11,9 +11,7 @@ it('loads the three family portraits', async () => {
         await expect.element(portrait).toBeVisible();
 
         await expect
-            .poll(() => {
-                return (portrait.element() as HTMLImageElement).naturalWidth;
-            })
+            .poll(() => (portrait.element() as HTMLImageElement).naturalWidth)
             .toBeGreaterThan(0);
     }
 });

@@ -4,7 +4,6 @@ import { renderThemeSwitch } from './page';
 
 export const it = test.extend('appearance', async () => {
     const previousTheme = localStorage.getItem('theme');
-
     const previousClass = document.documentElement.className;
 
     onTestFinished(() => {

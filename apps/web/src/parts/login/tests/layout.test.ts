@@ -37,7 +37,6 @@ it.for(phones)(
     'keeps login controls reachable at 200% text on a $width px phone',
     async ({ width }) => {
         await setViewport(width, 844);
-
         enlargeText();
 
         const screen = await renderLogin();
@@ -58,11 +57,8 @@ it.for(phones)(
             const bounds = control.element().getBoundingClientRect();
 
             expect(bounds.left).toBeGreaterThanOrEqual(0);
-
             expect(bounds.right).toBeLessThanOrEqual(width);
-
             expect(bounds.top).toBeGreaterThanOrEqual(0);
-
             expect(bounds.bottom).toBeLessThanOrEqual(844);
         }
     },

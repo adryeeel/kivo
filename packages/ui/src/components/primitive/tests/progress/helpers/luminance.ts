@@ -6,7 +6,6 @@ export function luminance(color: string) {
     }
 
     context.fillStyle = color;
-
     context.fillRect(0, 0, 1, 1);
 
     const channels = [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map((channel) => {

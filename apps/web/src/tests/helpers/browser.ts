@@ -4,9 +4,7 @@ import { onTestFinished } from 'vitest';
 export async function setViewport(width: number, height: number) {
     const previous = { width: window.innerWidth, height: window.innerHeight };
 
-    onTestFinished(() => {
-        return page.viewport(previous.width, previous.height);
-    });
+    onTestFinished(() => page.viewport(previous.width, previous.height));
 
     await page.viewport(width, height);
 }

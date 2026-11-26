@@ -20,9 +20,9 @@ Helpers, fixtures, data and mocks stay local until another owner needs them, the
 
 ## Code layout
 
-Keep tests and their support code spacious. Separate complete statements in test, harness, fixture and helper bodies with a blank line, including consecutive declarations, actions and assertions. Leave a blank line before and after callback or control-flow blocks and between chained fixture definitions. This makes setup, cleanup, readiness and expected outcomes individually visible; passing the formatter does not establish this layout.
+Use blank lines to show changes of purpose in tests and support code: setup, an interaction, its expected outcome, cleanup registration or a new scenario step. Related one-line declarations, actions and assertions can stay together. For example, keep field locators together and group assertions about the same field state; separate the next interaction from that outcome. Do not put a blank line after every statement or enforce an assertion count.
 
-Use block-bodied arrows for fixture, cleanup, polling and readiness callbacks, preserving returned values and cleanup promises. Use braces for conditional branches instead of inline `if`/`else` statements. Separate sibling JSX blocks in render harnesses with blank lines. Keep expressions, object properties and import specifiers under the formatter's control; do not pad those or extract helpers just to create space.
+Give multiline statements and callback or control-flow blocks breathing room when they meet surrounding code. Keep concise arrows for clear single-expression callbacks; use block bodies for multiple steps, preserving returned values and cleanup promises. Group JSX by responsibility rather than separating every sibling. Let the formatter wrap expressions, properties and imports. Review the logical grouping by reading the code; passing the formatter does not establish readability, and adding lines alone does not improve it.
 
 ## Mocks and cleanup
 

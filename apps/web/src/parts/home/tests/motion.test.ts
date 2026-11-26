@@ -6,24 +6,14 @@ import { renderHome } from './utils/page';
 
 it('removes hero translation when reduced motion is requested', async () => {
     const screen = await renderHome();
-
     // The copy wrapper owns the CSS-module entrance transition.
     const copy = screen.getByRole('heading', { level: 1 }).element().parentElement!;
 
-    await expect
-        .poll(() => {
-            return getComputedStyle(copy).transitionProperty;
-        })
-        .toBe('opacity, transform');
+    await expect.poll(() => getComputedStyle(copy).transitionProperty).toBe('opacity, transform');
 
     await reduceMotion();
 
-    await expect
-        .poll(() => {
-            return getComputedStyle(copy).transitionProperty;
-        })
-        .toBe('opacity');
-
+    await expect.poll(() => getComputedStyle(copy).transitionProperty).toBe('opacity');
     expect(getComputedStyle(copy).transform).toBe('none');
 });
 

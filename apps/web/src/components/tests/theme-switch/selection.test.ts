@@ -20,13 +20,11 @@ it('marks the current appearance in one labeled menu', async ({ appearance }) =>
 
 it.for(themes)('selects and persists $name appearance', async ({ name, value }, { appearance }) => {
     await appearance.getByRole('button', { name: 'Appearance: Light' }).click();
-
     await page.getByRole('menuitemradio', { name, exact: true }).click();
 
     const trigger = appearance.getByRole('button', { name: `Appearance: ${name}` });
 
     await expect.element(trigger).toHaveFocus();
-
     expect(localStorage.getItem('theme')).toBe(value);
 
     const dark = value === 'dark' || matchMedia('(prefers-color-scheme: dark)').matches;

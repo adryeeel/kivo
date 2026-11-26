@@ -10,7 +10,6 @@ it('supplies the summer goal amounts and accessible description', async () => {
     });
 
     await expect.element(progress).toHaveAttribute('aria-valuenow', '740');
-
     await expect.element(progress).toHaveAttribute('aria-valuemax', '2400');
 
     await expect

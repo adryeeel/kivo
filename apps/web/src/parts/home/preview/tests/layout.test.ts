@@ -29,7 +29,6 @@ it.for(viewports)(
             .toBeVisible();
 
         await expect.element(screen.getByText('Monthly overview')).toBeVisible();
-
         expect(document.documentElement.scrollWidth).toBe(width);
     },
 );
@@ -38,15 +37,11 @@ it.for(phones)(
     'keeps portraits inside the card at 200% text on a $width px phone',
     async ({ width }) => {
         await setViewport(width, 844);
-
         enlargeText();
 
         const screen = await renderPreview();
-
         const preview = screen.getByRole('region', { name: 'Household dashboard' }).element();
-
         const card = preview.getBoundingClientRect();
-
         const padding = getComputedStyle(preview);
 
         for (const name of ['Ana', 'You', 'Leo']) {
@@ -57,7 +52,6 @@ it.for(phones)(
             const bounds = portrait.element().getBoundingClientRect();
 
             expect(bounds.left).toBeGreaterThanOrEqual(card.left + parseFloat(padding.paddingLeft));
-
             expect(bounds.right).toBeLessThanOrEqual(card.right - parseFloat(padding.paddingRight));
         }
     },
@@ -67,21 +61,17 @@ it.for(phones)(
     'keeps summary amounts within their columns at 200% text on a $width px phone',
     async ({ width }) => {
         await setViewport(width, 844);
-
         enlargeText();
 
         const screen = await renderPreview();
 
         for (const text of ['€1,280', '€60']) {
             const amount = screen.getByText(text, { exact: true }).element();
-
             // Each description-list value must fit its own grid column.
             const column = amount.parentElement!.getBoundingClientRect();
-
             const bounds = amount.getBoundingClientRect();
 
             expect(bounds.left).toBeGreaterThanOrEqual(column.left);
-
             expect(bounds.right).toBeLessThanOrEqual(column.right);
         }
 

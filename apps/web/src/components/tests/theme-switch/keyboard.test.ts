@@ -13,7 +13,6 @@ it('opens by keyboard and restores focus with reduced motion', async ({ appearan
     await expect.element(trigger).toBeEnabled();
 
     trigger.element().focus();
-
     await userEvent.keyboard('{ArrowDown}');
 
     await expect.element(page.getByRole('menu')).toBeVisible();
@@ -21,6 +20,5 @@ it('opens by keyboard and restores focus with reduced motion', async ({ appearan
     await userEvent.keyboard('{Escape}');
 
     await expect.element(page.getByRole('menu')).not.toBeInTheDocument();
-
     await expect.element(trigger).toHaveFocus();
 });

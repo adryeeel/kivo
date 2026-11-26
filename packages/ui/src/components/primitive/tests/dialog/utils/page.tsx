@@ -18,7 +18,6 @@ export function renderDialog() {
 
             <DialogContent>
                 <DialogTitle>Details</DialogTitle>
-
                 <DialogDescription>Information about this item.</DialogDescription>
             </DialogContent>
         </Dialog>,

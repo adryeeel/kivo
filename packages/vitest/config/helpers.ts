@@ -10,9 +10,7 @@ declare module 'vitest/browser' {
 export async function reduceMotion() {
     const previous = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    onTestFinished(() => {
-        return commands.setReducedMotion(previous ? 'reduce' : 'no-preference');
-    });
+    onTestFinished(() => commands.setReducedMotion(previous ? 'reduce' : 'no-preference'));
 
     await commands.setReducedMotion('reduce');
 }

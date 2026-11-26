@@ -9,7 +9,6 @@ it('keeps help keyboard-operable with reduced motion', async () => {
     await reduceMotion();
 
     const screen = await renderForm();
-
     const trigger = screen.getByRole('button', { exact: true, name: 'Forgot password?' });
 
     await trigger.click();
@@ -19,6 +18,5 @@ it('keeps help keyboard-operable with reduced motion', async () => {
     await userEvent.keyboard('{Escape}');
 
     await expect.element(page.getByRole('dialog')).not.toBeInTheDocument();
-
     await expect.element(trigger).toHaveFocus();
 });

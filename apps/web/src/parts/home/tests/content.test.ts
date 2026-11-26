@@ -16,16 +16,13 @@ it('explains the product and links to login', async () => {
 
 it('composes one preview notice and the household dashboard', async () => {
     const screen = await renderHome();
-
     const notice = screen.getByRole('complementary', { name: 'Preview notice' });
 
     await expect.element(notice).toBeVisible();
-
     expect(notice.elements()).toHaveLength(1);
 
     await expect.element(screen.getByRole('region', { name: 'Household dashboard' })).toBeVisible();
 
     expect(screen.getByRole('radio').elements()).toHaveLength(0);
-
     expect(screen.getByRole('contentinfo').elements()).toHaveLength(0);
 });

@@ -12,9 +12,7 @@ export function renderForm() {
 export function renderStaticForm() {
     const container = document.body.appendChild(document.createElement('div'));
 
-    onTestFinished(() => {
-        return container.remove();
-    });
+    onTestFinished(() => container.remove());
 
     container.innerHTML = renderToString(<LoginForm />);
 

@@ -16,7 +16,7 @@ Assert the actual control ARIA states (`aria-disabled`, `aria-selected`, `aria-e
 
 Write expected values independently from production constants. Use named case lists for `it.for`. Avoid large snapshots; a targeted snapshot is appropriate only when the reviewed output structure is the actual contract.
 
-Follow [Test code layout](structure.md#code-layout) for spacing between assertions and surrounding setup or interactions. Let the formatter wrap each assertion expression; separate complete assertions rather than manually breaking a matcher chain.
+Follow [Test code layout](structure.md#code-layout) to group related assertions and separate them from setup, interactions or a different outcome. Let the formatter wrap each assertion expression rather than manually breaking a matcher chain.
 
 ## Coverage priorities
 
