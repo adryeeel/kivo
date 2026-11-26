@@ -25,7 +25,7 @@ export function FamilyPreview() {
                     </CardTitle>
                     <CardDescription>Monthly overview</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className='@container'>
                     <PreviewSummary />
                 </CardContent>
                 <CardFooter className='border-t'>

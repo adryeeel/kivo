@@ -77,6 +77,13 @@ it.for([{ width: 320 }, { width: 390 }])(
         expect(bounds.right).toBeLessThanOrEqual(width);
         expect(bounds.top).toBeGreaterThanOrEqual(0);
         expect(bounds.bottom).toBeLessThanOrEqual(844);
+
+        for (const amount of document.querySelectorAll('dl dd')) {
+            const column = amount.parentElement!.getBoundingClientRect();
+            const value = amount.getBoundingClientRect();
+            expect(value.left).toBeGreaterThanOrEqual(column.left);
+            expect(value.right).toBeLessThanOrEqual(column.right);
+        }
     },
 );
 
