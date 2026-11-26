@@ -126,6 +126,18 @@ it.for([{ width: 320 }, { width: 390 }])(
         expect(bounds.top).toBeGreaterThanOrEqual(0);
         expect(bounds.bottom).toBeLessThanOrEqual(844);
 
+        const preview = screen.getByRole('region', { name: 'Household dashboard' }).element();
+        const card = preview.getBoundingClientRect();
+        const padding = getComputedStyle(preview);
+
+        for (const name of ['Ana', 'You', 'Leo']) {
+            const portrait = screen.getByRole('img', { name, exact: true });
+            await expect.element(portrait).toBeVisible();
+            const bounds = portrait.element().getBoundingClientRect();
+            expect(bounds.left).toBeGreaterThanOrEqual(card.left + parseFloat(padding.paddingLeft));
+            expect(bounds.right).toBeLessThanOrEqual(card.right - parseFloat(padding.paddingRight));
+        }
+
         for (const amount of document.querySelectorAll('dl dd')) {
             const column = amount.parentElement!.getBoundingClientRect();
             const value = amount.getBoundingClientRect();

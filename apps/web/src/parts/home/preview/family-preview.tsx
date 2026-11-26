@@ -26,7 +26,7 @@ export function FamilyPreview() {
                             <p className='text-muted-foreground text-sm'>Shared space</p>
                         </div>
                     </div>
-                    <AvatarGroup>
+                    <AvatarGroup className='@max-[14rem]:*:data-[slot=avatar]:size-6'>
                         <Avatar size='lg'>
                             <AvatarImage src='/avatars/ana.webp' alt='Ana' width={80} height={80} />
                             <AvatarFallback>Ana</AvatarFallback>
