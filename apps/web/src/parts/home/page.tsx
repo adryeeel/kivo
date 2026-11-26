@@ -10,8 +10,9 @@ import { FamilyPreview } from '@/parts/home/preview';
 export function HomePage() {
     return (
         <SiteShell>
-            <main className='flex min-w-0 items-center px-6 py-10 lg:px-12 lg:py-14 xl:px-16'>
-                <div className='mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16'>
+            <main className='hero-surface relative isolate flex min-w-0 items-center px-6 py-10 lg:px-12 lg:py-14 xl:px-16'>
+                <div aria-hidden='true' className='hero-backdrop' />
+                <div className='relative mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16'>
                     <div className='hero-enter flex min-w-0 flex-col items-start gap-6'>
                         <p className='text-muted-foreground text-sm'>Kivo is taking shape.</p>
                         <h1 className='font-heading max-w-full text-4xl leading-tight font-semibold tracking-tight wrap-anywhere sm:text-5xl xl:text-6xl'>

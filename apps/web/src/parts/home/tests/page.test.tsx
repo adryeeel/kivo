@@ -76,3 +76,44 @@ it.for([{ width: 320 }, { width: 390 }])(
         expect(bounds.bottom).toBeLessThanOrEqual(844);
     },
 );
+
+it.for(['light', 'dark'])('keeps the savings progress legible in %s mode', async (theme) => {
+    const screen = await render(<HomePage />, { wrapper: ThemeProvider });
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+
+    try {
+        const progress = screen.getByRole('progressbar', {
+            name: 'Summer goal: €740 of €2,400 marked saved',
+        });
+        await expect.element(progress).toHaveAttribute('aria-valuenow', '740');
+        await expect.element(progress).toHaveAttribute('aria-valuemax', '2400');
+        const track = progress
+            .element()
+            .querySelector('[data-slot="progress-track"]') as HTMLElement;
+        const indicator = progress
+            .element()
+            .querySelector('[data-slot="progress-indicator"]') as HTMLElement;
+        const fill = luminance(getComputedStyle(indicator).backgroundColor);
+        const remainder = luminance(getComputedStyle(track).backgroundColor);
+        expect(
+            (Math.max(fill, remainder) + 0.05) / (Math.min(fill, remainder) + 0.05),
+        ).toBeGreaterThanOrEqual(3);
+        expect(
+            indicator.getBoundingClientRect().width / track.getBoundingClientRect().width,
+        ).toBeCloseTo(740 / 2400, 2);
+    } finally {
+        document.documentElement.classList.remove('dark');
+    }
+});
+
+function luminance(color: string) {
+    const context = document.createElement('canvas').getContext('2d');
+    if (!context) throw new Error('Canvas is required to resolve theme colors.');
+    context.fillStyle = color;
+    context.fillRect(0, 0, 1, 1);
+    const channels = [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map((channel) => {
+        const value = channel / 255;
+        return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+    });
+    return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+}

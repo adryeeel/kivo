@@ -47,19 +47,19 @@ body {
 }
 
 .dark {
-    --background: #1c1d21;
+    --background: #090b0a;
     --foreground: oklch(0.987 0.002 197.1);
-    --card: #24262b;
+    --card: #121714;
     --card-foreground: oklch(0.987 0.002 197.1);
-    --popover: #24262b;
+    --popover: #121714;
     --popover-foreground: oklch(0.987 0.002 197.1);
     --primary: oklch(0.765 0.177 163.223);
     --primary-foreground: #17231e;
     --secondary: oklch(0.274 0.006 286.033);
     --secondary-foreground: oklch(0.985 0 0);
-    --muted: #24262b;
+    --muted: #19201c;
     --muted-foreground: oklch(0.723 0.014 214.4);
-    --accent: #2b2d33;
+    --accent: #202a24;
     --accent-foreground: oklch(0.987 0.002 197.1);
     --destructive: oklch(0.704 0.191 22.216);
     --border: oklch(1 0 0 / 10%);
@@ -145,6 +145,35 @@ body {
 }
 
 @layer components {
+    .hero-surface {
+        background:
+            radial-gradient(
+                ellipse at 88% 35%,
+                color-mix(in oklch, var(--primary) 12%, transparent),
+                transparent 55%
+            ),
+            linear-gradient(
+                120deg,
+                var(--background) 30%,
+                color-mix(in oklch, var(--primary) 5%, var(--background))
+            );
+    }
+    .hero-backdrop {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        overflow: clip;
+        pointer-events: none;
+    }
+    .hero-backdrop::before {
+        content: '';
+        position: absolute;
+        inset: 8% 4% 8% 55%;
+        border: 1px solid color-mix(in oklch, var(--primary) 14%, transparent);
+        border-radius: 45% 45% 12% 45%;
+        transform: rotate(-12deg);
+        pointer-events: none;
+    }
     .hero-enter {
         transition:
             opacity 250ms var(--ease-out),

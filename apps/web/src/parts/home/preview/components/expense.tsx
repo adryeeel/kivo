@@ -2,7 +2,7 @@ import { CheckIcon, ShoppingBasketIcon } from '@kivo/ui/icons/symbols';
 
 export function PreviewExpense() {
     return (
-        <div className='grid grid-cols-[auto_1fr_auto] items-start gap-3'>
+        <div className='grid w-full grid-cols-[auto_1fr_auto] items-start gap-3'>
             <ShoppingBasketIcon
                 className='text-muted-foreground size-5 shrink-0'
                 aria-hidden='true'
