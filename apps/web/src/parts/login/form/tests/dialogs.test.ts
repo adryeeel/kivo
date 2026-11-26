@@ -12,12 +12,17 @@ it.for(actions)(
     '$name reports the unavailable action and restores focus',
     async ({ name, message }) => {
         const screen = await renderForm();
+
         const trigger = screen.getByRole('button', { name, exact: true });
 
         await trigger.click();
+
         await expect.element(page.getByRole('dialog')).toMatchTextContent(message);
+
         await page.getByRole('button', { exact: true, name: 'Got it' }).click();
+
         await expect.element(page.getByRole('dialog')).not.toBeInTheDocument();
+
         await expect.element(trigger).toHaveFocus();
     },
 );

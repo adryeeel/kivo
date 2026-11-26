@@ -15,11 +15,15 @@ const phones = [{ width: 320 }, { width: 390 }];
 
 it.for(viewports)('keeps the login usable at $width×$height', async ({ width, height }) => {
     await setViewport(width, height);
+
     const screen = await renderLogin();
+
     await expect
         .element(screen.getByRole('heading', { level: 1, name: 'Welcome home.' }))
         .toBeVisible();
+
     expect(document.documentElement.scrollWidth).toBe(width);
+
     await expect
         .element(screen.getByRole('complementary', { name: 'Preview notice' }))
         .toBeVisible();
@@ -33,7 +37,9 @@ it.for(phones)(
     'keeps login controls reachable at 200% text on a $width px phone',
     async ({ width }) => {
         await setViewport(width, 844);
+
         enlargeText();
+
         const screen = await renderLogin();
 
         expect(document.documentElement.scrollWidth).toBe(width);
@@ -46,12 +52,17 @@ it.for(phones)(
             screen.getByRole('button', { exact: true, name: 'Create an account' }),
         ]) {
             control.element().focus();
+
             await expect.element(control).toHaveFocus();
+
             const bounds = control.element().getBoundingClientRect();
 
             expect(bounds.left).toBeGreaterThanOrEqual(0);
+
             expect(bounds.right).toBeLessThanOrEqual(width);
+
             expect(bounds.top).toBeGreaterThanOrEqual(0);
+
             expect(bounds.bottom).toBeLessThanOrEqual(844);
         }
     },

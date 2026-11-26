@@ -9,8 +9,11 @@ it('loads the three family portraits', async () => {
         const portrait = screen.getByRole('img', { name, exact: true });
 
         await expect.element(portrait).toBeVisible();
+
         await expect
-            .poll(() => (portrait.element() as HTMLImageElement).naturalWidth)
+            .poll(() => {
+                return (portrait.element() as HTMLImageElement).naturalWidth;
+            })
             .toBeGreaterThan(0);
     }
 });

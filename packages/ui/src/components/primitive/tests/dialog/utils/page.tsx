@@ -15,8 +15,10 @@ export function renderDialog() {
     return render(
         <Dialog>
             <DialogTrigger render={<Button />}>Open details</DialogTrigger>
+
             <DialogContent>
                 <DialogTitle>Details</DialogTitle>
+
                 <DialogDescription>Information about this item.</DialogDescription>
             </DialogContent>
         </Dialog>,

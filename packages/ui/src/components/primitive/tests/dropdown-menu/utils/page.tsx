@@ -15,6 +15,7 @@ export function renderMenu() {
     return render(
         <DropdownMenu>
             <DropdownMenuTrigger render={<Button />}>Open choices</DropdownMenuTrigger>
+
             <DropdownMenuContent>
                 <DropdownMenuRadioGroup value='one' aria-label='Choices'>
                     <DropdownMenuRadioItem value='one'>One</DropdownMenuRadioItem>

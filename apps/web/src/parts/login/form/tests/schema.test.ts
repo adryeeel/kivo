@@ -15,6 +15,7 @@ describe('login schema', () => {
             password: ' a ',
             email: 'ana@example.com',
         });
+
         expect(loginSchema.safeParse({ password: ' ', email: 'ana@example.com' }).success).toBe(
             true,
         );
@@ -26,6 +27,7 @@ describe('login schema', () => {
             const result = loginSchema.safeParse({ email, password });
 
             expect(result.success).toBe(false);
+
             expect(result.error?.issues[0]?.message).toBe(message);
         },
     );
