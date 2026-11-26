@@ -16,6 +16,11 @@ export const browserConfig = mergeConfig(
                 provider: playwright({
                     launchOptions: { channel: 'chromium' },
                 }),
+                commands: {
+                    async setReducedMotion({ page }, reducedMotion: 'reduce' | 'no-preference') {
+                        await page.emulateMedia({ reducedMotion });
+                    },
+                },
             },
         },
     }),
