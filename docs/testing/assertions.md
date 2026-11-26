@@ -4,7 +4,7 @@
 
 Query from the render result or a scoped fixture locator. Prefer `getByRole` with its accessible name, then `getByLabelText` or `getByText`. Avoid global page/document queries, class selectors, `data-slot` and DOM traversal; they can match unrelated content or bind tests to structure.
 
-A missing role/name may be a production accessibility defect. Do not add fake roles to decorative elements. Test IDs are allowed for deliberately hidden behavior, such as canvas fallbacks, or wrappers whose meaningful style cannot be targeted semantically. Name them after the element in kebab-case.
+A missing role/name may be a production accessibility defect. Do not add fake roles to decorative elements. Test IDs are allowed for deliberately hidden behavior, such as canvas fallbacks, or wrappers whose meaningful style cannot be targeted semantically. Name them after the element in kebab-case. Primitive-owned presentation tests may inspect their own track/indicator slots when those elements have no separate semantics; keep such assertions out of consumer suites.
 
 Check exact accessible names before weakening a locator. Give icon-only links useful labels and communicate new-tab behavior when present.
 
